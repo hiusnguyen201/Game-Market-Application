@@ -9,4 +9,19 @@ Use Cases:
 3. Buy Game: 
    -  Make Payment, View Receipt --> Customer
    -  View Store, Manage Cart --> Customer, Visitor 
-4. Manage Market (Manage Game, View List Customer, Revenue Overview) --> Admin
+4. Manage Game --> Admin
+
+
+==============================
+
+Name: Game Market Application
+Description: Application to sell, buy game,....
+Actor: Visitor, Customer
+Use Cases:
+1. Manage Membership:
+   - Register --> Visitor
+   - Login/ Logout --> Customer, Admin
+   - Manage Account (View Profile, View Transaction History)--> Customer, Admin
+2. Buy Game: 
+   -  Make Payment --> Customer
+   -  View Store --> Customer, Visitor 
