@@ -20,8 +20,8 @@ Actor: Visitor, Customer
 Use Cases:
 1. Manage Membership:
    - Register --> Visitor
-   - Login/ Logout --> Customer, Admin
-   - Manage Account (View Profile, View Transaction History)--> Customer, Admin
+   - Login/ Logout --> Customer
+   - View Order History, Recharge Money --> Customer
 2. Buy Game: 
-   -  Make Payment --> Customer
-   -  View Store --> Customer, Visitor 
+   -  Make Payment, Show Order Details--> Customer
+   -  View Store, Show Cart --> Customer, Visitor 
