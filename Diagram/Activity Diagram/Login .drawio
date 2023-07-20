@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-07-14T07:06:20.207Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 OPR/99.0.0.0" etag="EpPC2ZMA7YUovjxcLEpw" version="21.6.2" type="google">
+<mxfile host="app.diagrams.net" modified="2023-07-19T03:39:01.110Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 OPR/99.0.0.0" etag="BXfch2Xif3pKd3ea1Mte" version="21.6.2" type="google">
   <diagram name="Page-1" id="pdf92lAs7p1g5eFGPByC">
     <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
@@ -28,7 +28,7 @@
             <mxPoint x="520" y="350" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vZfRKAXI7m6lCWT92s2_-10" value="Usename and Password&lt;br&gt;are Empty" style="rhombus;whiteSpace=wrap;html=1;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
+        <mxCell id="vZfRKAXI7m6lCWT92s2_-10" value="Validate if Usename and Password are empty" style="rhombus;whiteSpace=wrap;html=1;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
           <mxGeometry x="432.5" y="390" width="165" height="90" as="geometry" />
         </mxCell>
         <mxCell id="vZfRKAXI7m6lCWT92s2_-12" value="yes" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vZfRKAXI7m6lCWT92s2_-10" target="vZfRKAXI7m6lCWT92s2_-17">
@@ -37,7 +37,7 @@
             <mxPoint x="-9" y="-45" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vZfRKAXI7m6lCWT92s2_-17" value="Usename and&amp;nbsp;&lt;br&gt;Password is validate" style="rhombus;whiteSpace=wrap;html=1;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
+        <mxCell id="vZfRKAXI7m6lCWT92s2_-17" value="Verify Usename and&amp;nbsp;&lt;br&gt;Password in database" style="rhombus;whiteSpace=wrap;html=1;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
           <mxGeometry x="425" y="515" width="180" height="90" as="geometry" />
         </mxCell>
         <mxCell id="vZfRKAXI7m6lCWT92s2_-18" value="no" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="vZfRKAXI7m6lCWT92s2_-17" target="vZfRKAXI7m6lCWT92s2_-25">
@@ -98,7 +98,7 @@
         <mxCell id="Yhao4mq_l_5nyzQUhMNv-3" value="Register" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="20" y="105" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Yhao4mq_l_5nyzQUhMNv-5" value="In Main menu" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
+        <mxCell id="Yhao4mq_l_5nyzQUhMNv-5" value="Open the Main menu" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
           <mxGeometry x="455" y="120" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Yhao4mq_l_5nyzQUhMNv-6" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Yhao4mq_l_5nyzQUhMNv-5" target="vZfRKAXI7m6lCWT92s2_-6">
