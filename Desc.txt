@@ -2,20 +2,16 @@ Name: Game Market Application
 Description: Application to buy game,....
 Actor: Visitor, Customer
 Use Cases:
-1. Manage Membership:
+1. Manage Membership and Profile:
    - Register --> Visitor
    - Login --> Customer
-   - View Order History, Recharge Money --> Customer
-2. Search Game (View Store, search game) --> Customer, Visitor
+   - View Order History, Recharge Money, View Profile --> Customer
+2. Search Game:
+   - View Store --> Customer, Visitor
+   - Search game --> Customer, Visitor
 3. Buy Game: 
    -  Make Payment, Show Order Details --> Customer
-   -  Show Cart --> Customer, Visitor
+   -  Show Cart --> Customer, Visitor 
 
 Arial, 12pt
 
-Visitor
-1. Manage Membership
-	1.1 Login  ()
-	1.2 Register
-2. Search Game
-3. View Cart
