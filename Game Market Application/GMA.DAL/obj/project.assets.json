@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\MGM\\GMA.DAL\\GMA.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\Hai Nguyen\\Desktop\\Game Market Application\\GMA.DAL\\GMA.DAL.csproj",
       "projectName": "GMA.DAL",
-      "projectPath": "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\MGM\\GMA.DAL\\GMA.DAL.csproj",
+      "projectPath": "C:\\Users\\Hai Nguyen\\Desktop\\Game Market Application\\GMA.DAL\\GMA.DAL.csproj",
       "packagesPath": "C:\\Users\\Hai Nguyen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\MGM\\GMA.DAL\\obj\\",
+      "outputPath": "C:\\Users\\Hai Nguyen\\Desktop\\Game Market Application\\GMA.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Hai Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
