@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMA.DAL", "GMA.DAL\GMA.DAL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMA.Models", "GMA.Models\GMA.Models.csproj", "{4B39EBDC-A220-4A04-B981-1B66E8A8ACC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMA.Utility", "GMA.Utility\GMA.Utility.csproj", "{51D83DA4-54A2-4C18-8EA8-18CDDD2A2464}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{4B39EBDC-A220-4A04-B981-1B66E8A8ACC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B39EBDC-A220-4A04-B981-1B66E8A8ACC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B39EBDC-A220-4A04-B981-1B66E8A8ACC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D83DA4-54A2-4C18-8EA8-18CDDD2A2464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D83DA4-54A2-4C18-8EA8-18CDDD2A2464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D83DA4-54A2-4C18-8EA8-18CDDD2A2464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D83DA4-54A2-4C18-8EA8-18CDDD2A2464}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
