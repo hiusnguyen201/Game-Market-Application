@@ -9,10 +9,23 @@ public class Cart
 
     public Cart () {}
 
-    public Cart (int accountID, double totalPrice, DateTime createDate)
+    public Cart (int accountID, double totalPrice)
     {
         this.accountID = accountID;
         this.totalPrice = totalPrice;
-        this.createDate = createDate;
+    }
+}
+
+public class CartItem
+{
+    public int cartID { get; set; }
+    public int gameID { get; set; }
+
+    public CartItem () {}
+
+    public CartItem ( int cartID, int gameID, int quantity)
+    {
+        this.cartID = cartID;
+        this.gameID = gameID;
     }
 }

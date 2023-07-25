@@ -4,7 +4,7 @@ namespace GMA.DAL;
 
 public class DBHelper {
     private static MySqlConnection connection;
-    private static string connectionString = @"server=localhost;port=3306;userid=root;password=Thephe789!;database=";
+    private static string connectionString = @"server=localhost;port=3306;userid=root;password=Thephe789!;database=GMADB";
 
     public static MySqlConnection GetConnection() 
     {
