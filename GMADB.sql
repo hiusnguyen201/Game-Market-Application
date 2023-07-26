@@ -12,28 +12,32 @@ CREATE TABLE Accounts
     acc_Email VARCHAR(225) UNIQUE NOT NULL CHECK (acc_Email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'),
     acc_Address VARCHAR(225),
     acc_Money DOUBLE DEFAULT 0,
-    acc_CreateDate DATETIME DEFAULT NOW()
+    acc_CreateDate DATETIME DEFAULT NOW(),
+    acc_Status INT NOT NULL,
+    acc_Role INT NOT NULL
 );
 
+CREATE INDEX ix_username ON Accounts(acc_Username);
 CREATE INDEX ix_email ON Accounts(acc_Email);
 
 CREATE TABLE Carts
 (
 	cart_ID INT PRIMARY KEY AUTO_INCREMENT,
-    acc_ID INT NOT NULL,
-    FOREIGN KEY (acc_ID) references Accounts(acc_ID),
+    acc_ID INT,
     cart_CreateDate DATETIME DEFAULT NOW(),
-    cart_TotalPrice DOUBLE NOT NULL
+    cart_TotalPrice DOUBLE NOT NULL,
+    cart_Status INT,
+    CONSTRAINT fk_Carts_Accounts FOREIGN KEY (acc_ID) references Accounts(acc_ID)
 );
 
 CREATE TABLE Orders
 (
 	order_ID INT PRIMARY KEY AUTO_INCREMENT,
-    acc_ID INT NOT NULL,
-    FOREIGN KEY (acc_ID) references Accounts(acc_ID),
+    acc_ID INT,
     order_TotalPrice DOUBLE NOT NULL,
     order_CreateDate DATETIME DEFAULT NOW(),
-    order_Status VARCHAR(225) NOT NULL DEFAULT "Pending" CHECK (order_Status IN ("Pending", "Processing", "Completed", "Declined"))
+    order_Status INT,
+    CONSTRAINT fk_Orders_Accounts FOREIGN KEY (acc_ID) references Accounts(acc_ID)
 );
 
 CREATE TABLE Publishers
@@ -55,13 +59,13 @@ CREATE TABLE Games
     game_Name VARCHAR(225) NOT NULL CHECK (game_Name REGEXP '^[A-Za-z0-9.,:;\''),
     game_Desc TEXT NOT NULL,
     game_Price DOUBLE NOT NULL,
-    game_Rating FLOAT NOT NULL,
+    game_Rating FLOAT,
     game_Size VARCHAR(225) NOT NULL CHECK (game_size REGEXP '^[0-9]+(\.[0-9]+)?( ?[KMGTP]B)?$'),
-    game_Status VARCHAR(225) NOT NULL,
-    game_Discount FLOAT NOT NULL,
-    discount_Unit CHAR NOT NULL DEFAULT '%',
+    game_Status INT,
+    game_Discount FLOAT,
+    discount_Unit INT CHECK(discount_Unit IN ('%', '$')),
     game_ReleaseDate DATETIME DEFAULT NOW(),
-    FOREIGN KEY (publisher_ID) REFERENCES Publishers(publisher_ID)
+    CONSTRAINT fk_Games_Publishers FOREIGN KEY (publisher_ID) REFERENCES Publishers(publisher_ID)
 );
 
 CREATE INDEX ix_gameName ON Games(game_Name);
@@ -69,36 +73,39 @@ CREATE INDEX ix_gameName ON Games(game_Name);
 CREATE TABLE GenreDetails (
 	genre_ID INT NOT NULL,
     game_ID INT NOT NULL,
-    FOREIGN KEY (genre_ID) REFERENCES Genres(genre_ID),
-    FOREIGN KEY (game_ID) REFERENCES Games(game_ID),
-    PRIMARY KEY (genre_ID, game_ID)
+    CONSTRAINT pk_GenreDetails PRIMARY KEY (genre_ID, game_ID),
+    CONSTRAINT fk_GenreDetails_Genres FOREIGN KEY (genre_ID) REFERENCES Genres(genre_ID),
+    CONSTRAINT fk_GenreDetails_Games FOREIGN KEY (game_ID) REFERENCES Games(game_ID)
 );
 
 CREATE TABLE Cartitems
 (
 	cart_ID INT NOT NULL,
     game_ID INT NOT NULL,
-    FOREIGN KEY (cart_ID) references Carts (cart_ID),
-    FOREIGN KEY (game_ID) references Games (game_ID),
-    PRIMARY KEY (cart_ID, game_ID)
+    unit_price DECIMAL(20,2) NOT NULL,
+    CONSTRAINT pk_Cartitems PRIMARY KEY (cart_ID, game_ID),
+    CONSTRAINT fk_Cartitems_Carts FOREIGN KEY (cart_ID) REFERENCES Carts (cart_ID),
+    CONSTRAINT fk_Cartitems_Games FOREIGN KEY (game_ID) REFERENCES Games (game_ID)
 );
 
 CREATE TABLE OrderDetails
 (
 	order_ID INT NOT NULL,
     game_ID INT NOT NULL,
-    FOREIGN KEY (order_ID) references Orders (order_ID),
-    FOREIGN KEY (game_ID) references Games (game_ID),
-    PRIMARY KEY (order_ID, game_ID)
+    unit_price DECIMAL(20,2) NOT NULL,
+    CONSTRAINT pk_OrderDetails PRIMARY KEY (order_ID, game_ID),
+    CONSTRAINT fk_OrderDetails_Orders FOREIGN KEY (order_ID) REFERENCES Orders (order_ID),
+    CONSTRAINT fk_OrderDetails_Games FOREIGN KEY (game_ID) REFERENCES Games (game_ID)
 );
 
 CREATE TABLE Ownership
 (
 	acc_ID INT NOT NULL,
     game_ID INT NOT NULL,
-    FOREIGN KEY (acc_ID) references Accounts (acc_ID),
-    FOREIGN KEY (game_ID) references Games (game_ID),
-    PRIMARY KEY (acc_ID, game_ID)
+    purchase_Date DATETIME,
+    CONSTRAINT pk_Ownership PRIMARY KEY (acc_ID, game_ID),
+    FOREIGN KEY fk_Ownership_Accounts (acc_ID) REFERENCES Accounts (acc_ID),
+    FOREIGN KEY fk_Ownership_Games (game_ID) REFERENCES Games (game_ID)
 );
 
 ---------- CreateTriggers ----------

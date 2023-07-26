@@ -1,31 +1,57 @@
 namespace GMA.Models;
 
-public class Cart
+public static class CartStatus
 {
-    public int id { get; set; }
-    public int accountID { get; set; }
-    public double totalPrice { get; set; }
-    public DateTime createDate { get; set; }
-
-    public Cart () {}
-
-    public Cart (int accountID, double totalPrice)
-    {
-        this.accountID = accountID;
-        this.totalPrice = totalPrice;
-    }
+    public const int EMPTY = 1;
+    public const int ACTIVE = 2;
+    public const int INACTIVE = 3;
+    public const int ABANDONED = 4;
 }
 
-public class CartItem
+public class Cart
 {
-    public int cartID { get; set; }
-    public int gameID { get; set; }
+    public int CartId { get; set; }
+    public Account CartAccount { get; set; }
+    public double TotalPrice { get; set; }
+    public DateTime CreateDate { get; set; }
+    public int Status { get; set; }
+    public List<Game> CartItems { get; set; }
 
-    public CartItem () {}
-
-    public CartItem ( int cartID, int gameID, int quantity)
+    public Game this[int index]
     {
-        this.cartID = cartID;
-        this.gameID = gameID;
+        get
+        {
+            if (CartItems == null || CartItems.Count == 0 || index < 0 || CartItems.Count < index) return null;
+            return CartItems[index];
+        }
+        set
+        {
+            if (CartItems == null) CartItems = new List<Game>();
+            CartItems.Add(value);
+        }
+    }
+
+    public Cart()
+    {
+        CartItems = new List<Game>();
+    }
+
+    public Cart(Account CartAccount, double TotalPrice)
+    {
+        this.CartAccount = CartAccount;
+        this.TotalPrice = TotalPrice;
+        this.Status = CartStatus.EMPTY;
+        CartItems = new List<Game>();
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is Cart) ((Cart)obj).CartId.Equals(CartId);
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return CartId.GetHashCode();
     }
 }

@@ -2,14 +2,8 @@ namespace GMA.Models;
 
 public class Publisher
 {
-    public int id { get; set; }
-    public string publisherName { get; set; }
+    public int PublisherID { get; set; }
+    public string PublisherName { get; set; }
 
-    public Publisher () {}
-
-    public Publisher ( string publisherName)
-
-    {
-        this.publisherName = publisherName;
-    }
+    public Publisher() { }
 }

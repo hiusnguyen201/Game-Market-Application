@@ -1,33 +1,57 @@
 namespace GMA.Models;
 
-public class Order
+public static class OrderStatus
 {
-    public int id { get; set; }
-    public int accountID { get; set; }
-    public double totalPrice { get; set; }
-    public DateTime orderDate { get; set; }
-    public string orderStatus { get; set; }
-    
-    public Order () {}
-
-    public Order (int accountID, double totalPrice, DateTime orderDate, string orderStatus)
-    {
-        this.accountID = accountID;
-        this.totalPrice = totalPrice;
-        this.orderDate = orderDate;
-        this.orderStatus = orderStatus;
-    }
+    public const int PENDING = 1;
+    public const int PROCESSING = 2;
+    public const int COMPLETED = 3;
+    public const int DECLINED = 4;
 }
 
-public class OrderDetail
+public class Order
 {
-    public int orderID { get; set; }
-    public int gameID { get; set; }
-    public OrderDetail () {}
+    public int OrderId { get; set; }
+    public Account OrderAccount { get; set; }
+    public double TotalPrice { get; set; }
+    public DateTime OrderDate { get; set; }
+    public int Status { get; set; }
+    public List<Game> OrderDetails { get; set; }
 
-    public OrderDetail ( int orderID, int gameID, int quantity)
+    public Game this[int index]
     {
-        this.orderID = orderID;
-        this.gameID = gameID;
+        get
+        {
+            if (OrderDetails == null || OrderDetails.Count == 0 || index < 0 || OrderDetails.Count < index) return null;
+            return OrderDetails[index];
+        }
+        set
+        {
+            if (OrderDetails == null) OrderDetails = new List<Game>();
+            OrderDetails.Add(value);
+        }
+    }
+
+    public Order()
+    {
+        OrderDetails = new List<Game>();
+    }
+
+    public Order(Account OrderAccount, double TotalPrice)
+    {
+        this.OrderAccount = OrderAccount;
+        this.TotalPrice = TotalPrice;
+        this.Status = OrderStatus.PENDING;
+        OrderDetails = new List<Game>();
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is Order) ((Order)obj).OrderId.Equals(OrderId);
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return OrderId.GetHashCode();
     }
 }
