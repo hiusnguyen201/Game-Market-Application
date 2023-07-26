@@ -1,6 +1,6 @@
 ﻿namespace GMA.App;
 using Spectre.Console;
-public class Menu
+public class Menu //Aukeauke
 {
     public static bool isLoged = false;
     public static void Main(string[] args)
