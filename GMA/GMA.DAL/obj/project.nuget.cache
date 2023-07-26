@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "4QPZYRj+wa373l5+WXD1bcl9TKtlLcQViD3FJQp9U43jbAiUe88HI6Sq56ZUoxBHmjPxxE1W0Ld5PbMQfz5FWg==",
+  "dgSpecHash": "Hq25mOsO1SeIVtk/281T/gfXD1GxM+VQiPeU+bPyQVkmA5LfYd7o3XhN8TrlEe7e7OCvrGruRKfuZgb324Gs8A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.DAL\\GMA.DAL.csproj",
+  "projectFilePath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ahai\\.nuget\\packages\\mysql.data\\6.9.8\\mysql.data.6.9.8.nupkg.sha512",
-    "C:\\Users\\ahai\\.nuget\\packages\\mysqlconnection\\1.0.1\\mysqlconnection.1.0.1.nupkg.sha512"
+    "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\mysql.data\\6.9.8\\mysql.data.6.9.8.nupkg.sha512",
+    "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\mysqlconnection\\1.0.1\\mysqlconnection.1.0.1.nupkg.sha512"
   ],
   "logs": [
     {

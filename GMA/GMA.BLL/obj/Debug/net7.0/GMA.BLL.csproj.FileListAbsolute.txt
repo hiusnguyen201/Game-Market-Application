@@ -1,0 +1,17 @@
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.deps.json
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.dll
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.pdb
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\bin\Debug\net7.0\GMA.DAL.dll
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\bin\Debug\net7.0\GMA.Models.dll
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\bin\Debug\net7.0\GMA.DAL.pdb
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\bin\Debug\net7.0\GMA.Models.pdb
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.AssemblyReference.cache
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.AssemblyInfoInputs.cache
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.AssemblyInfo.cs
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.CopyComplete
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.dll
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\obj\Debug\net7.0\refint\GMA.BLL.dll
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.pdb
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.BLL\obj\Debug\net7.0\ref\GMA.BLL.dll
