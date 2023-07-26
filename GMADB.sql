@@ -12,9 +12,7 @@ CREATE TABLE Accounts
     acc_Email VARCHAR(225) UNIQUE NOT NULL CHECK (acc_Email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'),
     acc_Address VARCHAR(225),
     acc_Money DOUBLE DEFAULT 0,
-    acc_CreateDate DATETIME DEFAULT NOW(),
-    acc_Status INT NOT NULL,
-    acc_Role INT NOT NULL
+    acc_CreateDate DATETIME DEFAULT NOW()
 );
 
 CREATE INDEX ix_username ON Accounts(acc_Username);
@@ -56,7 +54,7 @@ CREATE TABLE Games
 (
 	game_ID INT PRIMARY KEY AUTO_INCREMENT,
     publisher_ID INT NOT NULL,
-    game_Name VARCHAR(225) NOT NULL CHECK (game_Name REGEXP '^[A-Za-z0-9.,:;\''),
+    game_Name VARCHAR(225) NOT NULL CHECK (game_Name REGEXP '^[A-Za-z0-9.,:;\'),
     game_Desc TEXT NOT NULL,
     game_Price DOUBLE NOT NULL,
     game_Rating FLOAT,

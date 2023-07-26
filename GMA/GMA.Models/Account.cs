@@ -1,17 +1,4 @@
 ﻿namespace GMA.Models;
-
-public static class AccountStatus
-{
-    public const int INACTIVE = 1;
-    public const int ACTIVE = 2;
-}
-
-public static class AccountRole
-{
-    public const int USER = 1;
-    public const int VISITOR = 2;
-}
-
 public class Account
 {
     public int AccountId { get; set; }
@@ -23,8 +10,6 @@ public class Account
     public string Address { get; set; }
     public double Money { get; set; }
     public DateTime CreateDate { get; set; }
-    public int Status { get; set; }
-    public int Role { get; set; }
     public List<Game> OwnershipGames { set; get; }
 
     public Game this[int index]
@@ -54,8 +39,6 @@ public class Account
         this.Phone = Phone;
         this.Email = Email;
         this.Address = Address;
-        this.Status = AccountStatus.INACTIVE;
-        this.Role = AccountRole.USER;
         OwnershipGames = new List<Game>();
     }
 
