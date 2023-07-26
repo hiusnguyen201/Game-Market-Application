@@ -13,3 +13,18 @@ C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DA
 C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\refint\GMA.DAL.dll
 C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.pdb
 C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\ref\GMA.DAL.dll
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\bin\Debug\net7.0\GMA.DAL.deps.json
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\bin\Debug\net7.0\GMA.DAL.dll
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\bin\Debug\net7.0\GMA.DAL.pdb
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\bin\Debug\net7.0\GMA.Models.dll
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\bin\Debug\net7.0\GMA.Models.pdb
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.csproj.AssemblyReference.cache
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.AssemblyInfoInputs.cache
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.AssemblyInfo.cs
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.csproj.CoreCompileInputs.cache
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.csproj.CopyComplete
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.dll
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\obj\Debug\net7.0\refint\GMA.DAL.dll
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.pdb
+C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.DAL\obj\Debug\net7.0\ref\GMA.DAL.dll

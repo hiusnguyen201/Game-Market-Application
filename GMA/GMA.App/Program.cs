@@ -27,6 +27,7 @@ public class Menu
                 switch (choice)
                 {
                     case 1:
+                        MembershipMenu();
                         break;
 
                     case 2:
@@ -70,9 +71,11 @@ public class Menu
                 switch (choice)
                 {
                     case 1:
+                        LoginForm();
                         break;
 
                     case 2:
+                        RegisterForm();
                         break;
 
                     case 0:
@@ -106,7 +109,7 @@ public class Menu
             {
                 Console.Write("Username cannot be null! ");
                 Console.ReadKey();
-                ClearCurrentConsoleLine();
+                // ClearCurrentConsoleLine();
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
             }
             else if (username == "Q" || username == "q")
@@ -119,7 +122,7 @@ public class Menu
             {
                 Console.Write("Password cannot be null! ");
                 Console.ReadKey();
-                ClearCurrentConsoleLine();
+                // ClearCurrentConsoleLine();
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
             }
             else if (password == "Q" || password == "q")
@@ -184,90 +187,67 @@ public class Menu
         {
             Console.Clear();
             var table = new Table();
-            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nRegister Form").Centered()));
+            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nRegister Form (B: back)").Centered()));
             AnsiConsole.Write(table);
-            Console.WriteLine("Q: quit");
+
             Console.Write("Enter Username: ");
-            string username = Console.ReadLine();
-            if (String.IsNullOrEmpty(username))
-            {
-                Console.Write("Username cannot be null! ");
-                Console.ReadKey();
-                ClearCurrentConsoleLine();
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
-            }
-            else if(username == "Q"||username == "q")
-            {
-                MembershipMenu();
-            }
+            string username = GetStringForm("Username");
+            
             Console.WriteLine("Enter Password: ");
-            string password = Console.ReadLine();
-            else if (String.IsNullOrEmpty(password))
-            {
-                Console.Write("Password cannot be null! ");
-                Console.ReadKey();
-                ClearCurrentConsoleLine();
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
-            }
-            else if(username == "Q"||username == "q")
-            {
-                MembershipMenu();
-            }
+            string password = GetStringForm("Password");
+            
             Console.WriteLine("Confirm Password: ");
-            string confrimPassword = Console.ReadLine();
-            else if (String.IsNullOrEmpty(confrimPassword))
-            {
-                Console.Write("You must Confirm your Password! ");
-                Console.ReadKey();
-                ClearCurrentConsoleLine();
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
-            }
-            else if(username == "Q"||username == "q")
-            {
-                MembershipMenu();
-            }
-            Console.WriteLine("Enter Realname ");
-            string realname = Console.ReadLine();
-            else if (String.IsNullOrEmpty(realname))
-            {
-                Console.Write("Real name cannot be null! ");
-                Console.ReadKey();
-                ClearCurrentConsoleLine();
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
-            }
-            else if(username == "Q"||username == "q")
-            {
-                MembershipMenu();
-            }
+            string confirmPassword = GetStringForm("Confirm Password");
+            
+            Console.WriteLine("Enter Realname: ");
+            string realname = GetStringForm("Real Name");
+            
             Console.WriteLine("Enter Phone: ");
-            string phone = Console.ReadLine();
-            else if(username == "Q"||username == "q")
-            {
-                MembershipMenu();
-            }
+            string phone = GetStringForm("Phone");
+
             Console.WriteLine("Enter Email: ");
-            else if(username == "Q"||username == "q")
-            {
-                MembershipMenu();
-            }
-            string email = Console.ReadLine();
+            string email = GetStringForm("Email");
+
             Console.WriteLine("Enter Address: ");
-            else if (String.IsNullOrEmpty(email))
+            string address = GetStringForm("Address");
+        }
+    }
+
+    public static string GetStringForm(string text)
+    {
+        while(true)
+        {
+            Console.Write($"Enter {text}: ");
+            string value = ModifyString(Console.ReadLine());
+            if (String.IsNullOrEmpty(text))
             {
-                Console.Write("Real name cannot be null! ");
+                Console.Write($"{text} cannot be null! ");
                 Console.ReadKey();
-                ClearCurrentConsoleLine();
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                // ClearCurrentConsoleLine();
+                // Console.SetCursorPosition(0, Console.CursorTop - 1);
             }
-            string address = Console.ReadLine();
             else if(username == "Q"||username == "q")
             {
                 MembershipMenu();
             }
+            else
+            {
 
-
+            }
         }
+    }
 
+    public static void ClearCurrentConsoleLine()
+    {
+        int currentLineCursor = Console.CursorTop;
+        Console.SetCursorPosition(0, Console.CursorTop);
+        Console.Write(new string(' ', Console.WindowWidth));
+        Console.SetCursorPosition(0, currentLineCursor);
+    }
+
+    public static string ModifyString(string value)
+    {
+        return string.Join(" ", value.Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries));
     }
 }
 

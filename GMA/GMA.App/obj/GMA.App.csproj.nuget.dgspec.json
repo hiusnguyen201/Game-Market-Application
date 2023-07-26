@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.App\\GMA.App.csproj": {}
+    "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.App\\GMA.App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.App\\GMA.App.csproj": {
+    "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.App\\GMA.App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.App\\GMA.App.csproj",
+        "projectUniqueName": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.App\\GMA.App.csproj",
         "projectName": "GMA.App",
-        "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.App\\GMA.App.csproj",
-        "packagesPath": "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.App\\obj\\",
+        "projectPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.App\\GMA.App.csproj",
+        "packagesPath": "C:\\Users\\ahai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.App\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ha Trung Kien\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ahai\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -26,11 +26,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj": {
-                "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj"
+              "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.BLL\\GMA.BLL.csproj": {
+                "projectPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.BLL\\GMA.BLL.csproj"
               },
-              "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj": {
-                "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj"
+              "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.Models\\GMA.Models.csproj": {
+                "projectPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.Models\\GMA.Models.csproj"
               }
             }
           }
@@ -70,17 +70,17 @@
         }
       }
     },
-    "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj": {
+    "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.BLL\\GMA.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
+        "projectUniqueName": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.BLL\\GMA.BLL.csproj",
         "projectName": "GMA.BLL",
-        "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
-        "packagesPath": "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\obj\\",
+        "projectPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.BLL\\GMA.BLL.csproj",
+        "packagesPath": "C:\\Users\\ahai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.BLL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ha Trung Kien\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ahai\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -92,11 +92,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj": {
-                "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj"
+              "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.DAL\\GMA.DAL.csproj": {
+                "projectPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.DAL\\GMA.DAL.csproj"
               },
-              "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj": {
-                "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj"
+              "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.Models\\GMA.Models.csproj": {
+                "projectPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.Models\\GMA.Models.csproj"
               }
             }
           }
@@ -130,17 +130,17 @@
         }
       }
     },
-    "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj": {
+    "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.DAL\\GMA.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.DAL\\GMA.DAL.csproj",
         "projectName": "GMA.DAL",
-        "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj",
-        "packagesPath": "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\obj\\",
+        "projectPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.DAL\\GMA.DAL.csproj",
+        "packagesPath": "C:\\Users\\ahai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ha Trung Kien\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ahai\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -152,8 +152,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj": {
-                "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj"
+              "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.Models\\GMA.Models.csproj": {
+                "projectPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.Models\\GMA.Models.csproj"
               }
             }
           }
@@ -193,17 +193,17 @@
         }
       }
     },
-    "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj": {
+    "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.Models\\GMA.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj",
+        "projectUniqueName": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.Models\\GMA.Models.csproj",
         "projectName": "GMA.Models",
-        "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj",
-        "packagesPath": "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\obj\\",
+        "projectPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.Models\\GMA.Models.csproj",
+        "packagesPath": "C:\\Users\\ahai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ahai\\Desktop\\GameMarketApllication-Project1\\GMA\\GMA.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ha Trung Kien\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ahai\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
