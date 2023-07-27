@@ -6,16 +6,17 @@ using System.Text.RegularExpressions;
 public class Menu
 {
     public static bool isLoged = false;
-    public static string patternUsername = "^[a-zA-Z0-9_-]{3,16}$";
+    public static string patternUsername = "^[^\\s][a-zA-Z0-9_-]{3,16}$";
     public static string patternPassword = "^[^\\s]{6,}$";
-    public static string patternEmail = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+    public static string patternEmail = @"^[^\\s][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+    public static string patternPhone = @"\b0\d{1,2}[.-]?\d{5,6}\b";
 
     public static void Main(string[] args)
     {
         MainMenu();
     }
 
-    public static void MainMenu()
+    public void MainMenu()
     {
         while (true)
         {
@@ -140,6 +141,7 @@ public class Menu
 
         }
     }
+    
     public static void AccountMenu()
     {
         while (true)
@@ -201,15 +203,13 @@ public class Menu
 
             string password = GetStringForm("Password");
 
-            // string confirmPassword = ;
-
-            string realname = GetStringForm("Real Name");
+            string realname = ModifyString(GetStringForm("Real Name"));
 
             string phone = GetStringForm("Phone");
 
             string email = GetStringForm("Email");
 
-            string address = GetStringForm("Address");
+            string address = ModifyString(GetStringForm("Address"));
         }
     }
 
@@ -263,6 +263,15 @@ public class Menu
                         {
                             isValid = false;
                             Console.Write("Invalid Email format! ");
+                            Console.ReadKey();
+                        }
+                    }
+                    else if (text == "Phone")
+                    {
+                        if (!Regex.IsMatch(value, patternPhone))
+                        {
+                            isValid = false;
+                            Console.Write("Invalid Phone format! ");
                             Console.ReadKey();
                         }
                     }
