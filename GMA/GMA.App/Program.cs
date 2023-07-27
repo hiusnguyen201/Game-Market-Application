@@ -1,7 +1,8 @@
 ﻿namespace GMA.App;
 
+using Spectre.Console;
 using System.Text.RegularExpressions;
-using Spectre.Console; // Test
+
 public class Menu
 {
     public static bool isLoged = false;
@@ -107,18 +108,18 @@ public class Menu
         {
             Console.Clear();
             var table = new Table();
-            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nLogin Form").Centered()));
+            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nLogin Form (B: back)").Centered()));
             AnsiConsole.Write(table);
-            Console.Write("[Username] (Q: quit): ");
+            Console.Write("[Username] : ");
             string username = Console.ReadLine();
             if (String.IsNullOrEmpty(username))
             {
                 Console.Write("Username cannot be null! ");
                 Console.ReadKey();
-                // ClearCurrentConsoleLine();
+                ClearCurrentConsoleLine();
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
             }
-            else if (username == "Q" || username == "q")
+            else if (username == "B" || username == "b")
             {
                 MembershipMenu();
             }
@@ -128,10 +129,10 @@ public class Menu
             {
                 Console.Write("Password cannot be null! ");
                 Console.ReadKey();
-                // ClearCurrentConsoleLine();
+                ClearCurrentConsoleLine();
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
             }
-            else if (password == "Q" || password == "q")
+            else if (password == "B" || password == "b")
             {
                 MembershipMenu();
             }
@@ -196,102 +197,87 @@ public class Menu
             table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nRegister Form (B: back)").Centered()));
             AnsiConsole.Write(table);
 
-            Console.Write("Enter Username: ");
             string username = GetStringForm("Username");
-            
-            Console.WriteLine("Enter Password: ");
+
             string password = GetStringForm("Password");
-            
-            Console.WriteLine("Confirm Password: ");
+
             // string confirmPassword = ;
-            
-            Console.WriteLine("Enter Realname: ");
+
             string realname = GetStringForm("Real Name");
-            
-            Console.WriteLine("Enter Phone: ");
+
             string phone = GetStringForm("Phone");
 
-            Console.WriteLine("Enter Email: ");
             string email = GetStringForm("Email");
 
-            Console.WriteLine("Enter Address: ");
             string address = GetStringForm("Address");
         }
     }
 
     public static string GetStringForm(string text)
     {
-        while(true)
+        while (true)
         {
-            string value;
             Console.Write($"Enter {text}: ");
-            if(text == "Real Name" || text == "Address")
-            {
-                value = ModifyString(Console.ReadLine());
-            }
-            else
-            {
-                value = Console.ReadLine();
-            }
-
-            // Check Null 
-            if(text == "Username" || text == "Password" || text == "Email")
-            {
-                if (String.IsNullOrEmpty(text))
-                {
-                    Console.Write($"{text} cannot be null! ");
-                    Console.ReadKey();
-                }
-            }
+            string value = Console.ReadLine();
             
             // Check Q : quit
-            if(text == "Q"||text == "q")
+            if (value == "B" || value == "b")
             {
                 MembershipMenu();
             }
-            else
+
+            bool isValid = true;
+            // Check Null 
+            if (text == "Username" || text == "Password" || text == "Email")
             {
-                bool isValid = true;
-
-                // Check Regex
-                if(text == "Username")
+                if (string.IsNullOrEmpty(value))
                 {
-                    if(!Regex.IsMatch(text, patternUsername))
-                    {
-                        isValid = false;
-                        Console.Write("Invalid Username format (Only contain letters, between 3 and 16 characters)! ");
-                        Console.ReadKey();
-                    }
-                }
-                if(text == "Password")
-                {
-                    if(!Regex.IsMatch(text, patternPassword))
-                    {
-                        isValid = false;
-                        Console.Write("Invalid Password format (At least 6 characters)! ");
-                        Console.ReadKey();
-                    }
-                }
-                if(text == "Email")
-                {
-                    if(!Regex.IsMatch(text, patternEmail))
-                    {
-                        isValid = false;
-                        Console.Write("Invalid Email format! ");
-                        Console.ReadKey();
-                    }
-                }
-
-                // Check isValid
-                if(isValid)
-                {
-                    return value;
+                    Console.Write($"{text} cannot be null! ");
+                    Console.ReadKey();
+                    isValid = false;
                 }
                 else
                 {
-                    ClearCurrentConsoleLine();
-                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                    // Check Regex
+                    if (text == "Username")
+                    {
+                        if (!Regex.IsMatch(value, patternUsername))
+                        {
+                            isValid = false;
+                            Console.Write("Invalid Username format");
+                            Console.ReadKey();
+                        }
+                    }
+                    else if (text == "Password")
+                    {
+                        if (!Regex.IsMatch(value, patternPassword))
+                        {
+                            isValid = false;
+                            Console.Write("Invalid Password format");
+                            Console.ReadKey();
+                        }
+                    }
+                    else if (text == "Email")
+                    {
+                        if (!Regex.IsMatch(value, patternEmail))
+                        {
+                            isValid = false;
+                            Console.Write("Invalid Email format! ");
+                            Console.ReadKey();
+                        }
+                    }
                 }
+            }
+
+            // Check isValid
+            if (isValid)
+            {
+                return value;
+            }
+            else
+            {
+                ClearCurrentConsoleLine();
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
             }
         }
     }
