@@ -1,8 +1,14 @@
 ﻿namespace GMA.App;
+
+using System.Text.RegularExpressions;
 using Spectre.Console; // Test
 public class Menu
 {
     public static bool isLoged = false;
+    public static string patternUsername = "^[a-zA-Z0-9_-]{3,16}$";
+    public static string patternPassword = "^[^\\s]{6,}$";
+    public static string patternEmail = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
     public static void Main(string[] args)
     {
         MainMenu();
@@ -197,7 +203,7 @@ public class Menu
             string password = GetStringForm("Password");
             
             Console.WriteLine("Confirm Password: ");
-            string confirmPassword = GetStringForm("Confirm Password");
+            // string confirmPassword = ;
             
             Console.WriteLine("Enter Realname: ");
             string realname = GetStringForm("Real Name");
@@ -217,22 +223,75 @@ public class Menu
     {
         while(true)
         {
+            string value;
             Console.Write($"Enter {text}: ");
-            string value = ModifyString(Console.ReadLine());
-            if (String.IsNullOrEmpty(text))
+            if(text == "Real Name" || text == "Address")
             {
-                Console.Write($"{text} cannot be null! ");
-                Console.ReadKey();
-                // ClearCurrentConsoleLine();
-                // Console.SetCursorPosition(0, Console.CursorTop - 1);
+                value = ModifyString(Console.ReadLine());
             }
-            else if(username == "Q"||username == "q")
+            else
+            {
+                value = Console.ReadLine();
+            }
+
+            // Check Null 
+            if(text == "Username" || text == "Password" || text == "Email")
+            {
+                if (String.IsNullOrEmpty(text))
+                {
+                    Console.Write($"{text} cannot be null! ");
+                    Console.ReadKey();
+                }
+            }
+            
+            // Check Q : quit
+            if(text == "Q"||text == "q")
             {
                 MembershipMenu();
             }
             else
             {
+                bool isValid = true;
 
+                // Check Regex
+                if(text == "Username")
+                {
+                    if(!Regex.IsMatch(text, patternUsername))
+                    {
+                        isValid = false;
+                        Console.Write("Invalid Username format (Only contain letters, between 3 and 16 characters)! ");
+                        Console.ReadKey();
+                    }
+                }
+                if(text == "Password")
+                {
+                    if(!Regex.IsMatch(text, patternPassword))
+                    {
+                        isValid = false;
+                        Console.Write("Invalid Password format (At least 6 characters)! ");
+                        Console.ReadKey();
+                    }
+                }
+                if(text == "Email")
+                {
+                    if(!Regex.IsMatch(text, patternEmail))
+                    {
+                        isValid = false;
+                        Console.Write("Invalid Email format! ");
+                        Console.ReadKey();
+                    }
+                }
+
+                // Check isValid
+                if(isValid)
+                {
+                    return value;
+                }
+                else
+                {
+                    ClearCurrentConsoleLine();
+                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                }
             }
         }
     }
