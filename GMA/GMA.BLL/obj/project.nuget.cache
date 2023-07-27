@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "RXarux29DnCy1f5My2x2moSPQcqU8GopsnE0VV0BU/07IUbZ4ZzZX+3pj0KM6YMyiNLh9dZy9MJCJ9t90Jtmzw==",
+  "dgSpecHash": "WbbkVxc2IXM1LqdHiDeB0k/OgXU6Akfe3YLMk5J1bQeHuiybO4c/A5gD9LmLQfWXEu5yMnQwpvcw3TWIAE++Bg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
+  "projectFilePath": "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Hai Nguyen\\.nuget\\packages\\mysql.data\\6.9.8\\mysql.data.6.9.8.nupkg.sha512",
-    "C:\\Users\\Hai Nguyen\\.nuget\\packages\\mysqlconnection\\1.0.1\\mysqlconnection.1.0.1.nupkg.sha512"
+    "C:\\Users\\ahai\\.nuget\\packages\\mysql.data\\6.9.8\\mysql.data.6.9.8.nupkg.sha512",
+    "C:\\Users\\ahai\\.nuget\\packages\\mysqlconnection\\1.0.1\\mysqlconnection.1.0.1.nupkg.sha512"
   ],
   "logs": [
     {

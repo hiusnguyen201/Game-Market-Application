@@ -16,7 +16,7 @@ public class Menu
         MainMenu();
     }
 
-    public void MainMenu()
+    public static void MainMenu()
     {
         while (true)
         {
