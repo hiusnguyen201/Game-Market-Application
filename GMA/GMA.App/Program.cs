@@ -172,9 +172,11 @@ public class Menu
                 switch (choice)
                 {
                     case 1:
+                        ViewProfileMenu();
                         break;
 
                     case 2:
+                        RechargeMenu();
                         break;
 
                     case 3:
@@ -276,7 +278,7 @@ public class Menu
                 {
                     case 'y':
                     case 'Y':
-                        if(text == "Membership")
+                        if (text == "MembershipMenu")
                         {
                             MembershipMenu();
                         }
@@ -434,6 +436,166 @@ public class Menu
     public static string ModifyString(string value)
     {
         return string.Join(" ", value.Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries));
+    }
+
+    public static void RechargeMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            var table = new Table();
+            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nRecharge Menu").Centered()));
+            table.AddRow("1. Add 5$");
+            table.AddRow("2. Add 10$");
+            table.AddRow("3. Add 20$");
+            table.AddRow("4. Add 30$");
+            table.AddRow("5. Add 60$");
+            table.AddRow("0. Back");
+            AnsiConsole.Write(table);
+            Console.Write("Your Choice: ");
+
+            if (int.TryParse(Console.ReadLine(), out int choice))
+            {
+                switch (choice)
+                {
+
+                    case 1:
+                        AddFunds(choice);
+                        break;
+                    case 2:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 3:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 4:
+
+                        AddFunds(choice); ;
+                        break;
+
+                    case 5:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 0:
+                        AccountMenu();
+                        break;
+
+                    default:
+                        Console.Write("Your choice is not exist! ");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.Write("Invalid choice! Try again ");
+                Console.ReadKey();
+            }
+        }
+    }
+
+    public static void AddFunds(int choice)
+    {
+        string password = GetStringLoginForm("Password");
+        if (password == accountLoggedIn.Password)
+        {
+            switch (choice)
+            {
+                case 1:
+                    accountLoggedIn.Money += 5;
+                    break;
+                case 2:
+                    accountLoggedIn.Money += 10;
+                    break;
+                case 3:
+                    accountLoggedIn.Money += 20;
+                    break;
+                case 4:
+                    accountLoggedIn.Money += 30;
+                    break;
+                case 5:
+                    accountLoggedIn.Money += 60;
+                    break;
+
+            }
+            Console.Write("Add Funds successful! ");
+            Console.ReadKey();
+        }
+        else
+        {
+            Console.Write("Password incorrect! ");
+            Console.ReadKey();
+        }
+
+    }
+
+    public static void ViewProfileMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            var table = new Table();
+            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nUser Profile (B: back)").Centered()));
+            table.AddRow($"Name: {accountLoggedIn.Username}\n");
+            table.AddRow($"Real Name: {accountLoggedIn.Realname}\n");
+            table.AddRow($"Address: {accountLoggedIn.Address}\n");
+            table.AddRow($"Email: {accountLoggedIn.Email}\n");
+            table.AddRow($"Money: {accountLoggedIn.Money} $\n");
+            table.AddRow($"Create Date: {accountLoggedIn.CreateDate}\n");
+            table.AddRow("0. Back");
+            AnsiConsole.Write(table);
+            Console.Write("Your Choice: ");
+
+            if (int.TryParse(Console.ReadLine(), out int choice))
+            {
+                switch (choice)
+                {
+
+                    case 1:
+                        AddFunds(choice);
+                        break;
+                    case 2:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 3:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 4:
+
+                        AddFunds(choice); ;
+                        break;
+
+                    case 5:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 0:
+                        AccountMenu();
+                        break;
+
+                    default:
+                        Console.Write("Your choice is not exist! ");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.Write("Invalid choice! Try again ");
+                Console.ReadKey();
+            }
+        }
     }
 }
 
