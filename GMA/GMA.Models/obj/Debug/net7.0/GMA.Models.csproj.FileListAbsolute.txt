@@ -1,0 +1,12 @@
+C:\Users\ahai\Desktop\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.deps.json
+C:\Users\ahai\Desktop\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.dll
+C:\Users\ahai\Desktop\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.pdb
+C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.AssemblyReference.cache
+C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfoInputs.cache
+C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfo.cs
+C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.CoreCompileInputs.cache
+C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.dll
+C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\refint\GMA.Models.dll
+C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.pdb
+C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\ref\GMA.Models.dll
