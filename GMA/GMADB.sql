@@ -13,16 +13,6 @@ CREATE TABLE Accounts
     acc_CreateDate DATETIME DEFAULT NOW()
 );
 
-CREATE TABLE Carts
-(
-	cart_ID INT PRIMARY KEY AUTO_INCREMENT,
-    acc_ID INT,
-    cart_CreateDate DATETIME DEFAULT NOW(),
-    cart_TotalPrice DOUBLE NOT NULL,
-    cart_Status INT,
-    CONSTRAINT fk_Carts_Accounts FOREIGN KEY (acc_ID) references Accounts(acc_ID)
-);
-
 CREATE TABLE Orders
 (
 	order_ID INT PRIMARY KEY AUTO_INCREMENT,
@@ -61,22 +51,12 @@ CREATE TABLE Games
     CONSTRAINT fk_Games_Publishers FOREIGN KEY (publisher_ID) REFERENCES Publishers(publisher_ID)
 );
 
-CREATE TABLE GenreDetails (
+CREATE TABLE GameGenres (
 	genre_ID INT NOT NULL,
     game_ID INT NOT NULL,
-    CONSTRAINT pk_GenreDetails PRIMARY KEY (genre_ID, game_ID),
-    CONSTRAINT fk_GenreDetails_Genres FOREIGN KEY (genre_ID) REFERENCES Genres(genre_ID),
-    CONSTRAINT fk_GenreDetails_Games FOREIGN KEY (game_ID) REFERENCES Games(game_ID)
-);
-
-CREATE TABLE Cartitems
-(
-	cart_ID INT NOT NULL,
-    game_ID INT NOT NULL,
-    unit_price DECIMAL(20,2) NOT NULL,
-    CONSTRAINT pk_Cartitems PRIMARY KEY (cart_ID, game_ID),
-    CONSTRAINT fk_Cartitems_Carts FOREIGN KEY (cart_ID) REFERENCES Carts (cart_ID),
-    CONSTRAINT fk_Cartitems_Games FOREIGN KEY (game_ID) REFERENCES Games (game_ID)
+    CONSTRAINT pk_GameGenres PRIMARY KEY (genre_ID, game_ID),
+    CONSTRAINT fk_GameGenres_Genres FOREIGN KEY (genre_ID) REFERENCES Genres(genre_ID),
+    CONSTRAINT fk_GameGenres_Games FOREIGN KEY (game_ID) REFERENCES Games(game_ID)
 );
 
 CREATE TABLE OrderDetails
@@ -88,52 +68,6 @@ CREATE TABLE OrderDetails
     CONSTRAINT fk_OrderDetails_Orders FOREIGN KEY (order_ID) REFERENCES Orders (order_ID),
     CONSTRAINT fk_OrderDetails_Games FOREIGN KEY (game_ID) REFERENCES Games (game_ID)
 );
-
-CREATE TABLE Ownership
-(
-	acc_ID INT NOT NULL,
-    game_ID INT NOT NULL,
-    purchase_Date DATETIME,
-    CONSTRAINT pk_Ownership PRIMARY KEY (acc_ID, game_ID),
-    FOREIGN KEY fk_Ownership_Accounts (acc_ID) REFERENCES Accounts (acc_ID),
-    FOREIGN KEY fk_Ownership_Games (game_ID) REFERENCES Games (game_ID)
-);
-
-
-
-DELIMITER $$
-	CREATE TRIGGER tg_CheckPriceGame BEFORE INSERT
-	ON Games FOR EACH ROW
-    BEGIN
-		IF NEW.game_Price < 0 
-        THEN SIGNAL SQLSTATE '45001' 
-        SET MESSAGE_TEXT = "tg_CheckPriceGame: Price must >= 0";
-        END IF;
-    END $$
-DELIMITER ;
-
-DELIMITER $$
-	CREATE TRIGGER tg_CheckRatingGame BEFORE INSERT
-	ON Games FOR EACH ROW
-    BEGIN
-		IF NEW.game_Rating < 0 
-        THEN SIGNAL SQLSTATE '45001' 
-        SET MESSAGE_TEXT = "tg_CheckRatingGame: Rating must >= 0";
-        END IF;
-    END $$
-DELIMITER ;
-
-DELIMITER $$
-	CREATE TRIGGER tg_CheckGameDiscount BEFORE INSERT
-	ON Games FOR EACH ROW
-    BEGIN
-		IF NEW.game_Discount < 0 
-        THEN SIGNAL SQLSTATE '45001' 
-        SET MESSAGE_TEXT = "tg_CheckGameDiscount: Game Discount must >= 0";
-        END IF;
-    END $$
-DELIMITER ;
-
 
 
 
@@ -170,13 +104,5 @@ DELIMITER $$
 		SELECT *
         FROM Accounts
         WHERE acc_Username = aun AND acc_Password = apw;
-    END $$
-DELIMITER ;
-
-DELIMITER $$
-	CREATE PROCEDURE get_all_account ()
-    BEGIN
-		SELECT *
-        FROM Accounts;
     END $$
 DELIMITER ;
