@@ -149,22 +149,26 @@ public class AccountDAL
         return result;
     }
 
-    public List<Account> GetAll()
+    public void UpdateAccountMoney(int accId, double money)
     {
-        List<Account> accounts = new List<Account>();
-        Account account = null;
-        string selectQuery = "call get_all_account()";
-        DBHelper.OpenConnection();
-        MySqlDataReader studentReader = DBHelper.ExecuteQuery(selectQuery);
-
-
-        while (studentReader.Read())
+        string updateQuery = "update_acc_Money";
+        try
         {
-            account = Get(studentReader);
-            accounts.Add(account);
+            DBHelper.OpenConnection();
+            MySqlCommand command = new MySqlCommand(updateQuery, DBHelper.GetConnection());
+            command.CommandText = updateQuery;
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@aid", accId);
+            command.Parameters.AddWithValue("@money", money);
+            command.ExecuteNonQuery();
         }
-
-        DBHelper.CloseConnection();
-        return accounts;
+        catch (Exception ex)
+        {
+            Console.Write(ex.Message);
+        }
+        finally
+        {
+            DBHelper.CloseConnection();
+        }
     }
 }

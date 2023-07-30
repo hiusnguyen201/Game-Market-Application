@@ -4,10 +4,10 @@ USE GMADB;
 CREATE TABLE Accounts
 (
 	acc_ID INT PRIMARY KEY AUTO_INCREMENT,
-	acc_Username VARCHAR(225) UNIQUE NOT NULL CHECK (acc_Username REGEXP '^[A-Za-z0-9_]{3,20}$'),
+	acc_Username VARCHAR(225) UNIQUE NOT NULL CHECK (acc_Username REGEXP '^[^\\s][a-zA-Z0-9_-]{3,}$'),
 	acc_Password VARCHAR(225) NOT NULL,
-	acc_Realname VARCHAR(225) NOT NULL CHECK (acc_Realname REGEXP '^[A-Za-z ]+$'),
-    acc_Email VARCHAR(225) UNIQUE NOT NULL CHECK (acc_Email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'),
+	acc_Realname VARCHAR(225) NOT NULL CHECK (acc_Realname REGEXP '^[A-Za-z ]{2,}$'),
+    acc_Email VARCHAR(225) UNIQUE NOT NULL CHECK (acc_Email REGEXP '^[^\\s][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
     acc_Address VARCHAR(225) NOT NULL,
     acc_Money DOUBLE DEFAULT 0,
     acc_CreateDate DATETIME DEFAULT NOW()
@@ -40,13 +40,11 @@ CREATE TABLE Games
 	game_ID INT PRIMARY KEY AUTO_INCREMENT,
     publisher_ID INT NOT NULL,
     game_Name VARCHAR(225) UNIQUE NOT NULL CHECK (game_Name REGEXP '^[A-Za-z0-9\s\-]+$'),
-    game_Desc TEXT NOT NULL,
+    game_Desc TEXT NOT NULL,    
     game_Price DOUBLE NOT NULL,
     game_Rating FLOAT,
     game_Size VARCHAR(225) NOT NULL CHECK (game_size REGEXP '^\d+(\.\d+)?\s*(KB|MB|GB)$'),
-    game_Status INT,
     game_Discount FLOAT,
-    discount_Unit CHAR CHECK(discount_Unit IN ('%', '$')),
     game_ReleaseDate DATETIME DEFAULT NOW(),
     CONSTRAINT fk_Games_Publishers FOREIGN KEY (publisher_ID) REFERENCES Publishers(publisher_ID)
 );
@@ -104,5 +102,14 @@ DELIMITER $$
 		SELECT *
         FROM Accounts
         WHERE acc_Username = aun AND acc_Password = apw;
+    END $$
+DELIMITER ;
+
+DELIMITER $$
+    CREATE PROCEDURE update_acc_Money (IN aid INT, IN money DOUBLE)
+    BEGIN
+        UPDATE Accounts
+        SET acc_Money = money
+        WHERE acc_ID = aid;
     END $$
 DELIMITER ;

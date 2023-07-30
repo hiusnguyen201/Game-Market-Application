@@ -7,7 +7,8 @@ namespace GMA.App;
 
 public class AccountApp
 {
-    public static string patternUsername = "^[^\\s][a-zA-Z0-9_-]{3,16}$";
+    public static string patternUsername = "^[^\\s][a-zA-Z0-9_-]{3,}$";
+    public static string patternRealName = "^[A-Za-z ]{2,}$";
     public static string patternEmail = @"^[^\\s][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
     public static Account accountLoggedIn = null;
 
@@ -113,6 +114,7 @@ public class AccountApp
         {
             Console.Write("New Account Created Successfully! ");
             Console.ReadKey();
+            Console.WriteLine();
         }
 
         MainMenuApp.CheckContinue("CreateAccount");
@@ -275,6 +277,8 @@ public class AccountApp
                     break;
 
             }
+            AccountBLL accountBLL = new AccountBLL();
+            accountBLL.UpdateMoney(accountLoggedIn.AccountId, accountLoggedIn.Money);
             Console.Write("Add Funds successful! ");
             Console.ReadKey();
         }
@@ -334,12 +338,12 @@ public class AccountApp
             string value;
             if(text == "Password")
             {
-                Console.Write($"Enter {text}: ");
+                Console.Write($"- Enter {text}: ");
                 value = GetPassword();
             }
             else
             {
-                Console.Write($"Enter {text}: ");
+                Console.Write($"- Enter {text}: ");
                 value = Console.ReadLine();
             }
 
@@ -370,7 +374,7 @@ public class AccountApp
                     if (!Regex.IsMatch(value, patternUsername))
                     {
                         isValid = false;
-                        Console.Write("Please enter username that is at least 3 characters long and uses only a-z, A-Z, 0-9 or _ characters");
+                        Console.Write("Please enter username that is at least 3 characters long and uses only a-z, A-Z, 0-9, _ characters");
                         Console.ReadKey();
                     }
                     else
@@ -403,6 +407,15 @@ public class AccountApp
                             Console.Write("Email already exist! ");
                             Console.ReadKey();
                         }
+                    }
+                }
+                else if (text == "Real Name")
+                {
+                    if(!Regex.IsMatch(value, patternRealName))
+                    {
+                        isValid = false;
+                        Console.Write("Please enter real name that is at least 2 characters long and uses only a-z, A-Z, whitespace characters");
+                        Console.ReadKey();
                     }
                 }
             }

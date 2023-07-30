@@ -35,14 +35,7 @@ public class MainMenuApp
                         break;
 
                     case 2:
-                        AccountBLL accountBLL = new AccountBLL();
-                        List<Account> accounts = new List<Account>();
-                        accounts = accountBLL.DisplayAllAccount();
-                        foreach (Account account in accounts)
-                        {
-                            Console.WriteLine($"{account.AccountId} \t {account.Username} \t {account.Password} \t {account.Realname}");
-                        }
-                        Console.ReadKey();
+                        
                         break;
 
                     case 3:
