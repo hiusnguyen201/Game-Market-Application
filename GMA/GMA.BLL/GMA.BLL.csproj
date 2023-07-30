@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\GMA.DAL\GMA.DAL.csproj" />
     <ProjectReference Include="..\GMA.Models\GMA.Models.csproj" />
+    <ProjectReference Include="..\GMA.DAL\GMA.DAL.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

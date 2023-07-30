@@ -13,11 +13,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj",
       "projectName": "GMA.Models",
       "projectPath": "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj",
       "packagesPath": "C:\\Users\\ahai\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\GMA.Models.csproj",
+      "projectName": "GMA.Models",
+      "projectPath": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\GMA.Models.csproj",
+      "packagesPath": "C:\\Users\\ahai\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\obj\\",
+>>>>>>> a13fe713fc2f4132c7415fc96d679115e019ee21
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ahai\\AppData\\Roaming\\NuGet\\NuGet.Config"
