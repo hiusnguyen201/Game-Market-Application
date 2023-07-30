@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "7ZTO15JajFIHLOi28s71zgDrn/WE+rkC5HCLva0JCHO3lGYVmFb/gl+j5x3j88gEp8AEyS2CsFKuCfC4/LI+qQ==",
+  "dgSpecHash": "TxFxP5D26Cyy0e0rrskgIsMeDIprDFqblnvXLgY8TLW50NM34asMEq27c2nvsZLrks4b88fj1G4EecLzG94VnQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj",
-=======
-  "dgSpecHash": "JdtJrVLi0yR+Aal59vPcFvfePlUwo6eo+jz8hsNJqDYbdg4NNLphu8lE8lbTqDrYPI8HLLKKvq92bJABjMOhXQ==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\GMA.Models.csproj",
->>>>>>> a13fe713fc2f4132c7415fc96d679115e019ee21
+  "projectFilePath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,22 +1,12 @@
 ﻿namespace GMA.DAL;
 using GMA.Models;
-<<<<<<< HEAD
-=======
 using System.Data;
->>>>>>> a13fe713fc2f4132c7415fc96d679115e019ee21
 using MySql.Data.MySqlClient;
 
 public class AccountDAL
 {
     private Account account = null;
 
-<<<<<<< HEAD
-    // private Account Get(MySqlDataReader reader)
-    // {
-
-    // }
-}
-=======
     private Account Get(MySqlDataReader reader)
     {
         Account account = new Account();
@@ -159,27 +149,22 @@ public class AccountDAL
         return result;
     }
 
-    public void UpdateAccountMoney(int accId, double money)
+    public List<Account> GetAll()
     {
-        string updateQuery = "update_acc_Money";
-        try
+        List<Account> accounts = new List<Account>();
+        Account account = null;
+        string selectQuery = "call get_all_account()";
+        DBHelper.OpenConnection();
+        MySqlDataReader studentReader = DBHelper.ExecuteQuery(selectQuery);
+
+
+        while (studentReader.Read())
         {
-            DBHelper.OpenConnection();
-            MySqlCommand command = new MySqlCommand(updateQuery, DBHelper.GetConnection());
-            command.CommandText = updateQuery;
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@aid", accId);
-            command.Parameters.AddWithValue("@money", money);
-            command.ExecuteNonQuery();
+            account = Get(studentReader);
+            accounts.Add(account);
         }
-        catch (Exception ex)
-        {
-            Console.Write(ex.Message);
-        }
-        finally
-        {
-            DBHelper.CloseConnection();
-        }
+
+        DBHelper.CloseConnection();
+        return accounts;
     }
 }
->>>>>>> a13fe713fc2f4132c7415fc96d679115e019ee21

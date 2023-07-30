@@ -9,8 +9,26 @@ public class Account
     public string Address { get; set; }
     public double Money { get; set; }
     public DateTime CreateDate { get; set; }
+    public List<Game> OwnershipGames { set; get; }
 
-    public Account() { }
+    public Game this[int index]
+    {
+        get
+        {
+            if (OwnershipGames == null || OwnershipGames.Count == 0 || index < 0 || OwnershipGames.Count < index) return null;
+            return OwnershipGames[index];
+        }
+        set
+        {
+            if (OwnershipGames == null) OwnershipGames = new List<Game>();
+            OwnershipGames.Add(value);
+        }
+    }
+
+    public Account()
+    {
+        OwnershipGames = new List<Game>();
+    }
 
     public Account(string Username, string Password, string Realname, string Email, string Address)
     {
@@ -19,6 +37,7 @@ public class Account
         this.Realname = Realname;
         this.Email = Email;
         this.Address = Address;
+        OwnershipGames = new List<Game>();
     }
 
     public override bool Equals(object? obj)

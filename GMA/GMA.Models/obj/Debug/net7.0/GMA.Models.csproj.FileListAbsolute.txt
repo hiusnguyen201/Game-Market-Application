@@ -1,53 +1,3 @@
-<<<<<<< HEAD
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.deps.json
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.dll
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.pdb
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.AssemblyReference.cache
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfoInputs.cache
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfo.cs
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.CoreCompileInputs.cache
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.dll
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\refint\GMA.Models.dll
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.pdb
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\ref\GMA.Models.dll
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.deps.json
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.dll
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.pdb
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.AssemblyReference.cache
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfoInputs.cache
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfo.cs
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.CoreCompileInputs.cache
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.dll
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\obj\Debug\net7.0\refint\GMA.Models.dll
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.pdb
-C:\Users\ahai\Desktop\GameMarketApllication-Project1\GMA\GMA.Models\obj\Debug\net7.0\ref\GMA.Models.dll
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.deps.json
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.dll
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.pdb
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.AssemblyReference.cache
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfoInputs.cache
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfo.cs
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.CoreCompileInputs.cache
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.dll
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\refint\GMA.Models.dll
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.pdb
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\ref\GMA.Models.dll
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.deps.json
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.dll
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.pdb
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.AssemblyReference.cache
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfoInputs.cache
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfo.cs
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.CoreCompileInputs.cache
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.dll
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\refint\GMA.Models.dll
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.pdb
-C:\Users\ahai\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\ref\GMA.Models.dll
-=======
 C:\Users\ahai\Desktop\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.deps.json
 C:\Users\ahai\Desktop\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.dll
 C:\Users\ahai\Desktop\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.pdb
@@ -60,4 +10,15 @@ C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.dll
 C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\refint\GMA.Models.dll
 C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.pdb
 C:\Users\ahai\Desktop\GMA\GMA.Models\obj\Debug\net7.0\ref\GMA.Models.dll
->>>>>>> a13fe713fc2f4132c7415fc96d679115e019ee21
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.deps.json
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.dll
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\bin\Debug\net7.0\GMA.Models.pdb
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.AssemblyReference.cache
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfoInputs.cache
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.AssemblyInfo.cs
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.csproj.CoreCompileInputs.cache
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.dll
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\refint\GMA.Models.dll
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\GMA.Models.pdb
+C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.Models\obj\Debug\net7.0\ref\GMA.Models.dll

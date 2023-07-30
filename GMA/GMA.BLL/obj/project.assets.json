@@ -1813,27 +1813,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ahai\\.nuget\\packages\\": {}
+    "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
+      "projectUniqueName": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
       "projectName": "GMA.BLL",
-      "projectPath": "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
-      "packagesPath": "C:\\Users\\ahai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.BLL\\GMA.BLL.csproj",
-      "projectName": "GMA.BLL",
-      "projectPath": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.BLL\\GMA.BLL.csproj",
-      "packagesPath": "C:\\Users\\ahai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.BLL\\obj\\",
->>>>>>> a13fe713fc2f4132c7415fc96d679115e019ee21
+      "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
+      "packagesPath": "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ahai\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Ha Trung Kien\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -1845,19 +1837,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-<<<<<<< HEAD
-            "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj": {
-              "projectPath": "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj"
+            "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj": {
+              "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj"
             },
-            "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj": {
-              "projectPath": "C:\\Users\\ahai\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj"
-=======
-            "C:\\Users\\ahai\\Desktop\\GMA\\GMA.DAL\\GMA.DAL.csproj": {
-              "projectPath": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.DAL\\GMA.DAL.csproj"
-            },
-            "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\GMA.Models.csproj": {
-              "projectPath": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\GMA.Models.csproj"
->>>>>>> a13fe713fc2f4132c7415fc96d679115e019ee21
+            "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj": {
+              "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj"
             }
           }
         }

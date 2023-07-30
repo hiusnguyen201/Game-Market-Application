@@ -26,6 +26,13 @@ public class AccountBLL
         return account;
     }
 
+    public List<Account> DisplayAllAccount()
+    {
+        AccountDAL accountDAL = new AccountDAL();
+        List<Account> accounts = accountDAL.GetAll();
+        return accounts;
+    }
+
     public int Save(Account account)
     {
         int result = 0;
@@ -35,11 +42,5 @@ public class AccountBLL
             result =  accountDAL.SaveAccount(account);
         }
         return result;
-    }
-
-    public void UpdateMoney(int id, double deposit)
-    {
-        AccountDAL accountDAL = new AccountDAL();
-        accountDAL.UpdateAccountMoney(id, deposit);
     }
 }

@@ -1,15 +1,17 @@
 ﻿namespace GMA.App;
 
+using System.Globalization;
+using GMA.BLL;
+using GMA.Models;
 using Spectre.Console;
 using System.Text.RegularExpressions;
 
 public class Menu
 {
-    public static bool isLoged = false;
+    
     public static string patternUsername = "^[^\\s][a-zA-Z0-9_-]{3,16}$";
-    public static string patternPassword = "^[^\\s]{6,}$";
     public static string patternEmail = @"^[^\\s][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-    public static string patternPhone = @"\b0\d{1,2}[.-]?\d{5,6}\b";
+    public static Account accountLoggedIn = null;
 
     public static void Main(string[] args)
     {
@@ -23,7 +25,14 @@ public class Menu
             Console.Clear();
             var table = new Table();
             table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nWelcome to Game Market").Centered()));
-            table.AddRow("1. Membership and Profile");
+            if (accountLoggedIn == null)
+            {
+                table.AddRow("1. Membership and Profile");
+            }
+            else
+            {
+                table.AddRow("1. Manage Account");
+            }
             table.AddRow("2. Search Game");
             table.AddRow("3. View Cart");
             table.AddRow("0. Exit");
@@ -39,6 +48,14 @@ public class Menu
                         break;
 
                     case 2:
+                        AccountBLL accountBLL = new AccountBLL();
+                        List<Account> accounts = new List<Account>();
+                        accounts = accountBLL.DisplayAllAccount();
+                        foreach (Account account in accounts)
+                        {
+                            Console.WriteLine($"{account.AccountId} \t {account.Username} \t {account.Password} \t {account.Realname}");
+                        }
+                        Console.ReadKey();
                         break;
 
                     case 3:
@@ -63,92 +80,88 @@ public class Menu
 
     public static void MembershipMenu()
     {
-        while (true)
+        if (accountLoggedIn == null)
         {
-            Console.Clear();
-            var table = new Table();
-            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nMembership and Profile").Centered()));
-            table.AddRow("1. Login");
-            table.AddRow("2. Register");
-            table.AddRow("0. Back to Main Menu");
-            AnsiConsole.Write(table);
-            Console.Write("Your Choice: ");
-
-            if (int.TryParse(Console.ReadLine(), out int choice))
+            while (true)
             {
-                switch (choice)
+                Console.Clear();
+                var table = new Table();
+                table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nMembership and Profile").Centered()));
+                table.AddRow("1. Login");
+                table.AddRow("2. Register");
+                table.AddRow("0. Back to Main Menu");
+                AnsiConsole.Write(table);
+                Console.Write("Your Choice: ");
+
+                if (int.TryParse(Console.ReadLine(), out int choice))
                 {
-                    case 1:
-                        LoginForm();
-                        break;
+                    switch (choice)
+                    {
+                        case 1:
+                            LoginForm();
+                            break;
 
-                    case 2:
-                        RegisterForm();
-                        break;
+                        case 2:
+                            RegisterForm();
+                            break;
 
-                    case 0:
-                        MainMenu();
-                        break;
-                    default:
-                        Console.Write("Your choice is not exist! ");
-                        Console.ReadKey();
-                        break;
+                        case 0:
+                            MainMenu();
+                            break;
+                        default:
+                            Console.Write("Your choice is not exist! ");
+                            Console.ReadKey();
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.Write("Invalid choice! Try again ");
+                    Console.ReadKey();
                 }
             }
-            else
-            {
-                Console.Write("Invalid choice! Try again ");
-                Console.ReadKey();
-            }
+        }
+        else
+        {
+            AccountMenu();
         }
     }
 
     public static void LoginForm()
     {
-        while (true)
+        Console.Clear();
+        var table = new Table();
+        table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nLogin Form (B: back)").Centered()));
+        AnsiConsole.Write(table);
+        string username = GetStringLoginForm("Username");
+
+        string password = GetStringLoginForm("Password");
+
+        AccountBLL accountBLL = new AccountBLL();
+        Account account = accountBLL.SearchAccountLogin(username, password);
+        if (account == null)
         {
-            Console.Clear();
-            var table = new Table();
-            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nLogin Form (B: back)").Centered()));
-            AnsiConsole.Write(table);
-            Console.Write("[Username] : ");
-            string username = Console.ReadLine();
-            if (String.IsNullOrEmpty(username))
-            {
-                Console.Write("Username cannot be null! ");
-                Console.ReadKey();
-                ClearCurrentConsoleLine();
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
-            }
-            else if (username == "B" || username == "b")
-            {
-                MembershipMenu();
-            }
-            Console.Write("[Password] (Q: quit): ");
-            string password = Console.ReadLine();
-            if (String.IsNullOrEmpty(password))
-            {
-                Console.Write("Password cannot be null! ");
-                Console.ReadKey();
-                ClearCurrentConsoleLine();
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
-            }
-            else if (password == "B" || password == "b")
-            {
-                MembershipMenu();
-            }
-
-
+            Console.Write("Please check your password and username and try again! ");
+            Console.ReadKey();
+            LoginForm();
+        }
+        else
+        {
+            Console.Write("Logged in successfully! ");
+            Console.ReadKey();
+            accountLoggedIn = account;
+            AccountMenu();
         }
     }
-    
+
     public static void AccountMenu()
     {
         while (true)
         {
             Console.Clear();
             var table = new Table();
-            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nAccount Name").Centered()));
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            table.AddColumn(new TableColumn(new Text($"Game Market Application\nGroup 2 - PF1122 Version 0.1\nUsername: {accountLoggedIn.Username} | Money: {accountLoggedIn.Money.ToString("C2", new CultureInfo("vi-VN"))}").Centered()));
             table.AddRow("1. View Profile");
             table.AddRow("2. Recharge Money");
             table.AddRow("3. View Order History");
@@ -162,15 +175,18 @@ public class Menu
                 switch (choice)
                 {
                     case 1:
+                        ViewProfileMenu();
                         break;
 
                     case 2:
+                        RechargeMenu();
                         break;
 
                     case 3:
                         break;
 
                     case 4:
+                        CheckChooseBack("Logout");
                         break;
 
                     case 0:
@@ -192,86 +208,207 @@ public class Menu
 
     public static void RegisterForm()
     {
-        while (true)
+        Console.Clear();
+        var table = new Table();
+        table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nRegister Form (B: back)").Centered()));
+        AnsiConsole.Write(table);
+
+        string username = GetStringRegisterForm("Username");
+
+        string password = GetStringRegisterForm("Password");
+
+        string realname = ModifyString(GetStringRegisterForm("Real Name"));
+
+        string email = GetStringRegisterForm("Email");
+
+        string address = ModifyString(GetStringRegisterForm("Address"));
+
+        AccountBLL accountBLL = new AccountBLL();
+        int result = accountBLL.Save(new Account(username, password, realname, email, address));
+        if (result != 0)
         {
-            Console.Clear();
-            var table = new Table();
-            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nRegister Form (B: back)").Centered()));
-            AnsiConsole.Write(table);
+            Console.Write("New Account Created Successfully! ");
+            Console.ReadKey();
+        }
 
-            string username = GetStringForm("Username");
+        CheckContinue("CreateAccount");
+    }
 
-            string password = GetStringForm("Password");
-
-            string realname = ModifyString(GetStringForm("Real Name"));
-
-            string phone = GetStringForm("Phone");
-
-            string email = GetStringForm("Email");
-
-            string address = ModifyString(GetStringForm("Address"));
+    public static void CheckContinue(string text)
+    {
+        if (text == "CreateAccount")
+        {
+            while (true)
+            {
+                Console.Write("Do you want to continue (Y/N): ");
+                if (char.TryParse(Console.ReadLine(), out char choice))
+                {
+                    switch (choice)
+                    {
+                        case 'y':
+                        case 'Y':
+                            RegisterForm();
+                            return;
+                        case 'n':
+                        case 'N':
+                            MembershipMenu();
+                            return;
+                        default:
+                            Console.Write("Your choice is not exist! ");
+                            Console.ReadKey();
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.Write("Invalid choice! Try again ");
+                    Console.ReadKey();
+                }
+                ClearCurrentConsoleLine();
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+            }
         }
     }
 
-    public static string GetStringForm(string text)
+    public static bool CheckChooseBack(string text)
+    {
+        while (true)
+        {
+            Console.Write("Are you sure (Y/N): ");
+            if (char.TryParse(Console.ReadLine(), out char choice))
+            {
+                switch (choice)
+                {
+                    case 'y':
+                    case 'Y':
+                        if (text == "MembershipMenu")
+                        {
+                            MembershipMenu();
+                        }
+                        else if (text == "Logout")
+                        {
+                            accountLoggedIn = null;
+                            MainMenu();
+                        }
+                        break;
+                    case 'n':
+                    case 'N':
+                        ClearCurrentConsoleLine();
+                        Console.SetCursorPosition(0, Console.CursorTop - 1);
+                        return false;
+                    default:
+                        Console.Write("Your choice is not exist! ");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.Write("Invalid choice! Try again ");
+                Console.ReadKey();
+            }
+            ClearCurrentConsoleLine();
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+        }
+    }
+
+    public static string GetStringLoginForm(string text)
+    {
+        while (true)
+        {
+            Console.Write($"[{text}]: ");
+            string value = Console.ReadLine();
+
+            // Check Q : quit
+            if (value == "B" || value == "b")
+            {
+                if (CheckChooseBack("MembershipMenu") == false)
+                {
+                    ClearCurrentConsoleLine();
+                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                    GetStringLoginForm(text);
+                }
+            }
+
+            if (string.IsNullOrEmpty(value))
+            {
+                Console.Write($"Please Enter {text} ");
+                Console.ReadKey();
+                ClearCurrentConsoleLine();
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+            }
+            else
+            {
+                return value;
+            }
+        }
+    }
+
+    public static string GetStringRegisterForm(string text)
     {
         while (true)
         {
             Console.Write($"Enter {text}: ");
             string value = Console.ReadLine();
-            
+
             // Check Q : quit
             if (value == "B" || value == "b")
             {
-                MembershipMenu();
+                if (CheckChooseBack("MembershipMenu") == false)
+                {
+                    ClearCurrentConsoleLine();
+                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                    GetStringRegisterForm(text);
+                }
             }
 
             bool isValid = true;
             // Check Null 
-            if (text == "Username" || text == "Password" || text == "Email")
+            if (string.IsNullOrEmpty(value))
             {
-                if (string.IsNullOrEmpty(value))
+                isValid = false;
+                Console.Write($"{text} cannot be null! ");
+                Console.ReadKey();
+            }
+            else
+            {
+                // Check Regex
+                if (text == "Username")
                 {
-                    Console.Write($"{text} cannot be null! ");
-                    Console.ReadKey();
-                    isValid = false;
+                    if (!Regex.IsMatch(value, patternUsername))
+                    {
+                        isValid = false;
+                        Console.Write("Please enter username that is at least 3 characters long and uses only a-z, A-Z, 0-9 or _ characters");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        AccountBLL accountBLL = new AccountBLL();
+                        Account account = accountBLL.SearchByUsername(value);
+                        if (account != null)
+                        {
+                            isValid = false;
+                            Console.Write("Username already exist! ");
+                            Console.ReadKey();
+                        }
+                    }
                 }
-                else
+                else if (text == "Email")
                 {
-                    // Check Regex
-                    if (text == "Username")
+                    if (!Regex.IsMatch(value, patternEmail))
                     {
-                        if (!Regex.IsMatch(value, patternUsername))
-                        {
-                            isValid = false;
-                            Console.Write("Invalid Username format");
-                            Console.ReadKey();
-                        }
+                        isValid = false;
+                        Console.Write("Invalid Email format! ");
+                        Console.ReadKey();
                     }
-                    else if (text == "Password")
+                    else
                     {
-                        if (!Regex.IsMatch(value, patternPassword))
+                        AccountBLL accountBLL = new AccountBLL();
+                        Account account = accountBLL.SearchByEmail(value);
+                        if (account != null)
                         {
                             isValid = false;
-                            Console.Write("Invalid Password format");
-                            Console.ReadKey();
-                        }
-                    }
-                    else if (text == "Email")
-                    {
-                        if (!Regex.IsMatch(value, patternEmail))
-                        {
-                            isValid = false;
-                            Console.Write("Invalid Email format! ");
-                            Console.ReadKey();
-                        }
-                    }
-                    else if (text == "Phone")
-                    {
-                        if (!Regex.IsMatch(value, patternPhone))
-                        {
-                            isValid = false;
-                            Console.Write("Invalid Phone format! ");
+                            Console.Write("Email already exist! ");
                             Console.ReadKey();
                         }
                     }
@@ -303,6 +440,169 @@ public class Menu
     {
         return string.Join(" ", value.Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries));
     }
+
+    public static void RechargeMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            var table = new Table();
+            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nRecharge Menu").Centered()));
+            table.AddRow("1. Add 75.000 VND");
+            table.AddRow("2. Add 150.000 VND");
+            table.AddRow("3. Add 375.000 VND");
+            table.AddRow("4. Add 750.000 VND");
+            table.AddRow("5. Add 1.500.000 VND");
+            table.AddRow("0. Back");
+            AnsiConsole.Write(table);
+            Console.Write("Your Choice: ");
+
+            if (int.TryParse(Console.ReadLine(), out int choice))
+            {
+                switch (choice)
+                {
+
+                    case 1:
+                        AddFunds(choice);
+                        break;
+                    case 2:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 3:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 4:
+
+                        AddFunds(choice); ;
+                        break;
+
+                    case 5:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 0:
+                        AccountMenu();
+                        break;
+
+                    default:
+                        Console.Write("Your choice is not exist! ");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.Write("Invalid choice! Try again ");
+                Console.ReadKey();
+            }
+        }
+    }
+
+    public static void AddFunds(int choice)
+    {
+        string password = GetStringLoginForm("Password");
+        if (password == accountLoggedIn.Password)
+        {
+            switch (choice)
+            {
+                case 1:
+                    accountLoggedIn.Money += 75000;
+                    break;
+                case 2:
+                    accountLoggedIn.Money += 150000;
+                    break;
+                case 3:
+                    accountLoggedIn.Money += 375000;
+                    break;
+                case 4:
+                    accountLoggedIn.Money += 750000;
+                    break;
+                case 5:
+                    accountLoggedIn.Money += 1500000;
+                    break;
+
+            }
+            Console.Write("Add Funds successful! ");
+            Console.ReadKey();
+        }
+        else
+        {
+            Console.Write("Password incorrect! ");
+            Console.ReadKey();
+        }
+
+    }
+
+    public static void ViewProfileMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            var table = new Table();
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            table.AddColumn(new TableColumn(new Text("Game Market Application\nGroup 2 - PF1122 Version 0.1\nUser Profile (B: back)").Centered()));
+            table.AddRow($"Name: {accountLoggedIn.Username}\n");
+            table.AddRow($"Real Name: {accountLoggedIn.Realname}\n");
+            table.AddRow($"Address: {accountLoggedIn.Address}\n");
+            table.AddRow($"Email: {accountLoggedIn.Email}\n");
+            table.AddRow($"Money: {accountLoggedIn.Money.ToString("C2", new CultureInfo("vi-VN"))}\n");
+            table.AddRow($"Create Date: {accountLoggedIn.CreateDate}\n");
+            table.AddRow("0. Back");
+            AnsiConsole.Write(table);
+            Console.Write("Your Choice: ");
+
+            if (int.TryParse(Console.ReadLine(), out int choice))
+            {
+                switch (choice)
+                {
+
+                    case 1:
+                        AddFunds(choice);
+                        break;
+                    case 2:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 3:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 4:
+
+                        AddFunds(choice); 
+                        break;
+
+                    case 5:
+
+                        AddFunds(choice);
+                        break;
+
+                    case 0:
+                        AccountMenu();
+                        break;
+
+                    default:
+                        Console.Write("Your choice is not exist! ");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.Write("Invalid choice! Try again ");
+                Console.ReadKey();
+            }
+        }
+    }
+
+   
 }
 
 
