@@ -1,8 +1,7 @@
 ﻿namespace GMA.App;
 
-using GMA.BLL;
-using GMA.Models;
 using Spectre.Console;
+using System.Globalization;
 
 public class MainMenuApp
 {
@@ -149,6 +148,13 @@ public class MainMenuApp
         return string.Join(" ", value.Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries));
     }
 
+    public static string FormatCurrencyVND(double amountInVND)
+    {
+        CultureInfo cultureInfoVN = CultureInfo.GetCultureInfo("vi-VN");
+        string formattedAmount = amountInVND.ToString("C2", cultureInfoVN);
+        formattedAmount = formattedAmount.Replace(cultureInfoVN.NumberFormat.CurrencySymbol, "VND");
+        return formattedAmount;
+    }
 }
 
 

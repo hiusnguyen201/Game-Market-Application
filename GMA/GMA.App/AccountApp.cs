@@ -127,7 +127,7 @@ public class AccountApp
             Console.Clear();
             var table = new Table();
             table.Width = 45;
-            table.AddColumn(new TableColumn(new Text($"[Game Market Application]\nGroup 2 - PF1122 Version : 0.1\nUsername: {accountLoggedIn.Username} | Money: {accountLoggedIn.Money} $").Centered()));
+            table.AddColumn(new TableColumn(new Text($"Game Market Application\nGroup 2 - PF1122 Version 0.1\nUsername: {accountLoggedIn.Username} | Money: {MainMenuApp.FormatCurrencyVND(accountLoggedIn.Money)}").Centered()));
             table.AddRow("1. View Profile");
             table.AddRow("2. Recharge Money");
             table.AddRow("3. View Order History");
@@ -182,7 +182,7 @@ public class AccountApp
         table.AddRow($"\nReal Name: {accountLoggedIn.Realname}\n").AddRow(new Rule());
         table.AddRow($"\nEmail: {accountLoggedIn.Email}\n").AddRow(new Rule());
         table.AddRow($"\nAddress: {accountLoggedIn.Address}\n").AddRow(new Rule());
-        table.AddRow($"\nMoney: {accountLoggedIn.Money} $\n").AddRow(new Rule());
+        table.AddRow($"\nMoney: {MainMenuApp.FormatCurrencyVND(accountLoggedIn.Money)}\n").AddRow(new Rule());
         table.AddRow($"\nCreate Date: {accountLoggedIn.CreateDate.ToString("dd/MM/yyyy")}\n");
         AnsiConsole.Write(table);
         Console.Write("Press any key to continue! ");
@@ -196,12 +196,11 @@ public class AccountApp
             Console.Clear();
             var table = new Table();
             table.Width = 45;
-            table.AddColumn(new TableColumn(new Text("[Game Market Application]\nGroup 2 - PF1122 Version : 0.1\nRecharge Menu").Centered()));
-            table.AddRow("1. Add 5$");
-            table.AddRow("2. Add 10$");
-            table.AddRow("3. Add 20$");
-            table.AddRow("4. Add 30$");
-            table.AddRow("5. Add 60$");
+            table.AddColumn(new TableColumn(new Text("[Game Market Application]\nGroup 2 - PF1122 Version : 0.1\nRecharge Menu (B: back)").Centered()));
+            table.AddRow("1. Add 75.000 VND");
+            table.AddRow("2. Add 150.000 VND");
+            table.AddRow("3. Add 375.000 VND");
+            table.AddRow("4. Add 750.000 VND");
             table.AddRow("0. Back");
             AnsiConsole.Write(table);
             Console.Write("Your Choice: ");
@@ -210,27 +209,19 @@ public class AccountApp
             {
                 switch (choice)
                 {
-
                     case 1:
                         CheckPassToAddFunds(choice);
                         break;
-                    case 2:
 
+                    case 2:
                         CheckPassToAddFunds(choice);
                         break;
 
                     case 3:
-
                         CheckPassToAddFunds(choice);
                         break;
 
                     case 4:
-
-                        CheckPassToAddFunds(choice); ;
-                        break;
-
-                    case 5:
-
                         CheckPassToAddFunds(choice);
                         break;
 
@@ -243,7 +234,6 @@ public class AccountApp
                         Console.ReadKey();
                         break;
                 }
-                AccountMenu();
             }
             else
             {
@@ -255,37 +245,39 @@ public class AccountApp
 
     public static void CheckPassToAddFunds(int choice)
     {
+        Console.Write("- Check ");
         string password = GetStringLoginForm("Password");
         if (password == accountLoggedIn.Password)
         {
             switch (choice)
             {
                 case 1:
-                    accountLoggedIn.Money += 5;
-                    break;
-                case 2:
-                    accountLoggedIn.Money += 10;
-                    break;
-                case 3:
-                    accountLoggedIn.Money += 20;
-                    break;
-                case 4:
-                    accountLoggedIn.Money += 30;
-                    break;
-                case 5:
-                    accountLoggedIn.Money += 60;
+                    accountLoggedIn.Money += 75000;
                     break;
 
+                case 2:
+                    accountLoggedIn.Money += 150000;
+                    break;
+
+                case 3:
+                    accountLoggedIn.Money += 375000;
+                    break;
+                    
+                case 4:
+                    accountLoggedIn.Money += 750000;
+                    break;
             }
             AccountBLL accountBLL = new AccountBLL();
             accountBLL.UpdateMoney(accountLoggedIn.AccountId, accountLoggedIn.Money);
             Console.Write("Add Funds successful! ");
             Console.ReadKey();
+            AccountMenu();
         }
         else
         {
             Console.Write("Password incorrect! ");
             Console.ReadKey();
+            RechargeMoneyMenu();
         }
 
     }
