@@ -116,8 +116,7 @@ public class AccountApp
             Console.ReadKey();
             Console.WriteLine();
         }
-
-        MainMenuApp.CheckContinue("CreateAccount");
+        MembershipMenu();
     }
 
     public static void AccountMenu()

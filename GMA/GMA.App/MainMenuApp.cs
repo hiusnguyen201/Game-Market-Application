@@ -19,7 +19,7 @@ public class MainMenuApp
             table.Width = 45;
             table.AddColumn(new TableColumn(new Text("[Game Market Application]\nGroup 2 - PF1122 Version : 0.1\nWelcome to Game Market").Centered()));
             table.AddRow("1. Manage Membership");
-            table.AddRow("2. Search Game");
+            table.AddRow("2. View Store");
             table.AddRow("3. View Cart");
             table.AddRow("0. Exit");
             AnsiConsole.Write(table);
@@ -53,42 +53,6 @@ public class MainMenuApp
             {
                 Console.Write("Invalid choice! Try again ");
                 Console.ReadKey();
-            }
-        }
-    }
-
-    public static void CheckContinue(string text)
-    {
-        if (text == "CreateAccount")
-        {
-            while (true)
-            {
-                Console.Write("Do you want to continue (Y/N): ");
-                if (char.TryParse(Console.ReadLine(), out char choice))
-                {
-                    switch (choice)
-                    {
-                        case 'y':
-                        case 'Y':
-                            AccountApp.RegisterForm();
-                            return;
-                        case 'n':
-                        case 'N':
-                            AccountApp.MembershipMenu();
-                            return;
-                        default:
-                            Console.Write("Your choice is not exist! ");
-                            Console.ReadKey();
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.Write("Invalid choice! Try again ");
-                    Console.ReadKey();
-                }
-                ClearCurrentConsoleLine();
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
             }
         }
     }
@@ -143,18 +107,9 @@ public class MainMenuApp
         Console.SetCursorPosition(0, currentLineCursor);
     }
 
-    public static string ModifyString(string value)
-    {
-        return string.Join(" ", value.Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries));
-    }
+    public static Func<string, string> ModifyString = (value) => string.Join(" ", value.Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries));
 
-    public static string FormatCurrencyVND(double amountInVND)
-    {
-        CultureInfo cultureInfoVN = CultureInfo.GetCultureInfo("vi-VN");
-        string formattedAmount = amountInVND.ToString("C2", cultureInfoVN);
-        formattedAmount = formattedAmount.Replace(cultureInfoVN.NumberFormat.CurrencySymbol, "VND");
-        return formattedAmount;
-    }
+    public static Func<double, string> FormatCurrencyVND = (money) => money.ToString("C2", CultureInfo.GetCultureInfo("vi-VN")).Replace(CultureInfo.GetCultureInfo("vi-VN").NumberFormat.CurrencySymbol, "VND");
 }
 
 

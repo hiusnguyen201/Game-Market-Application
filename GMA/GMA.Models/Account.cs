@@ -1,4 +1,5 @@
 ﻿namespace GMA.Models;
+
 public class Account
 {
     public int AccountId { get; set; }

@@ -26,24 +26,24 @@ CREATE TABLE Orders
 CREATE TABLE Publishers
 (
 	publisher_ID INT PRIMARY KEY AUTO_INCREMENT,
-    publisher_Name VARCHAR(225) NOT NULL CHECK (publisher_Name REGEXP '^[A-Za-z .-]+$')
+    publisher_Name VARCHAR(225) NOT NULL UNIQUE
 );
 
 CREATE TABLE Genres
 (
 	genre_ID INT PRIMARY KEY AUTO_INCREMENT,
-    genre_Name VARCHAR(225) NOT NULL CHECK (genre_Name REGEXP '^[A-Za-z -]+$')
+    genre_Name VARCHAR(225) NOT NULL UNIQUE
 );
 
 CREATE TABLE Games
 (
 	game_ID INT PRIMARY KEY AUTO_INCREMENT,
     publisher_ID INT NOT NULL,
-    game_Name VARCHAR(225) UNIQUE NOT NULL CHECK (game_Name REGEXP '^[A-Za-z0-9\s\-]+$'),
+    game_Name VARCHAR(225) UNIQUE NOT NULL,
     game_Desc TEXT NOT NULL,    
     game_Price DOUBLE NOT NULL,
     game_Rating FLOAT,
-    game_Size VARCHAR(225) NOT NULL CHECK (game_size REGEXP '^\d+(\.\d+)?\s*(KB|MB|GB)$'),
+    game_Size VARCHAR(225) NOT NULL,
     game_Discount FLOAT,
     game_ReleaseDate DATETIME DEFAULT NOW(),
     CONSTRAINT fk_Games_Publishers FOREIGN KEY (publisher_ID) REFERENCES Publishers(publisher_ID)
@@ -52,9 +52,9 @@ CREATE TABLE Games
 CREATE TABLE GameGenres (
 	genre_ID INT NOT NULL,
     game_ID INT NOT NULL,
-    CONSTRAINT pk_GameGenres PRIMARY KEY (genre_ID, game_ID),
     CONSTRAINT fk_GameGenres_Genres FOREIGN KEY (genre_ID) REFERENCES Genres(genre_ID),
-    CONSTRAINT fk_GameGenres_Games FOREIGN KEY (game_ID) REFERENCES Games(game_ID)
+    CONSTRAINT fk_GameGenres_Games FOREIGN KEY (game_ID) REFERENCES Games(game_ID),
+    CONSTRAINT pk_GameGenres PRIMARY KEY (genre_ID, game_ID)
 );
 
 CREATE TABLE OrderDetails
@@ -62,9 +62,9 @@ CREATE TABLE OrderDetails
 	order_ID INT NOT NULL,
     game_ID INT NOT NULL,
     unit_price DECIMAL(20,2) NOT NULL,
-    CONSTRAINT pk_OrderDetails PRIMARY KEY (order_ID, game_ID),
     CONSTRAINT fk_OrderDetails_Orders FOREIGN KEY (order_ID) REFERENCES Orders (order_ID),
-    CONSTRAINT fk_OrderDetails_Games FOREIGN KEY (game_ID) REFERENCES Games (game_ID)
+    CONSTRAINT fk_OrderDetails_Games FOREIGN KEY (game_ID) REFERENCES Games (game_ID),
+    CONSTRAINT pk_OrderDetails PRIMARY KEY (order_ID, game_ID)
 );
 
 
@@ -113,3 +113,53 @@ DELIMITER $$
         WHERE acc_ID = aid;
     END $$
 DELIMITER ;
+
+DELIMITER $$
+    CREATE PROCEDURE get_game_by_id (IN gid INT)
+    BEGIN
+        SELECT * 
+        FROM Games AS g
+        INNER JOIN Publishers AS p
+        ON p.publisher_ID = g.publisher_ID
+        INNER JOIN GameGenres AS gg
+        ON g.game_ID = gg.genre_ID
+        INNER JOIN Genres AS gen
+        ON gen.genre_ID = gg.genre_ID
+        WHERE g.game_ID = gid;
+    END $$
+DELIMITER ;
+
+DELIMITER $$
+    CREATE PROCEDURE get_all_games ()
+    BEGIN
+        SELECT * 
+        FROM Games AS g
+        INNER JOIN Publishers AS p
+        ON p.publisher_ID = g.publisher_ID
+        INNER JOIN GameGenres AS gg
+        ON g.game_ID = gg.game_ID
+        INNER JOIN Genres AS gen
+        ON gen.genre_ID = gg.genre_ID;
+    END $$
+DELIMITER ;
+
+INSERT INTO publishers(publisher_Name)
+VALUES ("SEGA"), ("Square Enix"), ("Bandai Namco Entertainment"),("Devolver Digital"),("Laush Studio"),
+("PlayWay"),("Artifex Mundi"),("THQ Nordic"),("Daedalic Entertainment"),("Nacon"),
+("Electronic Arts"),("Team17 Software"),("Capcom Entertainment"),("2K Games"),("Dnovel"),
+("tinyBuild"),("Gamera Games"),("GrabTheGames"),("Tero Lunkka"),("DIG Publishing"),
+("Focus Entertainment"),("Xbox Game Studios"),("Cute Hannah's Games"),("Microids"),("Alawar Entertainment");
+
+INSERT INTO games(publisher_ID, game_Name, game_Desc, game_Price, game_Rating, game_Size, game_Discount, game_ReleaseDate)
+VALUES (1, "8-Bit Bayonetta", "dont know", 134000, 0.44, "60MB", null, "2017-04-01"),
+(1, "A Total War Saga: TROY", "dont know", 734000, null, "26.00GB", null, "2021-09-02");
+
+INSERT INTO genres(genre_Name)
+VALUES ("Action"), ("Casual"), ("Strategy"), ("Simulation");
+
+INSERT INTO gamegenres(game_ID, genre_ID)
+VALUES (1, 1), (1, 2),
+(2, 1), (2, 3), (2, 4);
+
+call get_all_games ();
+

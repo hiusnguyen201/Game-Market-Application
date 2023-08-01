@@ -1,3 +1,4 @@
+
 namespace GMA.Models;
 
 public static class GameStatus
@@ -10,16 +11,14 @@ public static class GameStatus
 public class Game
 {
     public int GameId { get; set; }
-    public Publisher GamePublisher { get; set; }
     public string Name { get; set; }
     public string Desc { get; set; }
     public double Price { get; set; }
     public float Rating { get; set; }
     public string Size { get; set; }
-    public int Status { get; set; }
     public float Discount { get; set; }
-    public char DiscountUnit { get; set; }
     public DateTime ReleaseDate { get; set; }
+    public Publisher GamePublisher { get; set; }
     public List<Genre> GameGenres { get; set; }
 
     public Game() { }
