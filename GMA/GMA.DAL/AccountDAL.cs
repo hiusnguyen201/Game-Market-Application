@@ -1,4 +1,4 @@
-﻿namespace GMA.DAL;
+namespace GMA.DAL;
 using GMA.Models;
 using System.Data;
 using MySql.Data.MySqlClient;
@@ -171,4 +171,6 @@ public class AccountDAL
             DBHelper.CloseConnection();
         }
     }
+
+
 }

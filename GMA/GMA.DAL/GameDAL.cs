@@ -17,16 +17,12 @@ public class GameDAL
         game.Size = reader.GetString("game_Size");
         game.Discount = reader.GetFloat("game_Discount");
         game.ReleaseDate = reader.GetDateTime("game_ReleaseDate");
-        game.GamePublisher.PublisherID = reader.GetInt16("p.publisher_ID");
-        game.GamePublisher.PublisherName = reader.GetString("p.publisher_Name");
-        foreach(Genre genre in game.GameGenres)
-        {
-            genre.GenreId = reader.GetInt16("gen.genre_ID");
-            genre.GenreName = reader.GetString("gen.genre_Name");
-            game.GameGenres.Add(new Genre(genre.GenreId, genre.GenreName));
-        }
+        game.GamePublisher.PublisherID = reader.GetInt16("publisher_ID");
+        game.GamePublisher.PublisherName = reader.GetString("publisher_Name");
+        game.GameGenres.Add(new Genre(reader.GetInt16("genre_ID"),reader.GetString("genre_Name")));
         return game;
     }
+
 
     public Game GetById(int id)
     {
@@ -62,13 +58,12 @@ public class GameDAL
     {
         List<Game> games = new List<Game>();
         Game game = null;
-        string selectQuery = "get_all_games";
+        string selectQuery = "Select * From get_all_games";
         try
         {
             DBHelper.OpenConnection();
             MySqlCommand command = new MySqlCommand(selectQuery, DBHelper.GetConnection());
             command.CommandText = selectQuery;
-            command.CommandType = CommandType.StoredProcedure;
             MySqlDataReader gameReader = command.ExecuteReader();
             if (gameReader.Read())
             {

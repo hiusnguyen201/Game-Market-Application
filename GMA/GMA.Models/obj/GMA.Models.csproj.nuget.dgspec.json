@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\GMA.Models.csproj": {}
+    "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\GMA.Models.csproj": {
+    "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\GMA.Models.csproj",
+        "projectUniqueName": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj",
         "projectName": "GMA.Models",
-        "projectPath": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\GMA.Models.csproj",
-        "packagesPath": "C:\\Users\\ahai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ahai\\Desktop\\GMA\\GMA.Models\\obj\\",
+        "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj",
+        "packagesPath": "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ahai\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Ha Trung Kien\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
