@@ -114,23 +114,6 @@ DELIMITER $$
     END $$
 DELIMITER ;
 
-DELIMITER $$
-    CREATE PROCEDURE get_game_by_id (IN gid INT)
-    BEGIN
-        SELECT * 
-        FROM Games AS g
-        INNER JOIN Publishers AS p
-        ON p.publisher_ID = g.publisher_ID
-        INNER JOIN GameGenres AS gg
-        ON g.game_ID = gg.genre_ID
-        INNER JOIN Genres AS gen
-        ON gen.genre_ID = gg.genre_ID
-        WHERE g.game_ID = gid;
-    END $$
-DELIMITER ;
-
-
-
 CREATE VIEW get_all_games AS
 SELECT g.game_ID, g.game_Name, g.game_Desc, g.game_Price, g.game_Rating, g.game_Size, g.game_Discount, g.game_ReleaseDate, p.publisher_ID, p.publisher_Name, gen.genre_ID, gen.genre_Name
 FROM Games AS g
@@ -141,7 +124,14 @@ ON g.game_ID = gg.game_ID
 INNER JOIN Genres AS gen
 ON gen.genre_ID = gg.genre_ID;
 
-
+DELIMITER $$
+    CREATE PROCEDURE get_game_by_id (IN gid INT)
+    BEGIN
+        SELECT * 
+        FROM get_all_games AS gag
+        WHERE gag.game_ID = gid;
+    END $$
+DELIMITER ;
 
 INSERT INTO publishers(publisher_Name)
 VALUES ("Valve"), ("Larian Studios"), ("Gearbox Publishing"),
@@ -215,6 +205,7 @@ VALUES (1, 1),
 (25, 1), (25, 2);
 
 
+select * from get_all_games;
 
 SELECT *
 FROM get_all_games
