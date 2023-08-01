@@ -129,37 +129,93 @@ DELIMITER $$
     END $$
 DELIMITER ;
 
-DELIMITER $$
-    CREATE PROCEDURE get_all_games ()
-    BEGIN
-        SELECT * 
-        FROM Games AS g
-        INNER JOIN Publishers AS p
-        ON p.publisher_ID = g.publisher_ID
-        INNER JOIN GameGenres AS gg
-        ON g.game_ID = gg.game_ID
-        INNER JOIN Genres AS gen
-        ON gen.genre_ID = gg.genre_ID;
-    END $$
-DELIMITER ;
+
+
+CREATE VIEW get_all_games AS
+SELECT g.game_ID, g.game_Name, g.game_Desc, g.game_Price, g.game_Rating, g.game_Size, g.game_Discount, g.game_ReleaseDate, p.publisher_ID, p.publisher_Name, gen.genre_ID, gen.genre_Name
+FROM Games AS g
+INNER JOIN Publishers AS p
+ON p.publisher_ID = g.publisher_ID
+INNER JOIN GameGenres AS gg
+ON g.game_ID = gg.game_ID
+INNER JOIN Genres AS gen
+ON gen.genre_ID = gg.genre_ID;
+
+
 
 INSERT INTO publishers(publisher_Name)
-VALUES ("SEGA"), ("Square Enix"), ("Bandai Namco Entertainment"),("Devolver Digital"),("Laush Studio"),
-("PlayWay"),("Artifex Mundi"),("THQ Nordic"),("Daedalic Entertainment"),("Nacon"),
-("Electronic Arts"),("Team17 Software"),("Capcom Entertainment"),("2K Games"),("Dnovel"),
-("tinyBuild"),("Gamera Games"),("GrabTheGames"),("Tero Lunkka"),("DIG Publishing"),
-("Focus Entertainment"),("Xbox Game Studios"),("Cute Hannah's Games"),("Microids"),("Alawar Entertainment");
+VALUES ("Valve"), ("Larian Studios"), ("Gearbox Publishing"),
+("Electronic Arts"), ("SgtOkiDoki"), ("Rockstar Games"), ("Activision"),
+("Behaviour Interactive Inc."), ("NetEase Games Global"), ("KRAFTON, Inc."),
+("Bethesda Softworks"), ("Digital Extremes"), ("MINTROCKET"), ("Ubisoft"),
+("Facepunch Studios"), ("CAPCOM Co., Ltd."), ("Gaijin Distribution KFT"),
+("Bungie"), ("Insomniac Games");
+
+
 
 INSERT INTO games(publisher_ID, game_Name, game_Desc, game_Price, game_Rating, game_Size, game_Discount, game_ReleaseDate)
-VALUES (1, "8-Bit Bayonetta", "dont know", 134000, 0.44, "60MB", null, "2017-04-01"),
-(1, "A Total War Saga: TROY", "dont know", 734000, null, "26.00GB", null, "2021-09-02");
+VALUES (1, "Counter-Strike: Global Offensive", "A competitive FPS game where players join either terrorist or counter-terrorist teams to complete objectives and engage in tactical combat.", 0, 0.88, "15GB", null, "2012-08-22"),
+(2, "Baldur's Gate 3", "A role-playing video game set in the Dungeons & Dragons universe, offering a rich narrative and turn-based combat in a vast open world", 990000, 0.89, "150GB", null, "2020-10-7"),
+(3, "Remnant II", "A cooperative third-person shooter set in a post-apocalyptic world filled with dangerous creatures and ancient technology.", 830000, 0.80, "80GB", null, "2023-07-25"),
+(4, "Apex Legends™", "A free-to-play battle royale game, where players form squads, choose unique characters with special abilities, and compete to be the last team standing in intense, fast-paced matches set in a futuristic world.", 0, 0.81, "56GB", null, "2020-11-5"),
+(5, "BattleBit Remastered", "BattleBit Remastered aims for a chaotic, massively multiplayer online first-person shooter experience.", 253500, 0.90, "2GB", null, "2023-6-15"),
+(6, "Red Dead Redemption 2", "An action-adventure game set in the American Wild West, following the story of outlaw Arthur Morgan as he navigates a vast open world filled with moral choices and intense gunfights.", 1000000, 0.90, "150GB", 0.67, "2019-12-6"),
+(6, "Grand Theft Auto V", "An open-world action-adventure game developed by Rockstar Games, offering players a sprawling fictional city to explore, multiple playable characters, and a mix of thrilling missions and activities.GTV 5 is an open-world action-adventure game developed by Rockstar Games, offering players a sprawling fictional city to explore, multiple playable characters, and a mix of thrilling missions and activities.", 311000, 0.86, "72GB", null, "2015-6-14"),
+(7, "Call of Duty®: Modern Warfare® II", "A critically acclaimed first-person shooter, offering a gritty and realistic military experience with an engaging single-player campaign and a robust multiplayer mode filled with various maps, weapons, and customization options.", 1799000, 0.60, "125GB", 0.45, "2022-10-28"),
+(8, "Dead by Daylight", "An asymmetrical horror multiplayer game, where players take on the roles of either deadly killers or survivors, trying to outwit each other in chilling and suspenseful matches set in various eerie environments.", 230000, 0.80, "50GB", 0.60, "2016-6-14"),
+(9, "NARAKA: BLADEPOINT", "A fast-paced multiplayer battle royale game with a unique melee-focused combat system, set in a mystical Asian-inspired world where players fight for survival and glory.", 0, 0.74, "35GB", null, "2021-8-12"),
+(10, "PUBG: BATTLEGROUNDS", "A popular battle royale game where up to 100 players parachute onto an island, scavenge for weapons and equipment, and fight to be the last person or team standing in intense, tactical battles.", 0, 0.57, "40GB", null, "2017-12-21"),
+(11, "The Elder Scrolls® Online", "An expansive MMORPG set in the vast world of Tamriel, offering players the chance to explore diverse regions, embark on epic quests, and engage in dynamic, multiplayer adventures.", 450000, 0.83, "95GB", null, "2014-4-4"),
+(1, "Team Fortress 2", "A class-based multiplayer first-person shooter with a cartoonish art style, offering fast-paced team-based gameplay and a variety of humorous characters to choose from.", 0, 0.93, "15GB", null, "2007-10-10"),
+(12, "Warframe", "A free-to-play cooperative third-person shooter, set in a futuristic sci-fi universe, where players control powerful warframes to complete missions, defeat enemies, and acquire new weapons and abilities.", 0, 0.86, "50GB", null, "2013-3-26"),
+(13, "DAVE THE DIVER", "Explore and unravel the mysteries in the depths of the Blue Hole by day and run a successful exotic sushi restaurant by night.It’s easy to get hooked on the satisfying gameplay loop!", 260000, 0.97, "10GB", null, "2023-6-28"),
+(4, "F1® 23", "Be the last to brake in EA SPORTS™ F1® 23, the official video game of the 2023 FIA Formula One World Championship™.", 1590000, 0.85, "80GB", 0.40, "2023-6-16"),
+(14, "Tom Clancy's Rainbow Six® Siege", "A tactical multiplayer first-person shooter, where players engage in intense, close-quarters combat as specialized operators with unique abilities in a variety of game modes.", 330000, 0.86, "61GB", null, "2015-12-2"),
+(1, "Dota 2", "A free-to-play multiplayer online battle arena (MOBA) game, where two teams of five players each compete to destroy the opposing team's Ancient in a strategic and action-packed gameplay.", 0, 0.82, "60GB", null, "2013-7-10"),
+(15, "Rust", "A multiplayer survival game set in a harsh open world, where players must gather resources, build structures, and fight against other players and environmental challenges to survive and thrive.", 510000, 0.87, "25GB", null, "2018-2-9"),
+(16, "Street Fighter™ 6", "A classic 2D fighting game franchise, where players select iconic characters and engage in intense martial arts battles, using special moves and combos to defeat opponents in one-on-one matches.", 1322000, 0.89, "60GB", null, "2023-6-1"),
+(4, "The Sims™ 4", "A life simulation game, where players create and control virtual characters, build homes, and guide their daily lives in a sandbox-style environment, offering endless creative possibilities and storytelling opportunities.", 0, 0.87, "51GB", null, "2014-9-2"),
+(7, "Call of Duty®: Black Ops III", "A fast-paced first-person shooter, set in a futuristic world with advanced technology and cybernetic enhancements, offering a gripping campaign, multiplayer action, and cooperative zombie mode.", 1363500, 0.86, "100GB", 0.67, "2015-11-6"),
+(17, "War Thunder", "A free-to-play vehicular combat MMO, featuring intense battles with aircraft, ground vehicles, and naval vessels set in various historical periods, offering a mix of realistic simulation and arcade-style gameplay.", 0, 0.75, "95GB", null, "2013-8-15"),
+(18, "Destiny 2", "A sci-fi online multiplayer shooter and RPG, where players fight as Guardians to defend Earth from various threats, featuring cooperative raids, player versus environment (PvE) missions, and competitive player versus player (PvP) modes.", 0, 0.82, "105GB", null, "2019-10-1"),
+(19, "Ratchet & Clank: Rift Apart", "A visually stunning action-adventure game, where players join the heroic duo on an interdimensional journey, battling enemies and using inventive weaponry to save the multiverse from a sinister threat.", 1399000, 0.85, "75GB", null, "2023-7-26");
+
 
 INSERT INTO genres(genre_Name)
-VALUES ("Action"), ("Casual"), ("Strategy"), ("Simulation");
+VALUES ("Action"), ("Adventure"), ("Strategy"), ("RPG"), ("Multiplayer"),
+("Casual"), ("Indie"), ("Simulation"), ("Racing"), ("Sports");
+
+
 
 INSERT INTO gamegenres(game_ID, genre_ID)
-VALUES (1, 1), (1, 2),
-(2, 1), (2, 3), (2, 4);
+VALUES (1, 1),
+(2, 2),(2, 3),(2, 4),
+(3, 1), (3, 2), (3, 4),
+(4, 1), (4, 2),
+(5, 1), (5, 5),
+(6, 1), (6, 2),
+(7, 1), (7, 2),
+(8, 1),
+(9, 1),
+(10, 1), (10, 2), (10, 5),
+(11, 1), (11, 2), (11, 5),
+(12, 1), (12, 2), (12, 4), (12, 5),
+(13, 1),
+(14, 1), (14, 4),
+(15, 2), (15, 4), (15, 6), (15, 7), (15, 8),
+(16, 9), (16, 10),
+(17, 1),
+(18, 1), (18, 3),
+(19, 1), (19, 2), (19, 4), (19, 5), (19, 7),
+(20, 1), (20, 2),
+(21, 2), (21, 6), (21, 8),
+(22, 1), (22, 2),
+(23, 1), (23, 5), (23, 8),
+(24, 1), (24, 2),
+(25, 1), (25, 2);
 
-call get_all_games ();
 
+
+SELECT *
+FROM get_all_games
+WHERE genre_Name IN ('Action', 'Adventure');

@@ -3,8 +3,6 @@ using GMA.Models;
 using Spectre.Console;
 using System.Text.RegularExpressions;
 
-//hello asdas dad ad sad a
-
 namespace GMA.App;
 
 public class AccountApp
