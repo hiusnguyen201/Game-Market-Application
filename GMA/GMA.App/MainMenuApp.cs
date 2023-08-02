@@ -109,7 +109,7 @@ public class MainMenuApp
 
     public static Func<string, string> ModifyString = (value) => string.Join(" ", value.Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries));
 
-    public static Func<double, string> FormatCurrencyVND = (money) => money.ToString("C2", CultureInfo.GetCultureInfo("vi-VN")).Replace(CultureInfo.GetCultureInfo("vi-VN").NumberFormat.CurrencySymbol, "VND");
+    public static Func<double, string> FormatCurrencyVND = (money) => money.ToString("C", CultureInfo.GetCultureInfo("vi-VN")).Replace(CultureInfo.GetCultureInfo("vi-VN").NumberFormat.CurrencySymbol, "VND");
 }
 
 

@@ -14,14 +14,17 @@ public class Game
     public string Name { get; set; }
     public string Desc { get; set; }
     public double Price { get; set; }
-    public float Rating { get; set; }
+    public float? Rating { get; set; }
     public string Size { get; set; }
-    public float Discount { get; set; }
     public DateTime ReleaseDate { get; set; }
     public Publisher GamePublisher { get; set; }
     public List<Genre> GameGenres { get; set; }
 
-    public Game() { }
+    public Game() 
+    { 
+        GamePublisher = new Publisher();
+        GameGenres = new List<Genre>();
+    }
 
     public override bool Equals(object? obj)
     {

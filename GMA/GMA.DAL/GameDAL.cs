@@ -13,13 +13,23 @@ public class GameDAL
         game.GameId = reader.GetInt16("game_ID");
         game.Name = reader.GetString("game_Name");
         game.Desc = reader.GetString("game_Desc");
+        game.Price = reader.GetDouble("game_Price");
         game.Rating = reader.GetFloat("game_Rating");
         game.Size = reader.GetString("game_Size");
-        game.Discount = reader.GetFloat("game_Discount");
         game.ReleaseDate = reader.GetDateTime("game_ReleaseDate");
         game.GamePublisher.PublisherID = reader.GetInt16("publisher_ID");
         game.GamePublisher.PublisherName = reader.GetString("publisher_Name");
-        game.GameGenres.Add(new Genre(reader.GetInt16("genre_ID"),reader.GetString("genre_Name")));
+        string genreIDs = reader.GetString("genre_ID");
+        string genreNames = reader.GetString("genre_Name");
+        string[] splitGenreIds = genreIDs.Split(',');
+        string[] splitGenreNames = genreNames.Split(',');
+        for(int i = 0; i < splitGenreIds.Length; i++)
+        {
+            if(int.TryParse(splitGenreIds[i], out int genreID))
+            {
+                game.GameGenres.Add(new Genre(genreID, splitGenreNames[i]));
+            }
+        }
         return game;
     }
 
@@ -58,14 +68,14 @@ public class GameDAL
     {
         List<Game> games = new List<Game>();
         Game game = null;
-        string selectQuery = "Select * From get_all_games";
+        string selectQuery = "SELECT * FROM get_all_games";
         try
         {
             DBHelper.OpenConnection();
             MySqlCommand command = new MySqlCommand(selectQuery, DBHelper.GetConnection());
             command.CommandText = selectQuery;
             MySqlDataReader gameReader = command.ExecuteReader();
-            if (gameReader.Read())
+            while (gameReader.Read())
             {
                 game = Get(gameReader);
                 games.Add(game);
@@ -82,4 +92,8 @@ public class GameDAL
         }
         return games;
     }
+
+    // 1 Hàm GetByName
+
+    // 1 Hàm GetByCateName
 }
