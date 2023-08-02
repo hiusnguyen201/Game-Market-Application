@@ -5,11 +5,19 @@ using GMA.Models;
 
 public class GameApp
 {
-    public static void GameMenu(int currentPage = 0)
+    public static void GameMenu(int currentPage = 0, string keywords = null)
     {
         int pageSize = 10;
         GameBLL gameBLL = new GameBLL();
-        List<Game> games = gameBLL.GetAll();
+        List<Game> games =  new List<Game>();
+        if(string.IsNullOrEmpty(keywords))
+        {
+            games = gameBLL.GetAll();
+        }
+        else
+        {
+            games = gameBLL.SearchByKey(keywords);
+        }
 
         while (true)
         {
@@ -39,7 +47,22 @@ public class GameApp
             string choice = Console.ReadLine();
             if (int.TryParse(choice.ToString(), out int intChoice))
             {
-                GameDetailsMenu(intChoice, currentPage);
+                List<int> gameIds = new List<int>();
+                foreach(Game game in games)
+                {
+                    gameIds.Add(game.GameId);
+                }
+
+                if(gameIds.Contains(intChoice))
+                {
+                    GameDetailsMenu(intChoice, currentPage);
+                }
+                else
+                {
+                    Console.Write("Invalid choice! Try again ");
+                    Console.ReadKey();
+                    GameMenu(currentPage, keywords);
+                }
             }
             else
             {
@@ -56,6 +79,9 @@ public class GameApp
                         MainMenuApp.MainMenu();
                         break;
                     case "S":
+                        Console.Write("- Enter Keywords: ");
+                        keywords = Console.ReadLine();
+                        GameMenu(0, keywords);
                         break;
                     case "G":
                         break;

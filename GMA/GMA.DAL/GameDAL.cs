@@ -99,7 +99,7 @@ public class GameDAL
     {   
         List<Game> games = new List<Game>();
         Game game = null;
-        string selectQuery = "get_game_by_name";
+        string selectQuery = "get_game_by_key";
         try
         {
             DBHelper.OpenConnection();
@@ -109,7 +109,7 @@ public class GameDAL
             command.Parameters.AddWithValue("@kw", keyword);
             command.Parameters["@kw"].Direction = ParameterDirection.Input;
             MySqlDataReader gameReader = command.ExecuteReader();
-            if (gameReader.Read())
+            while (gameReader.Read())
             {
                 game = Get(gameReader);
                 games.Add(game);
@@ -132,7 +132,7 @@ public class GameDAL
     {
          List<Game> games = new List<Game>();
         Game game = null;
-        string selectQuery = "get_game_by_GenreName";
+        string selectQuery = "get_game_by_GenIdKey";
         try
         {
             DBHelper.OpenConnection();
@@ -144,7 +144,7 @@ public class GameDAL
             command.Parameters["@kw"].Direction = ParameterDirection.Input;
             command.Parameters["@genid"].Direction = ParameterDirection.Input;
             MySqlDataReader gameReader = command.ExecuteReader();
-            if (gameReader.Read())
+            while (gameReader.Read())
             {
                 game = Get(gameReader);
                 games.Add(game);

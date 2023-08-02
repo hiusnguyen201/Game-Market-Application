@@ -1813,19 +1813,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\": {}
+    "C:\\Users\\Hai Nguyen\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
+      "projectUniqueName": "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
       "projectName": "GMA.BLL",
-      "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
-      "packagesPath": "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\obj\\",
+      "projectPath": "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\GMA.BLL.csproj",
+      "packagesPath": "C:\\Users\\Hai Nguyen\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\GMA\\GMA.BLL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Ha Trung Kien\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Hai Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -1837,11 +1837,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj": {
-              "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj"
+            "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj": {
+              "projectPath": "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\GMA\\GMA.DAL\\GMA.DAL.csproj"
             },
-            "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj": {
-              "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj"
+            "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj": {
+              "projectPath": "C:\\Users\\Hai Nguyen\\Desktop\\Project1-Vtca\\GMA\\GMA.Models\\GMA.Models.csproj"
             }
           }
         }

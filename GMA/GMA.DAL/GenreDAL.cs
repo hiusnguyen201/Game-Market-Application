@@ -8,8 +8,8 @@ public class GenreDAL
     public Genre Get(MySqlDataReader reader)
     {
         Genre genre = new Genre();
-        genre.GenreID = reader.GetInt16("genre_ID");
-        genre.Name = reader.GetString("genre_name");
+        genre.GenreId = reader.GetInt16("genre_ID");
+        genre.GenreName = reader.GetString("genre_name");
         return genre;
     }
 

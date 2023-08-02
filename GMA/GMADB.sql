@@ -131,7 +131,7 @@ DELIMITER $$
 DELIMITER ;
 
 DELIMITER $$
-    CREATE PROCEDURE get_game_by_Name (IN kw VARCHAR(225))
+    CREATE PROCEDURE get_game_by_Key (IN kw VARCHAR(225))
     BEGIN
         SELECT * 
         FROM get_all_games AS gag
@@ -140,7 +140,7 @@ DELIMITER $$
 DELIMITER ;
 
 DELIMITER $$
-    CREATE PROCEDURE get_game_by_GenreName (IN kw VARCHAR(225), IN genid INT)
+    CREATE PROCEDURE get_game_by_GenIdKey (IN kw VARCHAR(225), IN genid INT)
     BEGIN
         SELECT * 
         FROM get_all_games AS gag
@@ -223,4 +223,4 @@ VALUES (1, 1),
 (24, 1), (24, 2),
 (25, 1), (25, 2);
 
-call get_game_by_CateName("", 2);
+call get_game_by_Key("a");

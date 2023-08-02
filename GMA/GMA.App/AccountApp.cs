@@ -291,6 +291,7 @@ public class AccountApp
     {
         while (true)
         {
+            Console.Write($"[{text}]: ");
             string value = text == "Password" ? GetPassword() : Console.ReadLine();
 
             // Check Q : quit
@@ -322,7 +323,8 @@ public class AccountApp
     {
         while (true)
         {
-            string value = text == "Password" ? GetPassword() : Console.ReadLine();
+            Console.Write($"- Enter {text}: ");
+            string value = (text == "Password") ? GetPassword() : Console.ReadLine();
 
             // Check Q : quit
             if (value == "B" || value == "b")
@@ -346,23 +348,32 @@ public class AccountApp
             else
             {
                 // Check Regex
-                if (text == "Username" && !Regex.IsMatch(value, patternUsername))
+                if (text == "Username")
                 {
-                    isValid = false;
-                    Console.Write("Please enter a username that is at least 3 characters long and uses only a-z, A-Z, 0-9, _ characters");
-                    Console.ReadKey();
+                    if(!Regex.IsMatch(value, patternUsername))
+                    {
+                        isValid = false;
+                        Console.Write("Please enter a username that is at least 3 characters long and uses only a-z, A-Z, 0-9, _ characters");
+                        Console.ReadKey();
+                    }
                 }
-                else if (text == "Email" && !Regex.IsMatch(value, patternEmail))
+                else if (text == "Email")
                 {
-                    isValid = false;
-                    Console.Write("Invalid Email format! ");
-                    Console.ReadKey();
+                    if(!Regex.IsMatch(value, patternEmail))
+                    {
+                        isValid = false;
+                        Console.Write("Invalid Email format! ");
+                        Console.ReadKey();
+                    }
                 }
-                else if (text == "Real Name" && !Regex.IsMatch(value, patternRealName))
+                else if (text == "Real Name")
                 {
-                    isValid = false;
-                    Console.Write("Please enter a real name that is at least 2 characters long and uses only a-z, A-Z, whitespace characters");
-                    Console.ReadKey();
+                    if(!Regex.IsMatch(value, patternRealName))
+                    {
+                        isValid = false;
+                        Console.Write("Please enter a real name that is at least 2 characters long and uses only a-z, A-Z, whitespace characters");
+                        Console.ReadKey();
+                    }
                 }
                 else if (text == "Username" || text == "Email")
                 {
@@ -376,7 +387,6 @@ public class AccountApp
                     }
                 }
             }
-
             // Check isValid
             if (isValid)
             {
