@@ -68,7 +68,7 @@ public class AccountApp
         var table = new Table();
         table.Width = 45;
         table.AddColumn(new TableColumn(new Text("[Game Market Application]\nGroup 2 - PF1122 Version : 0.1\nLogin Form").Centered()));
-        table.Caption("(B: back)");
+        table.Caption("[#ffffff](B: back)[/]");
         AnsiConsole.Write(table);
         string username = GetStringLoginForm("Username");
 
@@ -97,7 +97,7 @@ public class AccountApp
         var table = new Table();
         table.Width = 45;
         table.AddColumn(new TableColumn(new Text("[Game Market Application]\nGroup 2 - PF1122 Version : 0.1\nRegister Form").Centered()));
-        table.Caption("(B: back)");
+        table.Caption("[#ffffff](B: back)[/]");
         AnsiConsole.Write(table);
 
         string username = GetStringRegisterForm("Username");

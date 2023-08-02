@@ -13,33 +13,3 @@ C:\Users\ahai\Desktop\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.dll
 C:\Users\ahai\Desktop\GMA\GMA.DAL\obj\Debug\net7.0\refint\GMA.DAL.dll
 C:\Users\ahai\Desktop\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.pdb
 C:\Users\ahai\Desktop\GMA\GMA.DAL\obj\Debug\net7.0\ref\GMA.DAL.dll
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\bin\Debug\net7.0\GMA.DAL.deps.json
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\bin\Debug\net7.0\GMA.DAL.dll
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\bin\Debug\net7.0\GMA.DAL.pdb
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\bin\Debug\net7.0\GMA.Models.dll
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\bin\Debug\net7.0\GMA.Models.pdb
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.csproj.AssemblyReference.cache
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.AssemblyInfoInputs.cache
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.AssemblyInfo.cs
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.csproj.CoreCompileInputs.cache
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.csproj.CopyComplete
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.dll
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\refint\GMA.DAL.dll
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.pdb
-C:\Users\Ha Trung Kien\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\ref\GMA.DAL.dll
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.csproj.AssemblyReference.cache
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.AssemblyInfoInputs.cache
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.AssemblyInfo.cs
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.csproj.CoreCompileInputs.cache
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.dll
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\refint\GMA.DAL.dll
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.pdb
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\bin\Debug\net7.0\GMA.DAL.deps.json
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\bin\Debug\net7.0\GMA.DAL.dll
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\bin\Debug\net7.0\GMA.DAL.pdb
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\bin\Debug\net7.0\GMA.Models.dll
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\bin\Debug\net7.0\GMA.Models.pdb
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\GMA.DAL.csproj.CopyComplete
-C:\Users\Hai Nguyen\Desktop\Project1-Vtca\GMA\GMA.DAL\obj\Debug\net7.0\ref\GMA.DAL.dll

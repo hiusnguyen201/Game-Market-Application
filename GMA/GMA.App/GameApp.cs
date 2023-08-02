@@ -5,18 +5,33 @@ using GMA.Models;
 
 public class GameApp
 {
-    public static void GameMenu(int currentPage = 0, string keywords = null)
+    public static void GameMenu(int currentPage = 0, string keywords = null, int genID = 0)
     {
         int pageSize = 10;
         GameBLL gameBLL = new GameBLL();
-        List<Game> games =  new List<Game>();
-        if(string.IsNullOrEmpty(keywords))
+        List<Game> games = new List<Game>();
+        GenreBLL genreBLL = new GenreBLL();
+        List<Genre> genres = genreBLL.GetAll();
+        string genreName = (genID == 0)? "None" : genreBLL.GetGenreNameById(genID, genres);
+        if (string.IsNullOrEmpty(keywords))
         {
-            games = gameBLL.GetAll();
+            if(genID != 0)
+            {
+                keywords = "";
+                games = gameBLL.SearchByGenIdKey(keywords, genID);
+            }
+            else
+            {
+                games = gameBLL.GetAll();
+            }
         }
-        else
+        else if (keywords != null && genID == 0)
         {
             games = gameBLL.SearchByKey(keywords);
+        }
+        else if (keywords != null && genID != 0)
+        {
+            games = gameBLL.SearchByGenIdKey(keywords, genID);
         }
 
         while (true)
@@ -33,7 +48,7 @@ public class GameApp
             .AddColumn(new TableColumn(new Text("Price").Centered()));
             table.Width = 125;
             table.Title("Game Store");
-            table.Caption($"(Page: {startIndex / pageSize + 1}/{(games.Count + pageSize - 1) / pageSize} | P: previous | N: next | S: search | G: add genre | B: back)");
+            table.Caption($"[#ffffff](Page: {startIndex / pageSize + 1}/{(games.Count + pageSize - 1) / pageSize} | P: previous | N: next | S: search | G: add genre | B: back)[/]");
 
             for (int i = startIndex; i < endIndex; i++)
             {
@@ -43,17 +58,18 @@ public class GameApp
             }
 
             AnsiConsole.Write(table);
-            Console.Write("Your choice: ");
+            Console.WriteLine($"\n{games.Count} results match your search.");
+            Console.Write($"\nYour Choice (Selected Genre: {genreName}): ");
             string choice = Console.ReadLine();
             if (int.TryParse(choice.ToString(), out int intChoice))
             {
                 List<int> gameIds = new List<int>();
-                foreach(Game game in games)
+                foreach (Game game in games)
                 {
                     gameIds.Add(game.GameId);
                 }
 
-                if(gameIds.Contains(intChoice))
+                if (gameIds.Contains(intChoice))
                 {
                     GameDetailsMenu(intChoice, currentPage);
                 }
@@ -61,7 +77,7 @@ public class GameApp
                 {
                     Console.Write("Invalid choice! Try again ");
                     Console.ReadKey();
-                    GameMenu(currentPage, keywords);
+                    GameMenu(currentPage, keywords, genID);
                 }
             }
             else
@@ -81,9 +97,11 @@ public class GameApp
                     case "S":
                         Console.Write("- Enter Keywords: ");
                         keywords = Console.ReadLine();
-                        GameMenu(0, keywords);
+                        GameMenu(0, keywords, genID);
                         break;
                     case "G":
+                        int choiceId = ChoiceGenreId();
+                        GameMenu(0, keywords, choiceId);
                         break;
                     default:
                         Console.Write("Invalid choice! Try again ");
@@ -94,11 +112,68 @@ public class GameApp
         }
     }
 
+    public static int ChoiceGenreId(int choice = 0)
+    {
+        Console.Clear();
+        GenreBLL genreBLL = new GenreBLL();
+        List<Genre> genres = genreBLL.GetAll().OrderBy(genre => genre.GenreId).ToList();
+
+        var table = new Table();
+        table.AddColumns("ID", "Genre Name");
+        table.AddRow("0", "None");
+        foreach (Genre genre in genres)
+        {
+            table.AddRow($"{genre.GenreId}", $"{genre.GenreName}");
+        }
+        AnsiConsole.Write(table);
+
+        List<int> genreIds = new List<int>();
+        genreIds.Add(0);
+        foreach (Genre genre in genres)
+        {
+            genreIds.Add(genre.GenreId);
+        }
+
+        while (true)
+        {
+            Console.Write($"\nYour choice: ");
+            string choice2 = Console.ReadLine();
+            if (int.TryParse(choice2.ToString(), out int intChoice))
+            {
+                if (genreIds.Contains(intChoice))
+                {
+                    choice = intChoice;
+                    return intChoice;
+                }
+                else
+                {
+                    Console.Write("Invalid choice! Try again ");
+                    Console.ReadKey();
+                    ChoiceGenreId();
+                }
+            }
+            else
+            {
+                switch (choice2.ToUpper())
+                {
+                    case "B":
+                        GameMenu();
+                        break;
+                    default:
+                        Console.Write("Invalid choice! Try again ");
+                        Console.ReadKey();
+                        break;
+                }
+                ChoiceGenreId();
+            }
+        }
+    }
+
     public static void GameDetailsMenu(int id, int currentPage)
     {
         GameBLL gameBLL = new GameBLL();
         Game game = gameBLL.SearchById(id);
-        
+
         if (game == null)
         {
             Console.Write("Your choice is not exist! ");
@@ -121,7 +196,7 @@ public class GameApp
             table.AddRow($"Rating: [#ffffff]{game.Rating}[/]%\n").AddRow(new Rule());
             table.AddRow($"\nPrice: [#ffffff]{price}[/]\n").AddRow(new Rule());
             table.AddRow($"\nABOUT THIS GAME\n\n[#ffffff]{game.Desc}[/]\n");
-            table.Caption("(B: back | P: purchase)");
+            table.Caption("[#ffffff](B: back | P: purchase)[/]");
             AnsiConsole.Write(table);
             Console.Write("Your choice: ");
             if (char.TryParse(Console.ReadLine(), out char choice))

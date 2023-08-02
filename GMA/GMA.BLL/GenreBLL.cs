@@ -11,4 +11,14 @@ public class GenreBLL
         List<Genre> genres = genreDAL.GetAll();
         return genres;
     }
+
+    public string GetGenreNameById(int genreId, List<Genre> genres)
+{
+    foreach (Genre genre in genres)
+    {
+        if (genre.GenreId == genreId)
+            return genre.GenreName;
+    }
+    return null; 
+}
 }
