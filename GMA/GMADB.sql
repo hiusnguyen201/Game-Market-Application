@@ -140,7 +140,7 @@ DELIMITER $$
 DELIMITER ;
 
 DELIMITER $$
-    CREATE PROCEDURE get_game_by_CateName (IN kw VARCHAR(225), IN genid INT)
+    CREATE PROCEDURE get_game_by_GenreName (IN kw VARCHAR(225), IN genid INT)
     BEGIN
         SELECT * 
         FROM get_all_games AS gag
@@ -148,6 +148,7 @@ DELIMITER $$
         AND FIND_IN_SET(genid, gag.genre_ID);
     END $$
 DELIMITER ;
+
 
 
 

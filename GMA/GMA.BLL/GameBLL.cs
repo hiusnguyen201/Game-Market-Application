@@ -18,4 +18,18 @@ public class GameBLL
         List<Game> games = gameDAL.GetAll();
         return games;
     }
+
+    public List<Game> SearchByKey(string keyword)
+    {
+        GameDAL gameDAL = new GameDAL();
+        List<Game> games = gameDAL.GetByKey(keyword);
+        return games;
+    }
+
+    public List<Game> SearchByGenIdKey(string keyword, int id)
+    {
+        GameDAL gameDAL = new GameDAL();
+        List<Game> games = gameDAL.GetByGenIdKey(keyword, id);
+        return games;
+    }
 }

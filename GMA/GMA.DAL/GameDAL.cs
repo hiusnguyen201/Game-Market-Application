@@ -95,5 +95,70 @@ public class GameDAL
 
     // 1 Hàm GetByName
 
+    public List<Game> GetByKey(string keyword)
+    {   
+        List<Game> games = new List<Game>();
+        Game game = null;
+        string selectQuery = "get_game_by_name";
+        try
+        {
+            DBHelper.OpenConnection();
+            MySqlCommand command = new MySqlCommand(selectQuery, DBHelper.GetConnection());
+            command.CommandText = selectQuery;
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@kw", keyword);
+            command.Parameters["@kw"].Direction = ParameterDirection.Input;
+            MySqlDataReader gameReader = command.ExecuteReader();
+            if (gameReader.Read())
+            {
+                game = Get(gameReader);
+                games.Add(game);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.Write(e);
+            Console.ReadKey();
+        }
+        finally
+        {
+            DBHelper.CloseConnection();
+        }
+        return games;
+    }
+
     // 1 Hàm GetByCateName
+    public List<Game> GetByGenIdKey(string keyword, int id)
+    {
+         List<Game> games = new List<Game>();
+        Game game = null;
+        string selectQuery = "get_game_by_GenreName";
+        try
+        {
+            DBHelper.OpenConnection();
+            MySqlCommand command = new MySqlCommand(selectQuery, DBHelper.GetConnection());
+            command.CommandText = selectQuery;
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@kw", keyword);
+            command.Parameters.AddWithValue("@genid", id);
+            command.Parameters["@kw"].Direction = ParameterDirection.Input;
+            command.Parameters["@genid"].Direction = ParameterDirection.Input;
+            MySqlDataReader gameReader = command.ExecuteReader();
+            if (gameReader.Read())
+            {
+                game = Get(gameReader);
+                games.Add(game);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.Write(e);
+            Console.ReadKey();
+        }
+        finally
+        {
+            DBHelper.CloseConnection();
+        }
+        return games;
+    }
 }
