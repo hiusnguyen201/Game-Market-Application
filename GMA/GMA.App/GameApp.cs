@@ -13,27 +13,8 @@ public class GameApp
         GenreBLL genreBLL = new GenreBLL();
         List<Genre> genres = genreBLL.GetAll();
         string genreName = (genID == 0)? "None" : genreBLL.GetGenreNameById(genID, genres);
-        if (string.IsNullOrEmpty(keywords))
-        {
-            if(genID != 0)
-            {
-                keywords = "";
-                games = gameBLL.SearchByGenIdKey(keywords, genID);
-            }
-            else
-            {
-                games = gameBLL.GetAll();
-            }
-        }
-        else if (keywords != null && genID == 0)
-        {
-            games = gameBLL.SearchByKey(keywords);
-        }
-        else if (keywords != null && genID != 0)
-        {
-            games = gameBLL.SearchByGenIdKey(keywords, genID);
-        }
-
+        games = string.IsNullOrEmpty(keywords) ? (genID != 0 ? gameBLL.SearchByGenIdKey("", genID) : gameBLL.GetAll()) : (genID != 0 ? gameBLL.SearchByGenIdKey(keywords, genID) : gameBLL.SearchByKey(keywords));
+        
         while (true)
         {
             int startIndex = currentPage * pageSize;
@@ -64,14 +45,11 @@ public class GameApp
             if (int.TryParse(choice.ToString(), out int intChoice))
             {
                 List<int> gameIds = new List<int>();
-                foreach (Game game in games)
-                {
-                    gameIds.Add(game.GameId);
-                }
+                gameIds =  games.ConvertAll(game => game.GameId);
 
                 if (gameIds.Contains(intChoice))
                 {
-                    GameDetailsMenu(intChoice, currentPage);
+                    GameDetailsMenu(intChoice, currentPage, keywords, genID);
                 }
                 else
                 {
@@ -128,11 +106,8 @@ public class GameApp
         AnsiConsole.Write(table);
 
         List<int> genreIds = new List<int>();
+        genreIds = genres.ConvertAll(genre => genre.GenreId);
         genreIds.Add(0);
-        foreach (Genre genre in genres)
-        {
-            genreIds.Add(genre.GenreId);
-        }
 
         while (true)
         {
@@ -142,7 +117,6 @@ public class GameApp
             {
                 if (genreIds.Contains(intChoice))
                 {
-                    choice = intChoice;
                     return intChoice;
                 }
                 else
@@ -169,17 +143,10 @@ public class GameApp
         }
     }
 
-    public static void GameDetailsMenu(int id, int currentPage)
+    public static void GameDetailsMenu(int id, int currentPage, string keywords, int genID)
     {
         GameBLL gameBLL = new GameBLL();
         Game game = gameBLL.SearchById(id);
-
-        if (game == null)
-        {
-            Console.Write("Your choice is not exist! ");
-            Console.ReadKey();
-            GameMenu();
-        }
         string stringGenres = string.Join(", ", game.GameGenres.Select(genre => genre.GenreName));
         string price = (game.Price == 0) ? price = "Free to Purchase" : price = MainMenuApp.FormatCurrencyVND(game.Price);
         while (true)
@@ -205,7 +172,7 @@ public class GameApp
                 {
                     case 'B':
                     case 'b':
-                        GameMenu(currentPage);
+                        GameMenu(currentPage, keywords, genID);
                         break;
                     case 'P':
                     case 'p':

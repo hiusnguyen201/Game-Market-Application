@@ -158,7 +158,9 @@ VALUES ("Valve"), ("Larian Studios"), ("Gearbox Publishing"),
 ("Behaviour Interactive Inc."), ("NetEase Games Global"), ("KRAFTON, Inc."),
 ("Bethesda Softworks"), ("Digital Extremes"), ("MINTROCKET"), ("Ubisoft"),
 ("Facepunch Studios"), ("CAPCOM Co., Ltd."), ("Gaijin Distribution KFT"),
-("Bungie"), ("Insomniac Games");
+("Bungie"), ("Insomniac Games"), ("Newnight"), ("FromSoftware Inc."), ("Pearl Abyss"),
+("SCS Software"), ("Kinetic Games"), ("Xbox Game Studios"), ("CD PROJEKT RED"),
+("Crytek"), ("The Indie Stone");
 
 
 
@@ -187,8 +189,19 @@ VALUES (1, "Counter-Strike: Global Offensive", "A competitive FPS game where pla
 (7, "Call of Duty®: Black Ops III", "A fast-paced first-person shooter, set in a futuristic world with advanced technology and cybernetic enhancements, offering a gripping campaign, multiplayer action, and cooperative zombie mode.", 1363500, 86, "100GB", "2015-11-6"),
 (17, "War Thunder", "A free-to-play vehicular combat MMO, featuring intense battles with aircraft, ground vehicles, and naval vessels set in various historical periods, offering a mix of realistic simulation and arcade-style gameplay.", 0, 75, "95GB", "2013-8-15"),
 (18, "Destiny 2", "A sci-fi online multiplayer shooter and RPG, where players fight as Guardians to defend Earth from various threats, featuring cooperative raids, player versus environment (PvE) missions, and competitive player versus player (PvP) modes.", 0, 82, "105GB", "2019-10-1"),
-(19, "Ratchet & Clank: Rift Apart", "A visually stunning action-adventure game, where players join the heroic duo on an interdimensional journey, battling enemies and using inventive weaponry to save the multiverse from a sinister threat.", 1399000, 85, "75GB", "2023-7-26");
-
+(19, "Ratchet & Clank: Rift Apart", "A visually stunning action-adventure game, where players join the heroic duo on an interdimensional journey, battling enemies and using inventive weaponry to save the multiverse from a sinister threat.", 1399000, 85, "75GB", "2023-7-26"),
+(20, "Sons Of The Forest", "Sent to find a missing billionaire on a remote island, you find yourself in a cannibal-infested hellscape. Craft, build, and struggle to survive, alone or with friends, in this terrifying new open-world survival horror simulator.", 385000, 83, "20GB", "2023-2-24"),
+(21, "ELDEN RING", "THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.", 898000, 92, "60GB", "2022-2-25"),
+(22, "Black Desert", "Black Desert is a game that tests the limitations of MMORPG by implementing remastered graphics and audio. Enjoy exciting combat and siege, exploration, trading, fishing, training, alchemy, cooking, gathering, hunting, and more in the vast open world.", 80000, 76, "39GB", "2019-9-18"),
+(23, "Euro Truck Simulator 2", "Travel across Europe as king of the road, a trucker who delivers important cargo across impressive distances! With dozens of cities to explore from the UK, Belgium, Germany, Italy, the Netherlands, Poland, and many more, your endurance, skill and speed will all be pushed to their limits. If you’ve got what it takes to be part of an elite trucking force, get behind the wheel and prove it!", 87500, 97, "12GB", "2012-10-18"),
+(23, "American Truck Simulator", "Experience legendary American trucks and deliver various cargoes across sunny California, sandy Nevada, and the Grand Canyon State of Arizona. American Truck Simulator takes you on a journey through the breathtaking landscapes and widely recognized landmarks around the States.", 87500, 96, "7GB", "2016-2-2"),
+(24, "Phasmophobia", "Phasmophobia is a 4-player, online co-op, psychological horror game. You and your team of paranormal investigators will enter haunted locations filled with paranormal activity and try to gather as much evidence as you can. Use your ghost-hunting equipment to find and record evidence to sell on to a ghost removal team.", 160000, 96, "21GB", "2020-9-19"),
+(25, "Forza Horizon 5", "Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open world landscapes of Mexico with limitless, fun driving action in hundreds of the world’s greatest cars.", 990000, 88, "110GB", "2021-11-9"),
+(4, "EA SPORTS™ FIFA 23", "EA SPORTS™ FIFA 23 brings The World’s Game to the pitch, with HyperMotion2 Technology that delivers even more gameplay realism, both the men’s and women’s FIFA World Cup™ coming to the game as post-launch updates, the addition of women’s club teams, cross-play features**, and more. Experience unrivaled authenticity with over 19,000 players, 700+ teams, 100 stadiums, and over 30 leagues in FIFA 23.", 1090000, 54,"100GB","2022-9-29"),
+(26, "The Witcher® 3: Wild Hunt", "You are Geralt of Rivia, mercenary monster slayer. Before you stands a war-torn, monster-infested continent you can explore at will. Your current contract? Tracking down Ciri — the Child of Prophecy, a living weapon that can alter the shape of the world.",390000, 96,"50GB","2015-5-18"),
+(26, "Cyberpunk 2077", "Cyberpunk 2077 is an open-world, action-adventure RPG set in the megalopolis of Night City, where you play as a cyberpunk mercenary wrapped up in a do-or-die fight for survival. Improved and featuring all-new free additional content, customize your character and playstyle as you take on jobs, build a reputation, and unlock upgrades. The relationships you forge and the choices you make will shape the story and the world around you. Legends are made here. What will yours be?", 990000, 80,"70GB","2020-12-10"),
+(27, "Hunt: Showdown", "The year is 1895, and you are a Hunter tasked with eliminating the savage, nightmarish monsters that have infested the Louisiana Bayou. Play alone or in teams of two or three, as you search for clues to help you track your target and compete against other Hunters who are after the same reward", 499000, 83,"50GB","2019-8-27"),
+(28, "Project Zomboid", "Project Zomboid is an open-ended zombie-infested sandbox. It asks one simple question – how will you die? In the towns of Muldraugh and West Point, survivors must loot houses, build defences and do their utmost to delay their inevitable death day by day. No help is coming – their continued survival relies on their own cunning, luck and ability to evade a relentless horde.", 260000, 94,"6.8GB","2013-11-8");
 
 INSERT INTO genres(genre_Name)
 VALUES ("Action"), ("Adventure"), ("Strategy"), ("RPG"), ("Multiplayer"),
@@ -221,5 +234,18 @@ VALUES (1, 1),
 (22, 1), (22, 2),
 (23, 1), (23, 5), (23, 8),
 (24, 1), (24, 2),
-(25, 1), (25, 2);
+(25, 1), (25, 2),
+(26, 1), (26, 2), (26, 7), (26, 8),
+(27, 1), (27, 4),
+(28, 1), (28, 2), (28, 5), (28, 8), (28, 3),
+(29, 7), (29, 8),
+(30, 7), (30, 8),
+(31, 1), (31, 7),
+(32, 1), (32, 2), (32, 9), (32, 8), (32, 10),
+(33, 8), (33, 10),
+(34, 4),
+(35, 4),
+(36, 1),
+(37, 7), (37, 4), (37, 8);
 
+SELECT * FROM get_all_games
