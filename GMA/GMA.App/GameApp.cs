@@ -39,7 +39,14 @@ public class GameApp
             }
 
             AnsiConsole.Write(table);
-            Console.WriteLine($"\n{games.Count} results match your search.");
+            if(keywords == null)
+            {
+                Console.WriteLine($"\n{games.Count} results match your search.");
+            }
+            else
+            {
+                Console.WriteLine($"\n{games.Count} results match your search with keywords: '{keywords}'.");
+            }
             Console.Write($"\nYour Choice (Selected Genre: {genreName}): ");
             string choice = Console.ReadLine();
             if (int.TryParse(choice.ToString(), out int intChoice))
@@ -96,6 +103,10 @@ public class GameApp
         GenreBLL genreBLL = new GenreBLL();
         List<Genre> genres = genreBLL.GetAll().OrderBy(genre => genre.GenreId).ToList();
 
+        List<int> genreIds = new List<int>();
+        genreIds = genres.ConvertAll(genre => genre.GenreId);
+        genreIds.Add(0);
+
         var table = new Table();
         table.AddColumns("ID", "Genre Name");
         table.AddRow("0", "None");
@@ -104,10 +115,6 @@ public class GameApp
             table.AddRow($"{genre.GenreId}", $"{genre.GenreName}");
         }
         AnsiConsole.Write(table);
-
-        List<int> genreIds = new List<int>();
-        genreIds = genres.ConvertAll(genre => genre.GenreId);
-        genreIds.Add(0);
 
         while (true)
         {
@@ -123,7 +130,6 @@ public class GameApp
                 {
                     Console.Write("Invalid choice! Try again ");
                     Console.ReadKey();
-                    ChoiceGenreId();
                 }
             }
             else
@@ -138,8 +144,8 @@ public class GameApp
                         Console.ReadKey();
                         break;
                 }
-                ChoiceGenreId();
             }
+            ChoiceGenreId();
         }
     }
 

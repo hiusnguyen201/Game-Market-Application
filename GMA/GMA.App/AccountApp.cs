@@ -70,13 +70,13 @@ public class AccountApp
         table.AddColumn(new TableColumn(new Text("[Game Market Application]\nGroup 2 - PF1122 Version : 0.1\nLogin Form").Centered()));
         table.Caption("[#ffffff](B: back)[/]");
         AnsiConsole.Write(table);
-        string username = GetStringLoginForm("Username");
+        string username = GetAccountLogin("Username");
 
-        string password = GetStringLoginForm("Password");
+        string password = GetAccountLogin("Password");
 
         AccountBLL accountBLL = new AccountBLL();
         Account account = accountBLL.SearchAccountLogin(username, password);
-        if (account == null)
+        if (account == null)    
         {
             Console.Write("Please check your password and username and try again! ");
             Console.ReadKey();
@@ -100,15 +100,15 @@ public class AccountApp
         table.Caption("[#ffffff](B: back)[/]");
         AnsiConsole.Write(table);
 
-        string username = GetStringRegisterForm("Username");
+        string username = GetAccountRegister("Username");
 
-        string password = GetStringRegisterForm("Password");
+        string password = GetAccountRegister("Password");
 
-        string realname = MainMenuApp.ModifyString(GetStringRegisterForm("Real Name"));
+        string realname = MainMenuApp.ModifyString(GetAccountRegister("Real Name"));
 
-        string email = GetStringRegisterForm("Email");
+        string email = GetAccountRegister("Email");
 
-        string address = MainMenuApp.ModifyString(GetStringRegisterForm("Address"));
+        string address = MainMenuApp.ModifyString(GetAccountRegister("Address"));
 
         AccountBLL accountBLL = new AccountBLL();
         int result = accountBLL.Save(new Account(username, password, realname, email, address));
@@ -287,7 +287,7 @@ public class AccountApp
 
     }
 
-    public static string GetStringLoginForm(string text)
+    public static string GetAccountLogin(string text)
     {
         while (true)
         {
@@ -301,7 +301,7 @@ public class AccountApp
                 {
                     MainMenuApp.ClearCurrentConsoleLine();
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
-                    GetStringLoginForm(text);
+                    GetAccountLogin(text);
                 }
             }
 
@@ -319,7 +319,7 @@ public class AccountApp
         }
     }
 
-    public static string GetStringRegisterForm(string text)
+    public static string GetAccountRegister(string text)
     {
         while (true)
         {
@@ -333,7 +333,7 @@ public class AccountApp
                 {
                     MainMenuApp.ClearCurrentConsoleLine();
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
-                    GetStringRegisterForm(text);
+                    GetAccountRegister(text);
                 }
             }
 
