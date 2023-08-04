@@ -167,6 +167,32 @@ DELIMITER $$
     END $$
 DELIMITER ;
 
+DELIMITER $$
+    CREATE PROCEDURE create_order (IN aid INT, IN otp DOUBLE, IN os INT, OUT oid INT )
+    BEGIN
+		INSERT INTO orders (acc_ID, order_TotalPrice, order_Status)
+        VALUES (aid, otp, os)
+        SET oid = LAST_INSERT_ID();
+DELIMITER ;
+
+DELIMITER $$
+    CREATE PROCEDURE get_order_by_id (IN oid INT, IN aid INT )
+    BEGIN
+		SELECT *
+		FROM orders 
+        WHERE order_ID = oid AND acc_ID = aid;
+	END $$
+DELIMITER ;
+
+DELIMITER $$
+    CREATE PROCEDURE get_all_order (IN aid INT)
+    BEGIN
+		SELECT *
+		FROM orders 
+        WHERE acc_ID = aid;
+	END $$
+DELIMITER ;
+
 INSERT INTO publishers(publisher_Name)
 VALUES ("Valve"), ("Larian Studios"), ("Gearbox Publishing"),
 ("Electronic Arts"), ("SgtOkiDoki"), ("Rockstar Games"), ("Activision"),
