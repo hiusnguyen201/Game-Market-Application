@@ -64,35 +64,6 @@ public class GameDAL
         return game;
     }
 
-    public List<Game> GetAll()
-    {
-        List<Game> games = new List<Game>();
-        Game game = null;
-        string selectQuery = "SELECT * FROM get_all_games";
-        try
-        {
-            DBHelper.OpenConnection();
-            MySqlCommand command = new MySqlCommand(selectQuery, DBHelper.GetConnection());
-            command.CommandText = selectQuery;
-            MySqlDataReader gameReader = command.ExecuteReader();
-            while (gameReader.Read())
-            {
-                game = Get(gameReader);
-                games.Add(game);
-            }
-        }
-        catch (Exception e)
-        {
-            Console.Write(e);
-            Console.ReadKey();
-        }
-        finally
-        {
-            DBHelper.CloseConnection();
-        }
-        return games;
-    }
-
     // 1 Hàm GetByName
 
     public List<Game> GetByKey(string keyword)

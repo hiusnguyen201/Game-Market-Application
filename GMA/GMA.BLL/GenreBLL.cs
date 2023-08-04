@@ -5,20 +5,17 @@ namespace GMA.BLL;
 
 public class GenreBLL
 {
-    public List<Genre> GetAll()
+    public List<Genre> SearchByKey(string key)
     {
         GenreDAL genreDAL = new GenreDAL();
-        List<Genre> genres = genreDAL.GetAll();
+        List<Genre> genres = genreDAL.GetByKey(key);
         return genres;
     }
 
-    public string GetGenreNameById(int genreId, List<Genre> genres)
-{
-    foreach (Genre genre in genres)
+    public Genre SearchById(int id)
     {
-        if (genre.GenreId == genreId)
-            return genre.GenreName;
+        GenreDAL genreDAL = new GenreDAL();
+        Genre genre = genreDAL.GetById(id);
+        return genre;
     }
-    return null; 
-}
 }

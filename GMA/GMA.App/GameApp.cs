@@ -5,15 +5,15 @@ using GMA.Models;
 
 public class GameApp
 {
-    public static void GameMenu(int currentPage = 0, string keywords = null, int genID = 0)
+    public static void GameStoreMenu(int currentPage = 0, string keywords = "", int genID = 0)
     {
         int pageSize = 10;
-        GameBLL gameBLL = new GameBLL();
-        List<Game> games = new List<Game>();
         GenreBLL genreBLL = new GenreBLL();
-        List<Genre> genres = genreBLL.GetAll();
-        string genreName = (genID == 0)? "None" : genreBLL.GetGenreNameById(genID, genres);
-        games = string.IsNullOrEmpty(keywords) ? (genID != 0 ? gameBLL.SearchByGenIdKey("", genID) : gameBLL.GetAll()) : (genID != 0 ? gameBLL.SearchByGenIdKey(keywords, genID) : gameBLL.SearchByKey(keywords));
+        List<Genre> genres = genreBLL.SearchByKey("");
+        string genreName = (genID == 0)? "None" : genreBLL.SearchById(genID).GenreName;
+
+        GameBLL gameBLL = new GameBLL();
+        List<Game> games = (genID != 0)? gameBLL.SearchByGenIdKey(keywords, genID) : gameBLL.SearchByKey(keywords);
         
         while (true)
         {
@@ -39,7 +39,7 @@ public class GameApp
             }
 
             AnsiConsole.Write(table);
-            if(keywords == null)
+            if(keywords == "")
             {
                 Console.WriteLine($"\n{games.Count} results match your search.");
             }
@@ -51,8 +51,7 @@ public class GameApp
             string choice = Console.ReadLine();
             if (int.TryParse(choice.ToString(), out int intChoice))
             {
-                List<int> gameIds = new List<int>();
-                gameIds =  games.ConvertAll(game => game.GameId);
+                List<int> gameIds = games.ConvertAll(game => game.GameId);
 
                 if (gameIds.Contains(intChoice))
                 {
@@ -62,7 +61,7 @@ public class GameApp
                 {
                     Console.Write("Invalid choice! Try again ");
                     Console.ReadKey();
-                    GameMenu(currentPage, keywords, genID);
+                    GameStoreMenu(currentPage, keywords, genID);
                 }
             }
             else
@@ -82,11 +81,11 @@ public class GameApp
                     case "S":
                         Console.Write("- Enter Keywords: ");
                         keywords = Console.ReadLine();
-                        GameMenu(0, keywords, genID);
+                        GameStoreMenu(0, keywords, genID);
                         break;
                     case "G":
                         int choiceId = ChoiceGenreId();
-                        GameMenu(0, keywords, choiceId);
+                        GameStoreMenu(0, keywords, choiceId);
                         break;
                     default:
                         Console.Write("Invalid choice! Try again ");
@@ -101,10 +100,9 @@ public class GameApp
     {
         Console.Clear();
         GenreBLL genreBLL = new GenreBLL();
-        List<Genre> genres = genreBLL.GetAll().OrderBy(genre => genre.GenreId).ToList();
 
-        List<int> genreIds = new List<int>();
-        genreIds = genres.ConvertAll(genre => genre.GenreId);
+        List<Genre> genres = genreBLL.SearchByKey("").OrderBy(genre => genre.GenreId).ToList();
+        List<int> genreIds = genres.ConvertAll(genre => genre.GenreId);
         genreIds.Add(0);
 
         var table = new Table();
@@ -137,7 +135,7 @@ public class GameApp
                 switch (choice2.ToUpper())
                 {
                     case "B":
-                        GameMenu();
+                        GameStoreMenu();
                         break;
                     default:
                         Console.Write("Invalid choice! Try again ");
@@ -178,7 +176,7 @@ public class GameApp
                 {
                     case 'B':
                     case 'b':
-                        GameMenu(currentPage, keywords, genID);
+                        GameStoreMenu(currentPage, keywords, genID);
                         break;
                     case 'P':
                     case 'p':

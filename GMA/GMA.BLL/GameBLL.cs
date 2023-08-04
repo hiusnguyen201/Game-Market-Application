@@ -12,13 +12,6 @@ public class GameBLL
         return game;
     }
 
-    public List<Game> GetAll()
-    {
-        GameDAL gameDAL = new GameDAL();
-        List<Game> games = gameDAL.GetAll();
-        return games;
-    }
-
     public List<Game> SearchByKey(string keyword)
     {
         GameDAL gameDAL = new GameDAL();

@@ -34,7 +34,7 @@ public class MainMenuApp
                         break;
 
                     case 2:
-                        GameApp.GameMenu();
+                        GameApp.GameStoreMenu();
                         break;
 
                     case 3:

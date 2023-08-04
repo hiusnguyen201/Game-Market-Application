@@ -149,8 +149,23 @@ DELIMITER $$
     END $$
 DELIMITER ;
 
+DELIMITER $$
+    CREATE PROCEDURE get_genre_by_id (IN genid VARCHAR(225))
+    BEGIN
+        SELECT * 
+        FROM genres AS gen
+        WHERE gen.genre_Id = genid;
+    END $$
+DELIMITER ;
 
-
+DELIMITER $$
+    CREATE PROCEDURE get_genre_by_Key (IN kw VARCHAR(225))
+    BEGIN
+        SELECT * 
+        FROM genres AS gen
+        WHERE gen.genre_Name LIKE CONCAT('%', kw, '%');
+    END $$
+DELIMITER ;
 
 INSERT INTO publishers(publisher_Name)
 VALUES ("Valve"), ("Larian Studios"), ("Gearbox Publishing"),
@@ -218,8 +233,6 @@ INSERT INTO genres(genre_Name)
 VALUES ("Action"), ("Adventure"), ("Strategy"), ("RPG"), ("Multiplayer"),
 ("Casual"), ("Indie"), ("Simulation"), ("Racing"), ("Sports");
 
-
-
 INSERT INTO gamegenres(game_ID, genre_ID)
 VALUES (1, 1),
 (2, 2),(2, 3),(2, 4),
@@ -268,5 +281,3 @@ VALUES (1, 1),
 (45, 1), (45, 2), (45, 4),
 (46, 1), (46, 2),
 (47, 2), (47, 4), (47, 8);
-
-SELECT * FROM get_all_games;

@@ -25,15 +25,4 @@ public class Game
         GamePublisher = new Publisher();
         GameGenres = new List<Genre>();
     }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj is Game) ((Game)obj).GameId.Equals(GameId);
-        return false;
-    }
-
-    public override int GetHashCode()
-    {
-        return GameId.GetHashCode();
-    }
 }

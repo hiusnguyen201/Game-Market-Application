@@ -43,15 +43,4 @@ public class Order
         this.Status = OrderStatus.PENDING;
         OrderDetails = new List<Game>();
     }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj is Order) ((Order)obj).OrderId.Equals(OrderId);
-        return false;
-    }
-
-    public override int GetHashCode()
-    {
-        return OrderId.GetHashCode();
-    }
 }

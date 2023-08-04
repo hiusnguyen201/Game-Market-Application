@@ -21,15 +21,4 @@ public class Account
         this.Email = Email;
         this.Address = Address;
     }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj is Account) ((Account)obj).AccountId.Equals(AccountId);
-        return false;
-    }
-
-    public override int GetHashCode()
-    {
-        return AccountId.GetHashCode();
-    }
 }
