@@ -72,7 +72,7 @@ public class AccountApp
         AnsiConsole.Write(table);
         string username = GetAccountLogin("Username");
 
-        string password = GetAccountLogin("Password");
+        string password = EncryptionAES.Encrypt(GetAccountLogin("Password"));
 
         AccountBLL accountBLL = new AccountBLL();
         Account account = accountBLL.SearchAccountLogin(username, password);
@@ -102,7 +102,7 @@ public class AccountApp
 
         string username = GetAccountRegister("Username");
 
-        string password = GetAccountRegister("Password");
+        string password = EncryptionAES.Encrypt(GetAccountRegister("Password"));
 
         string realname = MainMenuApp.ModifyString(GetAccountRegister("Real Name"));
 
@@ -247,7 +247,7 @@ public class AccountApp
     public static void CheckPassToAddFunds(int choice)
     {
         Console.Write("- Check [Password]: ");
-        string password = GetPassword();
+        string password = EncryptionAES.Encrypt(GetPassword());
         if (password == "B" || password == "b")
         {
             RechargeMoneyMenu();

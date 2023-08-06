@@ -7,6 +7,7 @@ public class GameApp
 {
     public static void GameStoreMenu(int currentPage = 0, string keywords = "", int genID = 0)
     {
+        Console.Clear();
         int pageSize = 10;
         GenreBLL genreBLL = new GenreBLL();
         List<Genre> genres = genreBLL.SearchByKey("");
@@ -17,10 +18,10 @@ public class GameApp
         
         while (true)
         {
+            Console.Clear();
             int startIndex = currentPage * pageSize;
             int endIndex = Math.Min(startIndex + pageSize, games.Count);
-
-            Console.Clear();
+        
             var table = new Table()
             .AddColumn(new TableColumn(new Text("ID").Centered()))
             .AddColumn(new TableColumn(new Text("Game Name").Centered()))

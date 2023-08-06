@@ -5,7 +5,7 @@ CREATE TABLE Accounts
 (
 	acc_ID INT PRIMARY KEY AUTO_INCREMENT,
 	acc_Username VARCHAR(225) UNIQUE NOT NULL CHECK (acc_Username REGEXP '^[^\\s][a-zA-Z0-9_-]{3,}$'),
-	acc_Password VARCHAR(225) NOT NULL,
+	acc_Password TEXT NOT NULL,
 	acc_Realname VARCHAR(225) NOT NULL CHECK (acc_Realname REGEXP '^[A-Za-z ]{2,}$'),
     acc_Email VARCHAR(225) UNIQUE NOT NULL CHECK (acc_Email REGEXP '^[^\\s][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
     acc_Address VARCHAR(225) NOT NULL,
@@ -65,8 +65,6 @@ CREATE TABLE OrderDetails
     CONSTRAINT fk_OrderDetails_Games FOREIGN KEY (game_ID) REFERENCES Games (game_ID),
     CONSTRAINT pk_OrderDetails PRIMARY KEY (order_ID, game_ID)
 );
-
-
 
 DELIMITER $$
 	CREATE PROCEDURE create_account (IN aun VARCHAR(225),IN apw VARCHAR(225), IN arn VARCHAR(225), IN ae VARCHAR(225), IN aa VARCHAR(225), OUT aid INT)
