@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "GMA.DAL/1.0.0": {
         "dependencies": {
-          "GMA.Model": "1.0.0",
+          "GMA.Models": "1.0.0",
           "MySql.Data": "8.1.0"
         },
         "runtime": {
@@ -305,9 +305,9 @@
           }
         }
       },
-      "GMA.Model/1.0.0": {
+      "GMA.Models/1.0.0": {
         "runtime": {
-          "GMA.Model.dll": {}
+          "GMA.Models.dll": {}
         }
       }
     }
@@ -542,7 +542,7 @@
       "path": "zstdsharp.port/0.7.1",
       "hashPath": "zstdsharp.port.0.7.1.nupkg.sha512"
     },
-    "GMA.Model/1.0.0": {
+    "GMA.Models/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

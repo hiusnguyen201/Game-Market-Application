@@ -38,6 +38,7 @@ public class MainMenuApp
                         break;
 
                     case 3:
+                        OrderApp.CartMenu();
                         break;
 
                     case 0:

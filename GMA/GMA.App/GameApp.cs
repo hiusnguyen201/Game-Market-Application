@@ -35,8 +35,8 @@ public class GameApp
             for (int i = startIndex; i < endIndex; i++)
             {
                 Game game = games[i];
-                string price = (game.Price == 0) ? price = "Free to Purchase" : price = MainMenuApp.FormatCurrencyVND(game.Price);
-                table.AddRow($"\n{game.GameId}\n", $"\n{game.Name}\n", $"\n{game.ReleaseDate.ToString("dd/MM/yyyy")}\n", $"\n{game.Rating}%\n", $"\n{price}\n");
+                string priceString = (game.Price == 0) ?  "Free to Purchase" :  MainMenuApp.FormatCurrencyVND(game.Price);
+                table.AddRow($"\n{game.GameId}\n", $"\n{game.Name}\n", $"\n{game.ReleaseDate.ToString("dd/MM/yyyy")}\n", $"\n{game.Rating}%\n", $"\n{priceString}\n");
             }
 
             AnsiConsole.Write(table);
@@ -169,7 +169,7 @@ public class GameApp
             table.AddRow($"Rating: [#ffffff]{game.Rating}[/]%\n").AddRow(new Rule());
             table.AddRow($"\nPrice: [#ffffff]{price}[/]\n").AddRow(new Rule());
             table.AddRow($"\nABOUT THIS GAME\n\n[#ffffff]{game.Desc}[/]\n");
-            table.Caption("[#ffffff](B: back | P: purchase)[/]");
+            table.Caption("[#ffffff](B: back | A: Add to cart)[/]");
             AnsiConsole.Write(table);
             Console.Write("Your choice: ");
             if (char.TryParse(Console.ReadLine(), out char choice))
@@ -180,8 +180,12 @@ public class GameApp
                     case 'b':
                         GameStoreMenu(currentPage, keywords, genID);
                         break;
-                    case 'P':
-                    case 'p':
+                    case 'A': 
+                    case 'a': 
+                        OrderApp.order.OrderDetails.Add(game);
+                        Console.Write("Add Game to cart successfully! ");
+                        Console.ReadKey();
+                        OrderApp.CartMenu();
                         break;
                     default:
                         Console.Write("Your choice is not exist! ");

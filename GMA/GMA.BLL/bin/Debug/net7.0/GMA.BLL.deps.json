@@ -9,7 +9,7 @@
       "GMA.BLL/1.0.0": {
         "dependencies": {
           "GMA.DAL": "1.0.0",
-          "GMA.Model": "1.0.0"
+          "GMA.Models": "1.0.0"
         },
         "runtime": {
           "GMA.BLL.dll": {}
@@ -307,16 +307,16 @@
       },
       "GMA.DAL/1.0.0": {
         "dependencies": {
-          "GMA.Model": "1.0.0",
+          "GMA.Models": "1.0.0",
           "MySql.Data": "8.1.0"
         },
         "runtime": {
           "GMA.DAL.dll": {}
         }
       },
-      "GMA.Model/1.0.0": {
+      "GMA.Models/1.0.0": {
         "runtime": {
-          "GMA.Model.dll": {}
+          "GMA.Models.dll": {}
         }
       }
     }
@@ -556,7 +556,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "GMA.Model/1.0.0": {
+    "GMA.Models/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

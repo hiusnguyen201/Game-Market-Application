@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\GMA.Model\GMA.Model.csproj" />
+    <ProjectReference Include="..\GMA.Models\GMA.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.1.0" />
+    <PackageReference Include="Mysql.Data" Version="8.1.0" />
   </ItemGroup>
 
   <PropertyGroup>

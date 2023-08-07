@@ -2,10 +2,8 @@ namespace GMA.Models;
 
 public static class OrderStatus
 {
-    public const int PENDING = 1;
-    public const int PROCESSING = 2;
-    public const int COMPLETED = 3;
-    public const int DECLINED = 4;
+    public const int UNPAID = 0;
+    public const int PAID = 1;
 }
 
 public class Order
@@ -26,7 +24,7 @@ public class Order
     {
         this.OrderAccount = OrderAccount;
         this.TotalPrice = TotalPrice;
-        this.Status = OrderStatus.PENDING;
+        this.Status = OrderStatus.UNPAID;
         OrderDetails = new List<Game>();
     }
 }

@@ -4,7 +4,7 @@ using MySql.Data.MySqlClient;
 
 public class DBHelper {
     private static MySqlConnection connection;
-    private static string connectionString = @"server=localhost;userid=root;password=Thephe789!;port=3306;database=gmadb";
+    private static string connectionString = @"server=localhost;userid=root;password=123456;port=3306;database=gmadb";
 
     public static MySqlConnection GetConnection() 
     {

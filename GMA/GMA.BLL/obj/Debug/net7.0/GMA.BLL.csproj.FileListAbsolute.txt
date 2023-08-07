@@ -1,17 +1,34 @@
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.deps.json
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.dll
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.pdb
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.DAL.dll
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.Model.dll
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.Model.pdb
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.DAL.pdb
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.AssemblyReference.cache
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.AssemblyInfoInputs.cache
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.AssemblyInfo.cs
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.CoreCompileInputs.cache
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.CopyComplete
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.dll
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\refint\GMA.BLL.dll
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.pdb
-C:\Users\Hai Nguyen\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\ref\GMA.BLL.dll
+C:\Users\ahai\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.deps.json
+C:\Users\ahai\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.dll
+C:\Users\ahai\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.pdb
+C:\Users\ahai\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.DAL.dll
+C:\Users\ahai\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.Models.dll
+C:\Users\ahai\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.Models.pdb
+C:\Users\ahai\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.DAL.pdb
+C:\Users\ahai\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.AssemblyReference.cache
+C:\Users\ahai\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ahai\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.AssemblyInfoInputs.cache
+C:\Users\ahai\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.AssemblyInfo.cs
+C:\Users\ahai\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.CoreCompileInputs.cache
+C:\Users\ahai\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.CopyComplete
+C:\Users\ahai\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.dll
+C:\Users\ahai\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\refint\GMA.BLL.dll
+C:\Users\ahai\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.pdb
+C:\Users\ahai\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\ref\GMA.BLL.dll
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.dll
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\refint\GMA.BLL.dll
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.pdb
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.deps.json
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.dll
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.BLL.pdb
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.DAL.dll
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.Models.dll
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.Models.pdb
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\bin\Debug\net7.0\GMA.DAL.pdb
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.AssemblyReference.cache
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.AssemblyInfoInputs.cache
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.AssemblyInfo.cs
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\GMA.BLL.csproj.CopyComplete
+C:\Users\Ha Trung Kien\Desktop\GMA\GMA.BLL\obj\Debug\net7.0\ref\GMA.BLL.dll

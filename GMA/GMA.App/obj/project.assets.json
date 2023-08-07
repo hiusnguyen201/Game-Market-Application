@@ -566,7 +566,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "GMA.DAL": "1.0.0",
-          "GMA.Model": "1.0.0"
+          "GMA.Models": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GMA.BLL.dll": {}
@@ -579,8 +579,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "GMA.Model": "1.0.0",
-          "MySql.Data": "8.1.0"
+          "GMA.Models": "1.0.0",
+          "Mysql.Data": "8.1.0"
         },
         "compile": {
           "bin/placeholder/GMA.DAL.dll": {}
@@ -589,14 +589,14 @@
           "bin/placeholder/GMA.DAL.dll": {}
         }
       },
-      "GMA.Model/1.0.0": {
+      "GMA.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "compile": {
-          "bin/placeholder/GMA.Model.dll": {}
+          "bin/placeholder/GMA.Models.dll": {}
         },
         "runtime": {
-          "bin/placeholder/GMA.Model.dll": {}
+          "bin/placeholder/GMA.Models.dll": {}
         }
       }
     }
@@ -1885,33 +1885,32 @@
       "path": "../GMA.DAL/GMA.DAL.csproj",
       "msbuildProject": "../GMA.DAL/GMA.DAL.csproj"
     },
-    "GMA.Model/1.0.0": {
+    "GMA.Models/1.0.0": {
       "type": "project",
-      "path": "../GMA.Model/GMA.Model.csproj",
-      "msbuildProject": "../GMA.Model/GMA.Model.csproj"
+      "path": "../GMA.Models/GMA.Models.csproj",
+      "msbuildProject": "../GMA.Models/GMA.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "GMA.BLL >= 1.0.0",
-      "GMA.Model >= 1.0.0",
       "Spectre.Console >= 0.47.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hai Nguyen\\.nuget\\packages\\": {}
+    "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hai Nguyen\\Desktop\\GMA\\GMA.App\\GMA.App.csproj",
+      "projectUniqueName": "C:\\Users\\Ha Trung Kien\\Desktop\\GMA\\GMA.App\\GMA.App.csproj",
       "projectName": "GMA.App",
-      "projectPath": "C:\\Users\\Hai Nguyen\\Desktop\\GMA\\GMA.App\\GMA.App.csproj",
-      "packagesPath": "C:\\Users\\Hai Nguyen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hai Nguyen\\Desktop\\GMA\\GMA.App\\obj\\",
+      "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\GMA\\GMA.App\\GMA.App.csproj",
+      "packagesPath": "C:\\Users\\Ha Trung Kien\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ha Trung Kien\\Desktop\\GMA\\GMA.App\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Hai Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Ha Trung Kien\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -1923,11 +1922,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Hai Nguyen\\Desktop\\GMA\\GMA.BLL\\GMA.BLL.csproj": {
-              "projectPath": "C:\\Users\\Hai Nguyen\\Desktop\\GMA\\GMA.BLL\\GMA.BLL.csproj"
-            },
-            "C:\\Users\\Hai Nguyen\\Desktop\\GMA\\GMA.Model\\GMA.Model.csproj": {
-              "projectPath": "C:\\Users\\Hai Nguyen\\Desktop\\GMA\\GMA.Model\\GMA.Model.csproj"
+            "C:\\Users\\Ha Trung Kien\\Desktop\\GMA\\GMA.BLL\\GMA.BLL.csproj": {
+              "projectPath": "C:\\Users\\Ha Trung Kien\\Desktop\\GMA\\GMA.BLL\\GMA.BLL.csproj"
             }
           }
         }
