@@ -17,20 +17,6 @@ public class Order
     public int Status { get; set; }
     public List<Game> OrderDetails { get; set; }
 
-    public Game this[int index]
-    {
-        get
-        {
-            if (OrderDetails == null || OrderDetails.Count == 0 || index < 0 || OrderDetails.Count < index) return null;
-            return OrderDetails[index];
-        }
-        set
-        {
-            if (OrderDetails == null) OrderDetails = new List<Game>();
-            OrderDetails.Add(value);
-        }
-    }
-
     public Order()
     {
         OrderDetails = new List<Game>();

@@ -109,6 +109,7 @@ public class GameApp
         var table = new Table();
         table.AddColumns("ID", "Genre Name");
         table.AddRow("0", "None");
+        table.Caption("B: back");
         foreach (Genre genre in genres)
         {
             table.AddRow($"{genre.GenreId}", $"{genre.GenreName}");

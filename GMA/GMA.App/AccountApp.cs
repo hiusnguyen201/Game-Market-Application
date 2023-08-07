@@ -378,7 +378,7 @@ public class AccountApp
                 else if (text == "Username" || text == "Email")
                 {
                     AccountBLL accountBLL = new AccountBLL();
-                    Account account = text == "Username" ? accountBLL.SearchByUsername(value) : accountBLL.SearchByEmail(value);
+                    Account account = (text == "Username") ? accountBLL.SearchByUsername(value) : accountBLL.SearchByEmail(value);
                     if (account != null)
                     {
                         isValid = false;

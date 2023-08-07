@@ -1,13 +1,6 @@
 
 namespace GMA.Models;
 
-public static class GameStatus
-{
-    public const int AVAILABLE = 1;
-    public const int COMING_SOON = 2;
-
-}
-
 public class Game
 {
     public int GameId { get; set; }
