@@ -182,7 +182,7 @@ public class GameApp
                         break;
                     case 'A': 
                     case 'a': 
-                        OrderApp.order.OrderDetails.Add(game);
+                        OrderApp.cartGames.Add(game);
                         Console.Write("Add Game to cart successfully! ");
                         Console.ReadKey();
                         OrderApp.CartMenu();

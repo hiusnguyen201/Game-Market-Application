@@ -169,27 +169,43 @@ DELIMITER $$
     CREATE PROCEDURE create_order (IN aid INT, IN otp DOUBLE, IN os INT, OUT oid INT )
     BEGIN
 		INSERT INTO orders (acc_ID, order_TotalPrice, order_Status)
-        VALUES (aid, otp, os)
+        VALUES (aid, otp, os);
         SET oid = LAST_INSERT_ID();
+    END $$
+DELIMITER ;
+
+DELIMITER $$
+	CREATE PROCEDURE create_order_details (IN oid INT, IN gid INT, IN up DOUBLE, OUT id INT)
+    BEGIN
+		INSERT INTO orderdetails (order_ID, game_ID, unit_price)
+        VALUES(oid, gid, up);
+        SET id = oid;
+    END $$
 DELIMITER ;
 
 DELIMITER $$
     CREATE PROCEDURE get_order_by_id (IN oid INT, IN aid INT )
     BEGIN
 		SELECT *
-		FROM orders 
-        WHERE order_ID = oid AND acc_ID = aid;
+		FROM orders AS o
+        INNER JOIN orderdetails AS od ON o.order_ID = od.order_ID
+        WHERE order_ID = oid AND acc_ID = aid
+        GROUP BY order_ID;
 	END $$
 DELIMITER ;
 
 DELIMITER $$
     CREATE PROCEDURE get_all_order (IN aid INT)
     BEGIN
-		SELECT *
-		FROM orders 
-        WHERE acc_ID = aid;
+		SELECT GROUP_CONCAT(od.order_ID) AS order_ID, o.acc_ID, od.game_ID, od.unit_price, o.order_TotalPrice, o.order_CreateDate, o.order_Status
+		FROM orders AS o
+        INNER JOIN orderdetails AS od ON o.order_ID = od.order_ID
+        WHERE o.acc_ID = aid
+        GROUP BY o.order_ID;
 	END $$
 DELIMITER ;
+
+
 
 INSERT INTO publishers(publisher_Name)
 VALUES ("Valve"), ("Larian Studios"), ("Gearbox Publishing"),

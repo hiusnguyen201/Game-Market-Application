@@ -202,39 +202,14 @@ public class AccountApp
             table.AddRow("2. Add 150.000 VND");
             table.AddRow("3. Add 375.000 VND");
             table.AddRow("4. Add 750.000 VND");
+            table.AddRow("5. Add 1.500.000 VND");
             table.AddRow("0. Back");
             AnsiConsole.Write(table);
             Console.Write("Your Choice: ");
 
             if (int.TryParse(Console.ReadLine(), out int choice))
             {
-                switch (choice)
-                {
-                    case 1:
-                        CheckPassToAddFunds(choice);
-                        break;
-
-                    case 2:
-                        CheckPassToAddFunds(choice);
-                        break;
-
-                    case 3:
-                        CheckPassToAddFunds(choice);
-                        break;
-
-                    case 4:
-                        CheckPassToAddFunds(choice);
-                        break;
-
-                    case 0:
-                        AccountMenu();
-                        break;
-
-                    default:
-                        Console.Write("Your choice is not exist! ");
-                        Console.ReadKey();
-                        break;
-                }
+                CheckPassToAddFunds(choice);
             }
             else
             {
@@ -270,6 +245,10 @@ public class AccountApp
 
                 case 4:
                     accountLoggedIn.Money += 750000;
+                    break;
+
+                case 5:
+                    accountLoggedIn.Money += 1500000;
                     break;
             }
             AccountBLL accountBLL = new AccountBLL();

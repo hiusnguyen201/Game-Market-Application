@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GMA.BLL\GMA.BLL.csproj" />
+    <ProjectReference Include="..\GMA.Models\GMA.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

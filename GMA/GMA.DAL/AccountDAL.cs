@@ -141,6 +141,7 @@ public class AccountDAL
         catch (Exception ex)
         {
             Console.Write(ex.Message);
+            Console.ReadKey();
         }
         finally
         {
@@ -165,6 +166,7 @@ public class AccountDAL
         catch (Exception ex)
         {
             Console.Write(ex.Message);
+            Console.ReadKey();
         }
         finally
         {

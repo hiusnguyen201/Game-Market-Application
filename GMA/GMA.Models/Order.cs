@@ -15,10 +15,7 @@ public class Order
     public int Status { get; set; }
     public List<Game> OrderDetails { get; set; }
 
-    public Order()
-    {
-        OrderDetails = new List<Game>();
-    }
+    public Order(){}
 
     public Order(Account OrderAccount, double TotalPrice)
     {

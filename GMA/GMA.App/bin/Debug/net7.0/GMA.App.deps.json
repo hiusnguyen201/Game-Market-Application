@@ -9,6 +9,7 @@
       "GMA.App/1.0.0": {
         "dependencies": {
           "GMA.BLL": "1.0.0",
+          "GMA.Models": "1.0.0",
           "Spectre.Console": "0.47.0"
         },
         "runtime": {

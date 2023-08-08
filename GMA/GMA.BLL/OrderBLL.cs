@@ -16,5 +16,11 @@ public class OrderBLL
         }
         return result;
     }
+
+    public int SaveDetails (int orderID, int gameID, double unitPrice)
+    {
+        OrderDAL orderDAL = new OrderDAL();
+        return orderDAL.CreateOrderDetails(orderID, gameID, unitPrice);
+    }
     
 }
