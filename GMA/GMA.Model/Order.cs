@@ -13,11 +13,11 @@ public class Order
     public double TotalPrice { get; set; }
     public DateTime OrderDate { get; set; }
     public int Status { get; set; }
-    public List<Game> OrderDetails { get; set; }
+    public List<Game> OrderGames { get; set; }
 
     public Order()
     {
-        OrderDetails = new List<Game>();
+        OrderGames = new List<Game>();
     }
 
     public Order(Account OrderAccount, double TotalPrice)
@@ -25,6 +25,6 @@ public class Order
         this.OrderAccount = OrderAccount;
         this.TotalPrice = TotalPrice;
         this.Status = OrderStatus.UNPAID;
-        OrderDetails = new List<Game>();
+        OrderGames = new List<Game>();
     }
 }

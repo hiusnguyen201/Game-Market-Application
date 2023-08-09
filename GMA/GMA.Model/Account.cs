@@ -20,6 +20,7 @@ public class Account
     public Account(int Id) 
     {
         this.AccountId = Id;
+        this.AccountOrders = new List<Order>();
     }
 
     public Account(string Username, string Password, string Realname, string Email, string Address)

@@ -9,26 +9,27 @@ public class OrderDAL
     private List<Game> games = null;
     private AccountDAL accountDAL = new AccountDAL();
     private GameDAL gameDAL = new GameDAL();
-    
+
     private Order Get(MySqlDataReader reader)
     {
         Order order = new Order();
         order.OrderId = reader.GetInt16("order_ID");
-        order.OrderAccount = reader.GetInt16("acc_ID");
+        order.OrderAccount = new Account(reader.GetInt16("acc_ID"));
         order.TotalPrice = reader.GetDouble("order_TotalPrice");
         order.OrderDate = reader.GetDateTime("order_CreateDate");
         order.Status = reader.GetInt16("order_Status");
         string gameIds = reader.GetString("game_ID");
         string[] splitGameIds = gameIds.Split(',');
-        for(int i = 0; i < splitGameIds.Length; i++)
+        for (int i = 0; i < splitGameIds.Length; i++)
         {
-            if(int.TryParse(splitGameIds[i], out int gameID))
+            if (int.TryParse(splitGameIds[i], out int gameID))
             {
-                order.OrderDetails.Add(new Game(gameID));
+                order.OrderGames.Add(new Game(gameID));
             }
         }
         return order;
     }
+
     public int CreateOrder(Order order)
     {
         int result = 0;
@@ -107,13 +108,13 @@ public class OrderDAL
             command.Parameters.AddWithValue("@aid", aid);
             command.Parameters["@aid"].Direction = ParameterDirection.Input;
             MySqlDataReader orderReader = command.ExecuteReader();
-            while(orderReader.Read())
+            while (orderReader.Read())
             {
                 order = Get(orderReader);
                 orders.Add(order);
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Console.Write(ex.ToString());
             Console.ReadKey();
@@ -122,6 +123,24 @@ public class OrderDAL
         {
             DBHelper.CloseConnection();
         }
+
+        order.OrderAccount = accountDAL.GetById(order.OrderAccount.AccountId);
+
+        for (int i = 0; i < orders.Count; i++)
+        {
+            Order newOrder = orders[i];
+            for (int j = 0; j < newOrder.OrderGames.Count; j++)
+            {
+                Game game = newOrder.OrderGames[j];
+                Game updatedGame = gameDAL.GetById(game.GameId);
+
+                if (updatedGame != null)
+                {
+                    newOrder.OrderGames[j] = updatedGame;
+                }
+            }
+        }
+
         return orders;
     }
 }

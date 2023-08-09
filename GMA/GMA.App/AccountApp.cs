@@ -410,17 +410,25 @@ public class AccountApp
 
     public static void OrderHistory()
     {
+        Console.Clear();
+        if (accountLoggedIn.AccountOrders.Count != 0)
+        {
+            accountLoggedIn.AccountOrders = orderBLL.GetAll(accountLoggedIn.AccountId);
+        }
         var table = new Table();
+        table.AddColumn("ID");
         table.AddColumn("Date");
         table.AddColumn("Game Name");
         table.AddColumn("Status");
         table.AddColumn("Total");
+        table.Title($"{accountLoggedIn.Username.ToUpper()}'s Order History");
         table.Width = 100;
-
-        foreach (Order order in accountLoggedIn.AccountOrders)
+        for (int i = 0; i < accountLoggedIn.AccountOrders.Count; i++)
         {
-            string status = (order.Status == 1) ? "Paid" : "UnPaid";
-            table.AddRow($"{order.OrderDate.ToString("dd/MM/yyyy")}", "1", $"{status}", $"{order.TotalPrice}");
+            Order order = accountLoggedIn.AccountOrders[i];
+            string status = (order.Status == 1)? "Paid" : "UnPaid";
+            string listgames = string.Join("\n", order.OrderGames.Select(game => game.Name));
+            table.AddRow($"\n{order.OrderId}\n", $"\n{order.OrderDate.ToString("dd/MM/yyyy")}\n", $"\n{listgames}\n", $"\n{status}\n", $"\n{FormatString.FormatCurrencyVND(order.TotalPrice)}\n");
         }
         AnsiConsole.Write(table);
         Console.ReadKey();
