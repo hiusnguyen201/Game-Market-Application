@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GMA.BLL\GMA.BLL.csproj" />
     <ProjectReference Include="..\GMA.Model\GMA.Model.csproj" />
+    <ProjectReference Include="..\GMA.Utility\GMA.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>

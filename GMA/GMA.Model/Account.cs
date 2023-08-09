@@ -17,6 +17,11 @@ public class Account
         AccountOrders = new List<Order>();
     }
 
+    public Account(int Id) 
+    {
+        this.AccountId = Id;
+    }
+
     public Account(string Username, string Password, string Realname, string Email, string Address)
     {
         this.Username = Username;

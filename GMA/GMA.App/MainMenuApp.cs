@@ -1,7 +1,6 @@
 ﻿namespace GMA.App;
 
 using Spectre.Console;
-using System.Globalization;
 
 public class MainMenuApp
 {
@@ -65,11 +64,10 @@ public class MainMenuApp
             Console.Write("Are you sure (Y/N): ");
             if (char.TryParse(Console.ReadLine(), out char choice))
             {
-                switch (choice)
+                switch (char.ToUpper(choice))
                 {
-                    case 'y':
                     case 'Y':
-                        if(text == "MembershipMenu")
+                        if (text == "MembershipMenu")
                         {
                             AccountApp.MembershipMenu();
                         }
@@ -79,7 +77,6 @@ public class MainMenuApp
                             MainMenu();
                         }
                         break;
-                    case 'n':
                     case 'N':
                         ClearCurrentConsoleLine();
                         Console.SetCursorPosition(0, Console.CursorTop - 1);
@@ -107,10 +104,6 @@ public class MainMenuApp
         Console.Write(new string(' ', Console.WindowWidth));
         Console.SetCursorPosition(0, currentLineCursor);
     }
-
-    public static Func<string, string> ModifyString = (value) => string.Join(" ", value.Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries));
-
-    public static Func<double, string> FormatCurrencyVND = (money) => money.ToString("C", CultureInfo.GetCultureInfo("vi-VN")).Replace(CultureInfo.GetCultureInfo("vi-VN").NumberFormat.CurrencySymbol, "VND");
 }
 
 

@@ -1,5 +1,6 @@
 using GMA.BLL;
 using GMA.Models;
+using GMA.Utility;
 using Spectre.Console;
 using System.Text.RegularExpressions;
 
@@ -11,6 +12,8 @@ public class AccountApp
     public static string patternRealName = "^[A-Za-z ]{2,}$";
     public static string patternEmail = @"^[^\\s][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
     public static Account accountLoggedIn = null;
+    private static AccountBLL accountBLL = new AccountBLL();
+    private static OrderBLL orderBLL = new OrderBLL();
 
     public static void MembershipMenu()
     {
@@ -74,9 +77,9 @@ public class AccountApp
 
         string password = EncryptionAES.Encrypt(GetAccountLogin("Password"));
 
-        AccountBLL accountBLL = new AccountBLL();
+
         Account account = accountBLL.SearchAccountLogin(username, password);
-        if (account == null)    
+        if (account == null)
         {
             Console.Write("Please check your password and username and try again! ");
             Console.ReadKey();
@@ -87,6 +90,7 @@ public class AccountApp
             Console.Write("Logged in successfully! ");
             Console.ReadKey();
             accountLoggedIn = account;
+            accountLoggedIn.AccountOrders = orderBLL.GetAll(accountLoggedIn.AccountId);
             AccountMenu();
         }
     }
@@ -104,13 +108,13 @@ public class AccountApp
 
         string password = EncryptionAES.Encrypt(GetAccountRegister("Password"));
 
-        string realname = MainMenuApp.ModifyString(GetAccountRegister("Real Name"));
+        string realname = FormatString.ModifyString(GetAccountRegister("Real Name"));
 
         string email = GetAccountRegister("Email");
 
-        string address = MainMenuApp.ModifyString(GetAccountRegister("Address"));
+        string address = FormatString.ModifyString(GetAccountRegister("Address"));
 
-        AccountBLL accountBLL = new AccountBLL();
+
         int result = accountBLL.Save(new Account(username, password, realname, email, address));
         if (result != 0)
         {
@@ -128,7 +132,7 @@ public class AccountApp
             Console.Clear();
             var table = new Table();
             table.Width = 45;
-            table.AddColumn(new TableColumn(new Text($"Game Market Application\nGroup 2 - PF1122 Version 0.1\nUsername: {accountLoggedIn.Username} | Money: {MainMenuApp.FormatCurrencyVND(accountLoggedIn.Money)}").Centered()));
+            table.AddColumn(new TableColumn(new Text($"Game Market Application\nGroup 2 - PF1122 Version 0.1\nUsername: {accountLoggedIn.Username} | Money: {FormatString.FormatCurrencyVND(accountLoggedIn.Money)}").Centered()));
             table.AddRow("1. View Profile");
             table.AddRow("2. Recharge Money");
             table.AddRow("3. View Order History");
@@ -150,6 +154,7 @@ public class AccountApp
                         break;
 
                     case 3:
+                        OrderHistory();
                         break;
 
                     case 4:
@@ -183,7 +188,7 @@ public class AccountApp
         table.AddRow($"\nReal Name: [#ffffff]{accountLoggedIn.Realname}[/]\n").AddRow(new Rule());
         table.AddRow($"\nEmail: [#ffffff]{accountLoggedIn.Email}[/]\n").AddRow(new Rule());
         table.AddRow($"\nAddress: [#ffffff]{accountLoggedIn.Address}[/]\n").AddRow(new Rule());
-        table.AddRow($"\nMoney: [#ffffff]{MainMenuApp.FormatCurrencyVND(accountLoggedIn.Money)}[/]\n").AddRow(new Rule());
+        table.AddRow($"\nMoney: [#ffffff]{FormatString.FormatCurrencyVND(accountLoggedIn.Money)}[/]\n").AddRow(new Rule());
         table.AddRow($"\nCreate Date: [#ffffff]{accountLoggedIn.CreateDate.ToString("dd/MM/yyyy")}[/]\n");
         AnsiConsole.Write(table);
         Console.Write("Press any key to continue! ");
@@ -251,7 +256,7 @@ public class AccountApp
                     accountLoggedIn.Money += 1500000;
                     break;
             }
-            AccountBLL accountBLL = new AccountBLL();
+
             accountBLL.UpdateMoney(accountLoggedIn.AccountId, accountLoggedIn.Money);
             Console.Write("Add Funds successful! ");
             Console.ReadKey();
@@ -329,7 +334,7 @@ public class AccountApp
                 // Check Regex
                 if (text == "Username")
                 {
-                    if(!Regex.IsMatch(value, patternUsername))
+                    if (!Regex.IsMatch(value, patternUsername))
                     {
                         isValid = false;
                         Console.Write("Please enter a username that is at least 3 characters long and uses only a-z, A-Z, 0-9, _ characters");
@@ -338,7 +343,7 @@ public class AccountApp
                 }
                 else if (text == "Email")
                 {
-                    if(!Regex.IsMatch(value, patternEmail))
+                    if (!Regex.IsMatch(value, patternEmail))
                     {
                         isValid = false;
                         Console.Write("Invalid Email format! ");
@@ -347,7 +352,7 @@ public class AccountApp
                 }
                 else if (text == "Real Name")
                 {
-                    if(!Regex.IsMatch(value, patternRealName))
+                    if (!Regex.IsMatch(value, patternRealName))
                     {
                         isValid = false;
                         Console.Write("Please enter a real name that is at least 2 characters long and uses only a-z, A-Z, whitespace characters");
@@ -356,7 +361,7 @@ public class AccountApp
                 }
                 else if (text == "Username" || text == "Email")
                 {
-                    AccountBLL accountBLL = new AccountBLL();
+
                     Account account = (text == "Username") ? accountBLL.SearchByUsername(value) : accountBLL.SearchByEmail(value);
                     if (account != null)
                     {
@@ -401,5 +406,23 @@ public class AccountApp
         while (key != ConsoleKey.Enter);
         Console.Write("\n");
         return password;
+    }
+
+    public static void OrderHistory()
+    {
+        var table = new Table();
+        table.AddColumn("Date");
+        table.AddColumn("Game Name");
+        table.AddColumn("Status");
+        table.AddColumn("Total");
+        table.Width = 100;
+
+        foreach (Order order in accountLoggedIn.AccountOrders)
+        {
+            string status = (order.Status == 1) ? "Paid" : "UnPaid";
+            table.AddRow($"{order.OrderDate.ToString("dd/MM/yyyy")}", "1", $"{status}", $"{order.TotalPrice}");
+        }
+        AnsiConsole.Write(table);
+        Console.ReadKey();
     }
 }

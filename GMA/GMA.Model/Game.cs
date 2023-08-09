@@ -18,4 +18,11 @@ public class Game
         GamePublisher = new Publisher();
         GameGenres = new List<Genre>();
     }
+
+    public Game(int Id) 
+    {
+        this.GameId = Id;
+        GamePublisher = new Publisher();
+        GameGenres = new List<Genre>();
+    }
 }

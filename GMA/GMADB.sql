@@ -60,7 +60,6 @@ CREATE TABLE OrderDetails
 (
 	order_ID INT NOT NULL,
     game_ID INT NOT NULL,
-    unit_price DECIMAL(20,2) NOT NULL,
     CONSTRAINT fk_OrderDetails_Orders FOREIGN KEY (order_ID) REFERENCES Orders (order_ID),
     CONSTRAINT fk_OrderDetails_Games FOREIGN KEY (game_ID) REFERENCES Games (game_ID),
     CONSTRAINT pk_OrderDetails PRIMARY KEY (order_ID, game_ID)
@@ -72,6 +71,15 @@ DELIMITER $$
 		INSERT INTO Accounts(acc_Username, acc_Password, acc_Realname, acc_Email, acc_Address)
         VALUES (aun, apw, arn, ae, aa);
         SET aid = LAST_INSERT_ID();
+    END $$
+DELIMITER ;
+
+DELIMITER $$
+	CREATE PROCEDURE get_acc_by_id (IN aid INT)
+    BEGIN
+		SELECT *
+        FROM Accounts
+        WHERE acc_ID = aid;
     END $$
 DELIMITER ;
 
@@ -175,10 +183,10 @@ DELIMITER $$
 DELIMITER ;
 
 DELIMITER $$
-	CREATE PROCEDURE create_order_details (IN oid INT, IN gid INT, IN up DOUBLE, OUT id INT)
+	CREATE PROCEDURE create_order_details (IN oid INT, IN gid INT, OUT id INT)
     BEGIN
-		INSERT INTO orderdetails (order_ID, game_ID, unit_price)
-        VALUES(oid, gid, up);
+		INSERT INTO orderdetails (order_ID, game_ID)
+        VALUES(oid, gid);
         SET id = oid;
     END $$
 DELIMITER ;
@@ -195,14 +203,14 @@ DELIMITER $$
 DELIMITER ;
 
 DELIMITER $$
-    CREATE PROCEDURE get_all_order (IN aid INT)
-    BEGIN
-		SELECT GROUP_CONCAT(od.order_ID) AS order_ID, o.acc_ID, od.game_ID, od.unit_price, o.order_TotalPrice, o.order_CreateDate, o.order_Status
-		FROM orders AS o
-        INNER JOIN orderdetails AS od ON o.order_ID = od.order_ID
-        WHERE o.acc_ID = aid
-        GROUP BY o.order_ID;
-	END $$
+CREATE PROCEDURE get_all_order (IN aid INT)
+BEGIN
+    SELECT o.order_ID, acc_ID, order_TotalPrice, order_CreateDate, order_Status, GROUP_CONCAT(od.game_ID) AS game_ID
+    FROM orders AS o
+    INNER JOIN orderdetails AS od ON o.order_ID = od.order_ID
+    WHERE o.acc_ID = aid
+    GROUP BY o.order_ID;
+END $$
 DELIMITER ;
 
 

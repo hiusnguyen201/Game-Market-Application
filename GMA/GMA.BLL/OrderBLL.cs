@@ -6,21 +6,26 @@ namespace GMA.BLL;
 
 public class OrderBLL
 {
+    private OrderDAL orderDAL = new OrderDAL();
     public int Save( Order order)
     {
         int result = 0;
         if (order != null)
         {
-            OrderDAL orderDAL = new OrderDAL();
             result = orderDAL.CreateOrder(order);
         }
         return result;
     }
 
-    public int SaveDetails (int orderID, int gameID, double unitPrice)
+    public int SaveDetails (int orderID, int gameID)
     {
-        OrderDAL orderDAL = new OrderDAL();
-        return orderDAL.CreateOrderDetails(orderID, gameID, unitPrice);
+        int result = 0;
+        if(orderID != null && gameID != null)
+        {
+            result = orderDAL.CreateOrderDetails(orderID, gameID);
+        }
+        return result;
     }
     
+    public List<Order> GetAll(int accid) => orderDAL.GetAll(accid);
 }

@@ -21,6 +21,36 @@ public class AccountDAL
         return account;
     }
 
+    public Account GetById(int aid)
+    {
+        Account account = null;
+        string selectQuery = "get_acc_by_id";
+        try
+        {
+            DBHelper.OpenConnection();
+            MySqlCommand command = new MySqlCommand(selectQuery, DBHelper.GetConnection());
+            command.CommandText = selectQuery;
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@aid", aid);
+            command.Parameters["@aid"].Direction = ParameterDirection.Input;
+            MySqlDataReader accountReader = command.ExecuteReader();
+            if (accountReader.Read())
+            {
+                account = Get(accountReader);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.Write(e);
+            Console.ReadKey();
+        }
+        finally
+        {
+            DBHelper.CloseConnection();
+        }
+        return account;
+    }
+
     public Account GetByUsername(string username)
     {
         Account account = null;

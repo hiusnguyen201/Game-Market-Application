@@ -1,46 +1,34 @@
 namespace GMA.App;
 using GMA.BLL;
+using GMA.Utility;
 using Spectre.Console;
 using GMA.Models;
 
 public class GameApp
 {
+    private static GameBLL gameBLL = new GameBLL();
+    private static GenreBLL genreBLL = new GenreBLL();
+    private const int PageSize = 10;
+
     public static void GameStoreMenu(int currentPage = 0, string keywords = "", int genID = 0)
     {
         Console.Clear();
         int pageSize = 10;
-        GenreBLL genreBLL = new GenreBLL();
-        List<Genre> genres = genreBLL.SearchByKey("");
-        string genreName = (genID == 0)? "None" : genreBLL.SearchById(genID).GenreName;
 
-        GameBLL gameBLL = new GameBLL();
-        List<Game> games = (genID != 0)? gameBLL.SearchByGenIdKey(keywords, genID) : gameBLL.SearchByKey(keywords);
-        
+        List<Genre> genres = genreBLL.SearchByKey("");
+        string genreName = (genID == 0) ? "None" : genreBLL.SearchById(genID).GenreName;
+
+        List<Game> games = (genID != 0) ? gameBLL.SearchByGenIdKey(keywords, genID) : gameBLL.SearchByKey(keywords);
+
         while (true)
         {
             Console.Clear();
             int startIndex = currentPage * pageSize;
             int endIndex = Math.Min(startIndex + pageSize, games.Count);
-        
-            var table = new Table()
-            .AddColumn(new TableColumn(new Text("ID").Centered()))
-            .AddColumn(new TableColumn(new Text("Game Name").Centered()))
-            .AddColumn(new TableColumn(new Text("Release Date").Centered()))
-            .AddColumn(new TableColumn(new Text("Rating").Centered()))
-            .AddColumn(new TableColumn(new Text("Price").Centered()));
-            table.Width = 125;
-            table.Title("Game Store");
-            table.Caption($"[#ffffff](Page: {startIndex / pageSize + 1}/{(games.Count + pageSize - 1) / pageSize} | P: previous | N: next | S: search | G: add genre | B: back)[/]");
 
-            for (int i = startIndex; i < endIndex; i++)
-            {
-                Game game = games[i];
-                string priceString = (game.Price == 0) ?  "Free to Purchase" :  MainMenuApp.FormatCurrencyVND(game.Price);
-                table.AddRow($"\n{game.GameId}\n", $"\n{game.Name}\n", $"\n{game.ReleaseDate.ToString("dd/MM/yyyy")}\n", $"\n{game.Rating}%\n", $"\n{priceString}\n");
-            }
-
-            AnsiConsole.Write(table);
-            if(keywords == "")
+            DisplayGameTable(games, startIndex, endIndex, pageSize, genreName, keywords);
+            
+            if (keywords == "")
             {
                 Console.WriteLine($"\n{games.Count} results match your search.");
             }
@@ -48,6 +36,7 @@ public class GameApp
             {
                 Console.WriteLine($"\n{games.Count} results match your search with keywords: '{keywords}'.");
             }
+
             Console.Write($"\nYour Choice (Selected Genre: {genreName}): ");
             string choice = Console.ReadLine();
             if (int.TryParse(choice.ToString(), out int intChoice))
@@ -97,11 +86,31 @@ public class GameApp
         }
     }
 
+    private static void DisplayGameTable(List<Game> games, int startIndex, int endIndex, int pageSize, string genreName, string keywords)
+    {
+        var table = new Table()
+            .AddColumn(new TableColumn(new Text("ID").Centered()))
+            .AddColumn(new TableColumn(new Text("Game Name").Centered()))
+            .AddColumn(new TableColumn(new Text("Release Date").Centered()))
+            .AddColumn(new TableColumn(new Text("Rating").Centered()))
+            .AddColumn(new TableColumn(new Text("Price").Centered()));
+            table.Width = 125;
+            table.Title("Game Store");
+            table.Caption($"[#ffffff](Page: {startIndex / pageSize + 1}/{(games.Count + pageSize - 1) / pageSize} | P: previous | N: next | S: search | G: add genre | B: back)[/]");
+
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                Game game = games[i];
+                string priceString = (game.Price == 0) ? "Free to Purchase" : FormatString.FormatCurrencyVND(game.Price);
+                table.AddRow($"\n{game.GameId}\n", $"\n{game.Name}\n", $"\n{game.ReleaseDate.ToString("dd/MM/yyyy")}\n", $"\n{game.Rating}%\n", $"\n{priceString}\n");
+            }
+
+            AnsiConsole.Write(table);
+    }
+
     public static int ChoiceGenreId(int choice = 0)
     {
         Console.Clear();
-        GenreBLL genreBLL = new GenreBLL();
-
         List<Genre> genres = genreBLL.SearchByKey("").OrderBy(genre => genre.GenreId).ToList();
         List<int> genreIds = genres.ConvertAll(genre => genre.GenreId);
         genreIds.Add(0);
@@ -151,10 +160,9 @@ public class GameApp
 
     public static void GameDetailsMenu(int id, int currentPage, string keywords, int genID)
     {
-        GameBLL gameBLL = new GameBLL();
         Game game = gameBLL.SearchById(id);
         string stringGenres = string.Join(", ", game.GameGenres.Select(genre => genre.GenreName));
-        string price = (game.Price == 0) ? price = "Free to Purchase" : price = MainMenuApp.FormatCurrencyVND(game.Price);
+        string price = (game.Price == 0) ? price = "Free to Purchase" : price = FormatString.FormatCurrencyVND(game.Price);
         while (true)
         {
             Console.Clear();
@@ -174,14 +182,12 @@ public class GameApp
             Console.Write("Your choice: ");
             if (char.TryParse(Console.ReadLine(), out char choice))
             {
-                switch (choice)
+                switch (char.ToUpper(choice))
                 {
                     case 'B':
-                    case 'b':
                         GameStoreMenu(currentPage, keywords, genID);
                         break;
-                    case 'A': 
-                    case 'a': 
+                    case 'A':
                         OrderApp.cartGames.Add(game);
                         Console.Write("Add Game to cart successfully! ");
                         Console.ReadKey();
