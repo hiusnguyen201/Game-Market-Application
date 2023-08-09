@@ -50,6 +50,10 @@ public class OrderApp
                     GameApp.GameStoreMenu();
                     break;
 
+                case 'R':
+                    RemoveGames();
+                    break;
+
                 default:
                     Console.Write("Your choice is not exist! ");
                     Console.ReadKey();
@@ -77,18 +81,19 @@ public class OrderApp
     private static void DisplayCartTable(double total)
     {
         var table = new Table()
+            .AddColumn(new TableColumn(new Text("Game ID").Centered()))
             .AddColumn(new TableColumn(new Text("Game Name").Centered()))
             .AddColumn(new TableColumn(new Text("Price").Centered()));
 
         foreach (Game game in cartGames)
         {
             string priceString = (game.Price == 0) ? "Free" : FormatString.FormatCurrencyVND(game.Price);
-            table.AddRow($"\n{game.Name}\n", $"\n{priceString}\n");
+            table.AddRow($"\n{game.GameId}\n", $"\n{game.Name}\n", $"\n{priceString}\n");
         }
 
-        table.AddRow("[#ffffff]\n--- Total ---\n[/]", $"[#ffffff]\n{FormatString.FormatCurrencyVND(total)}\n[/]");
+        table.AddRow(" ", "[#ffffff]\n--- Total ---\n[/]", $"[#ffffff]\n{FormatString.FormatCurrencyVND(total)}\n[/]");
         table.Width = 70;
-        table.Caption("B: back | P: purchase | S: continue shopping");
+        table.Caption("B: back | P: purchase | S: continue shopping | R: remove games");
         AnsiConsole.Write(table);
     }
 
@@ -185,5 +190,66 @@ public class OrderApp
     public static void InvoiceMenu(Order order)
     {
 
+    }
+
+    public static void RemoveGames()
+    {
+        while (true)
+        {
+            Console.Write("Enter Game ID you want to delete (b to back): ");
+            string choice = Console.ReadLine();
+            if (choice.ToUpper() == "B")
+            {
+                CartMenu();
+            }
+            if (int.TryParse(choice.ToString(), out int choiceID))
+            {
+                Game game = cartGames.Find(game => game.GameId == choiceID);
+                if (game != null)
+                {
+                    Console.Write("Are you sure? (Y/N): ");
+                    if (char.TryParse(Console.ReadLine(), out char choiceCon))
+                    {
+                        switch (char.ToUpper(choiceCon))
+                        {
+                            case 'Y':
+                                cartGames.Remove(game);
+                                break;
+
+                            case 'N':
+                                CartMenu();
+                                break;
+                            default:
+                                Console.Write("Invalid choice! ");
+                                Console.ReadKey();
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        Console.Write("Invalid choice! ");
+                        Console.ReadKey();
+                        MainMenuApp.ClearCurrentConsoleLine();
+                        Console.SetCursorPosition(0, Console.CursorTop);
+                    }
+                }
+                else
+                {
+                    Console.Write("Game not found! ");
+                    Console.ReadKey();
+                    MainMenuApp.ClearCurrentConsoleLine();
+                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                }
+            }
+            else
+            {
+                Console.Write("Invalid choice! ");
+                Console.ReadKey();
+                MainMenuApp.ClearCurrentConsoleLine();
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+            }
+
+
+        }
     }
 }
