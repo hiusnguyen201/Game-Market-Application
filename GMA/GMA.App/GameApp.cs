@@ -41,9 +41,7 @@ public class GameApp
             string choice = Console.ReadLine();
             if (int.TryParse(choice.ToString(), out int intChoice))
             {
-                List<int> gameIds = games.ConvertAll(game => game.GameId);
-
-                if (gameIds.Contains(intChoice))
+                if (games.Any(game => game.GameId == intChoice))
                 {
                     GameDetailsMenu(intChoice, currentPage, keywords, genID);
                 }
@@ -70,7 +68,7 @@ public class GameApp
                         break;
                     case "S":
                         Console.Write("- Enter Keywords: ");
-                        keywords = Console.ReadLine();
+                        keywords = FormatString.ModifyString(Console.ReadLine());
                         GameStoreMenu(0, keywords, genID);
                         break;
                     case "G":
@@ -127,8 +125,6 @@ public class GameApp
     {
         Console.Clear();
         List<Genre> genres = genreBLL.SearchByKey("").OrderBy(genre => genre.GenreId).ToList();
-        List<int> genreIds = genres.ConvertAll(genre => genre.GenreId);
-        genreIds.Add(0);
 
         var table = new Table();
         table.AddColumns("ID", "Genre Name");
@@ -146,7 +142,7 @@ public class GameApp
             string choice2 = Console.ReadLine();
             if (int.TryParse(choice2.ToString(), out int intChoice))
             {
-                if (genreIds.Contains(intChoice))
+                if (genres.Any(genre => genre.GenreId == intChoice))
                 {
                     return intChoice;
                 }

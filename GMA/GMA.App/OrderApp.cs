@@ -110,8 +110,7 @@ public class OrderApp
             priceString = (game.Price == 0) ? "Free" : FormatString.FormatCurrencyVND(game.Price);
             if (AccountApp.accountLoggedIn != null && AccountApp.accountLoggedIn.AccountOrders != null)
             {
-                bool gameOwned = AccountApp.accountLoggedIn.AccountOrders
-                .Any(order => order.OrderGames.Any(gameOwned => gameOwned.GameId == game.GameId));
+                bool gameOwned = AccountApp.accountLoggedIn.AccountOrders.Any(order => order.OrderGames.Any(gameOwned => gameOwned.GameId == game.GameId));
                 if (gameOwned)
                 {
                     priceString += " - (Purchased)";

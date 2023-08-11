@@ -44,7 +44,7 @@ public class GenreDAL
         return genre;
     }
 
-    public List<Genre> GetByKey(string key)
+    public List<Genre> GetByKey(string keywords)
     {
         List<Genre> genres = new List<Genre>();
         Genre genre = null;
@@ -55,7 +55,7 @@ public class GenreDAL
             MySqlCommand command = new MySqlCommand(selectQuery, DBHelper.GetConnection());
             command.CommandText = selectQuery;
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("kw", key);
+            command.Parameters.AddWithValue("kw", keywords);
             command.Parameters["kw"].Direction = ParameterDirection.Input;
             MySqlDataReader genreReader = command.ExecuteReader();
             while (genreReader.Read())
