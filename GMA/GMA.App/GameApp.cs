@@ -27,7 +27,7 @@ public class GameApp
             int endIndex = Math.Min(startIndex + pageSize, games.Count);
 
             DisplayGameTable(games, startIndex, endIndex, pageSize, genreName, keywords);
-            
+
             if (keywords == "")
             {
                 Console.WriteLine($"\n{games.Count} results match your search.");
@@ -94,18 +94,33 @@ public class GameApp
             .AddColumn(new TableColumn(new Text("Release Date").Centered()))
             .AddColumn(new TableColumn(new Text("Rating").Centered()))
             .AddColumn(new TableColumn(new Text("Price").Centered()));
-            table.Width = 125;
-            table.Title("Game Store");
-            table.Caption($"[#ffffff](Page: {startIndex / pageSize + 1}/{(games.Count + pageSize - 1) / pageSize} | P: previous | N: next | S: search | G: add genre | B: back)[/]");
+        table.Width = 125;
+        table.Title("Game Store");
+        table.Caption($"[#ffffff](Page: {startIndex / pageSize + 1}/{(games.Count + pageSize - 1) / pageSize} | P: previous | N: next | S: search | G: add genre | B: back)[/]");
 
-            for (int i = startIndex; i < endIndex; i++)
+        string priceString;
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            Game game = games[i];
+            Game gameInCart = OrderApp.cartGames.Find(gameInCart => gameInCart.GameId == game.GameId);
+            priceString = (game.Price == 0) ? "Free to Purchase" : FormatString.FormatCurrencyVND(game.Price);
+            if (AccountApp.accountLoggedIn != null && AccountApp.accountLoggedIn.AccountOrders != null)
             {
-                Game game = games[i];
-                string priceString = (game.Price == 0) ? "Free to Purchase" : FormatString.FormatCurrencyVND(game.Price);
-                table.AddRow($"\n{game.GameId}\n", $"\n{game.Name}\n", $"\n{game.ReleaseDate.ToString("dd/MM/yyyy")}\n", $"\n{game.Rating}%\n", $"\n{priceString}\n");
+                bool gameOwned = AccountApp.accountLoggedIn.AccountOrders
+                .Any(order => order.OrderGames.Any(gameOwned => gameOwned.GameId == game.GameId));
+                if (gameOwned)
+                {
+                    priceString += " - (Purchased)";
+                }
             }
+            else if(gameInCart != null)
+            {
+                priceString += " - (In Cart)";
+            }
+            table.AddRow($"\n{game.GameId}\n", $"\n{game.Name}\n", $"\n{game.ReleaseDate.ToString("dd/MM/yyyy")}\n", $"\n{game.Rating}%\n", $"\n{priceString}\n");
+        }
 
-            AnsiConsole.Write(table);
+        AnsiConsole.Write(table);
     }
 
     public static int ChoiceGenreId(int choice = 0)
@@ -163,6 +178,16 @@ public class GameApp
         Game game = gameBLL.SearchById(id);
         string stringGenres = string.Join(", ", game.GameGenres.Select(genre => genre.GenreName));
         string price = (game.Price == 0) ? price = "Free to Purchase" : price = FormatString.FormatCurrencyVND(game.Price);
+
+        Game gameInCart = OrderApp.cartGames.Find(game => game.GameId == id);
+
+        bool gameOwned = false; string capString = "";
+        if (AccountApp.accountLoggedIn != null && AccountApp.accountLoggedIn.AccountOrders != null)
+        {
+            gameOwned = AccountApp.accountLoggedIn.AccountOrders
+                .Any(order => order.OrderGames.Any(gameOwned => gameOwned.GameId == game.GameId));
+        }
+
         while (true)
         {
             Console.Clear();
@@ -177,26 +202,60 @@ public class GameApp
             table.AddRow($"Rating: [#ffffff]{game.Rating}[/]%\n").AddRow(new Rule());
             table.AddRow($"\nPrice: [#ffffff]{price}[/]\n").AddRow(new Rule());
             table.AddRow($"\nABOUT THIS GAME\n\n[#ffffff]{game.Desc}[/]\n");
-            table.Caption("[#ffffff](B: back | A: Add to cart)[/]");
+            
+            if (gameInCart != null)
+            {
+                table.Caption("[#ffffff](B: back | In cart)[/]");
+            }
+            else if (gameOwned)
+            {
+                table.Caption("[#ffffff](B: back | Purchased)[/]");
+            }
+            else
+            {
+                table.Caption("[#ffffff](B: back | A: add to cart)[/]");
+            }
+
             AnsiConsole.Write(table);
             Console.Write("Your choice: ");
             if (char.TryParse(Console.ReadLine(), out char choice))
             {
-                switch (char.ToUpper(choice))
+                if (gameInCart != null || gameOwned)
                 {
-                    case 'B':
-                        GameStoreMenu(currentPage, keywords, genID);
-                        break;
-                    case 'A':
-                        OrderApp.cartGames.Add(game);
-                        Console.Write("Add Game to cart successfully! ");
-                        Console.ReadKey();
-                        OrderApp.CartMenu();
-                        break;
-                    default:
-                        Console.Write("Your choice is not exist! ");
-                        Console.ReadKey();
-                        break;
+                    switch (char.ToUpper(choice))
+                    {
+                        case 'B':
+                            GameStoreMenu(currentPage, keywords, genID);
+                            break;
+
+                        default:
+                            Console.Write("Your choice is not exist! ");
+                            Console.ReadKey();
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (char.ToUpper(choice))
+                    {
+                        case 'B':
+                            GameStoreMenu(currentPage, keywords, genID);
+                            break;
+                        case 'A':
+                            if (gameInCart != null)
+                            {
+                                OrderApp.CartMenu();
+                            }
+                            OrderApp.cartGames.Add(game);
+                            Console.Write("Add Game to cart successfully! ");
+                            Console.ReadKey();
+                            OrderApp.CartMenu();
+                            break;
+                        default:
+                            Console.Write("Your choice is not exist! ");
+                            Console.ReadKey();
+                            break;
+                    }
                 }
             }
             else

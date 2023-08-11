@@ -5,24 +5,10 @@ namespace GMA.BLL;
 
 public class GameBLL
 {
-    public Game SearchById(int id)
-    {
-        GameDAL gameDAL = new GameDAL();
-        Game game = gameDAL.GetById(id);
-        return game;
-    }
+    private GameDAL gameDAL = new GameDAL();
+    public Game SearchById(int id) => gameDAL.GetById(id);
 
-    public List<Game> SearchByKey(string keyword)
-    {
-        GameDAL gameDAL = new GameDAL();
-        List<Game> games = gameDAL.GetByKey(keyword);
-        return games;
-    }
+    public List<Game> SearchByKey(string keyword) => gameDAL.GetByKey(keyword);
 
-    public List<Game> SearchByGenIdKey(string keyword, int id)
-    {
-        GameDAL gameDAL = new GameDAL();
-        List<Game> games = gameDAL.GetByGenIdKey(keyword, id);
-        return games;
-    }
+    public List<Game> SearchByGenIdKey(string keyword, int id) => gameDAL.GetByGenIdKey(keyword, id);
 }

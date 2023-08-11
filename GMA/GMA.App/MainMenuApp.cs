@@ -89,6 +89,8 @@ public class MainMenuApp
             }
             else
             {
+                ClearCurrentConsoleLine();
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
                 Console.Write("Invalid choice! Try again ");
                 Console.ReadKey();
             }

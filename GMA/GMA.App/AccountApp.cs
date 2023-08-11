@@ -77,7 +77,6 @@ public class AccountApp
 
         string password = EncryptionAES.Encrypt(GetAccountLogin("Password"));
 
-
         Account account = accountBLL.SearchAccountLogin(username, password);
         if (account == null)
         {
@@ -214,7 +213,23 @@ public class AccountApp
 
             if (int.TryParse(Console.ReadLine(), out int choice))
             {
-                CheckPassToAddFunds(choice);
+                switch (choice)
+                {
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        CheckPassToAddFunds(choice);
+                        break;
+                    case 0:
+                        AccountMenu();
+                        break;
+                    default:
+                        Console.Write("Invalid choice! Try again ");
+                        Console.ReadKey();
+                        break;
+                }
             }
             else
             {
@@ -227,12 +242,13 @@ public class AccountApp
     public static void CheckPassToAddFunds(int choice)
     {
         Console.Write("- Check [Password]: ");
-        string password = EncryptionAES.Encrypt(GetPassword());
+        string password = GetPassword();
         if (password == "B" || password == "b")
         {
             RechargeMoneyMenu();
         }
-        if (password == accountLoggedIn.Password)
+
+        if (EncryptionAES.Encrypt(password) == accountLoggedIn.Password)
         {
             switch (choice)
             {
@@ -268,7 +284,6 @@ public class AccountApp
             Console.ReadKey();
             RechargeMoneyMenu();
         }
-
     }
 
     public static string GetAccountLogin(string text)
@@ -410,27 +425,62 @@ public class AccountApp
 
     public static void OrderHistory()
     {
-        Console.Clear();
-        if (accountLoggedIn.AccountOrders.Count != 0)
+        while (true)
         {
-            accountLoggedIn.AccountOrders = orderBLL.GetAll(accountLoggedIn.AccountId);
+            Console.Clear();
+            if (accountLoggedIn.AccountOrders.Count != 0)
+            {
+                accountLoggedIn.AccountOrders = orderBLL.GetAll(accountLoggedIn.AccountId);
+            }
+            var table = new Table();
+            table.AddColumn("Order ID");
+            table.AddColumn("Date");
+            table.AddColumn("Game Name");
+            table.AddColumn("Status");
+            table.AddColumn("Total");
+            table.Title($"{accountLoggedIn.Username.ToUpper()}'s Order History");
+            table.Width = 100;
+            table.Caption("[#ffffff](B: back)[/]");
+            for (int i = 0; i < accountLoggedIn.AccountOrders.Count; i++)
+            {
+                Order order = accountLoggedIn.AccountOrders[i];
+                string status = (order.Status == 1) ? "Paid" : "UnPaid";
+                string listgames = string.Join("\n", order.OrderGames.Select(game => game.Name));
+                table.AddRow($"\n{order.OrderId}\n", $"\n{order.OrderDate.ToString("dd/MM/yyyy")}\n", $"\n{listgames}\n", $"\n{status}\n", $"\n{FormatString.FormatCurrencyVND(order.TotalPrice)}\n");
+            }
+            AnsiConsole.Write(table);
+
+            Console.Write("Your choice: ");
+            if (char.TryParse(Console.ReadLine(), out char choice))
+            {
+                if(char.ToUpper(choice) == 'B')
+                {
+                    AccountMenu();
+                }
+                if(int.TryParse(choice.ToString(), out int choieInt))
+                {
+                    Order order = accountLoggedIn.AccountOrders.Find(order => order.OrderId == choieInt);
+                    if (order != null)
+                    {
+                        OrderApp.InvoiceMenu(order, "AccountMenu");
+                    }
+                    else
+                    {
+                        Console.Write("Order Id Not Found! ");
+                        Console.ReadKey();
+                    }
+                }
+                else
+                {
+                    Console.Write("Invalid choice! Try again ");
+                    Console.ReadKey();
+                }
+            }
+            else
+            {
+                Console.Write("Invalid choice! Try again ");
+                Console.ReadKey();
+            }
         }
-        var table = new Table();
-        table.AddColumn("ID");
-        table.AddColumn("Date");
-        table.AddColumn("Game Name");
-        table.AddColumn("Status");
-        table.AddColumn("Total");
-        table.Title($"{accountLoggedIn.Username.ToUpper()}'s Order History");
-        table.Width = 100;
-        for (int i = 0; i < accountLoggedIn.AccountOrders.Count; i++)
-        {
-            Order order = accountLoggedIn.AccountOrders[i];
-            string status = (order.Status == 1)? "Paid" : "UnPaid";
-            string listgames = string.Join("\n", order.OrderGames.Select(game => game.Name));
-            table.AddRow($"\n{order.OrderId}\n", $"\n{order.OrderDate.ToString("dd/MM/yyyy")}\n", $"\n{listgames}\n", $"\n{status}\n", $"\n{FormatString.FormatCurrencyVND(order.TotalPrice)}\n");
-        }
-        AnsiConsole.Write(table);
-        Console.ReadKey();
     }
 }

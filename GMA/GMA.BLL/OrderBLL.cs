@@ -28,4 +28,6 @@ public class OrderBLL
     }
     
     public List<Order> GetAll(int accid) => orderDAL.GetAll(accid);
+
+    public Order GetById (int oid) => orderDAL.GetById(oid);
 }

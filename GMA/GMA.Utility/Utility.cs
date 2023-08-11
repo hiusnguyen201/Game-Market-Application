@@ -19,7 +19,7 @@ public class EncryptionAES
     }
 
     // Encrypt
-    public static byte[] Encrypt (byte[] strData)
+    public static byte[] Encrypt(byte[] strData)
     {
         PasswordDeriveBytes passbytes = new PasswordDeriveBytes(STRING_PERMUTATION,
         new byte[] { BYTE_PERMUTATION_1, BYTE_PERMUTATION_2, BYTE_PERMUTATION_3, BYTE_PERMUTATION_4 });
@@ -33,6 +33,28 @@ public class EncryptionAES
         cryptoStream.Write(strData, 0, strData.Length);
         cryptoStream.Close();
         return memstream.ToArray();
+    }
+
+    // Decoding
+    public static string Decrypt(string strData)
+    {
+        return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(strData)));
+    }
+    // Decrypt
+    public static byte[] Decrypt(byte[] encryptedData)
+    {
+        PasswordDeriveBytes passbytes = new PasswordDeriveBytes(STRING_PERMUTATION,
+       new byte[] { BYTE_PERMUTATION_1, BYTE_PERMUTATION_2, BYTE_PERMUTATION_3, BYTE_PERMUTATION_4 });
+        MemoryStream memstream = new MemoryStream(encryptedData);
+        Aes aes = new AesManaged();
+        aes.Key = passbytes.GetBytes(aes.KeySize / 8);
+        aes.IV = passbytes.GetBytes(aes.BlockSize / 8);
+
+        CryptoStream cryptoStream = new CryptoStream(memstream,
+        aes.CreateDecryptor(), CryptoStreamMode.Read);
+        MemoryStream decryptedStream = new MemoryStream();
+        cryptoStream.CopyTo(decryptedStream);
+        return decryptedStream.ToArray();
     }
 }
 

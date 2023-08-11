@@ -56,13 +56,13 @@ CREATE TABLE GameGenres (
     CONSTRAINT pk_GameGenres PRIMARY KEY (genre_ID, game_ID)
 );
 
-CREATE TABLE OrderDetails
+CREATE TABLE OrderGames
 (
 	order_ID INT NOT NULL,
     game_ID INT NOT NULL,
-    CONSTRAINT fk_OrderDetails_Orders FOREIGN KEY (order_ID) REFERENCES Orders (order_ID),
-    CONSTRAINT fk_OrderDetails_Games FOREIGN KEY (game_ID) REFERENCES Games (game_ID),
-    CONSTRAINT pk_OrderDetails PRIMARY KEY (order_ID, game_ID)
+    CONSTRAINT fk_OrderGames_Orders FOREIGN KEY (order_ID) REFERENCES Orders (order_ID),
+    CONSTRAINT fk_OrderGames_Games FOREIGN KEY (game_ID) REFERENCES Games (game_ID),
+    CONSTRAINT pk_OrderGames PRIMARY KEY (order_ID, game_ID)
 );
 
 DELIMITER $$
@@ -185,20 +185,20 @@ DELIMITER ;
 DELIMITER $$
 	CREATE PROCEDURE create_order_details (IN oid INT, IN gid INT, OUT id INT)
     BEGIN
-		INSERT INTO orderdetails (order_ID, game_ID)
+		INSERT INTO OrderGames (order_ID, game_ID)
         VALUES(oid, gid);
         SET id = oid;
     END $$
 DELIMITER ;
 
 DELIMITER $$
-    CREATE PROCEDURE get_order_by_id (IN oid INT, IN aid INT )
+    CREATE PROCEDURE get_order_by_id (IN oid INT)
     BEGIN
-		SELECT *
+		SELECT o.order_ID, acc_ID, order_TotalPrice, order_CreateDate, order_Status, GROUP_CONCAT(od.game_ID) AS game_ID
 		FROM orders AS o
-        INNER JOIN orderdetails AS od ON o.order_ID = od.order_ID
-        WHERE order_ID = oid AND acc_ID = aid
-        GROUP BY order_ID;
+        INNER JOIN ordergames AS od ON o.order_ID = od.order_ID
+        WHERE o.order_ID = oid
+        GROUP BY o.order_ID;
 	END $$
 DELIMITER ;
 
@@ -207,12 +207,11 @@ CREATE PROCEDURE get_all_order (IN aid INT)
 BEGIN
     SELECT o.order_ID, acc_ID, order_TotalPrice, order_CreateDate, order_Status, GROUP_CONCAT(od.game_ID) AS game_ID
     FROM orders AS o
-    INNER JOIN orderdetails AS od ON o.order_ID = od.order_ID
+    INNER JOIN ordergames AS od ON o.order_ID = od.order_ID
     WHERE o.acc_ID = aid
     GROUP BY o.order_ID;
 END $$
 DELIMITER ;
-
 
 
 INSERT INTO publishers(publisher_Name)

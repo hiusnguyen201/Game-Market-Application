@@ -18,7 +18,7 @@ public class OrderDAL
         order.TotalPrice = reader.GetDouble("order_TotalPrice");
         order.OrderDate = reader.GetDateTime("order_CreateDate");
         order.Status = reader.GetInt16("order_Status");
-        string gameIds = reader.GetString("game_ID");
+        string gameIds = reader.GetString("game_ID");   
         string[] splitGameIds = gameIds.Split(',');
         for (int i = 0; i < splitGameIds.Length; i++)
         {
@@ -142,5 +142,49 @@ public class OrderDAL
         }
 
         return orders;
+    }
+
+    public Order GetById(int oid)
+    {
+        Order order = null;
+        try
+        {
+            DBHelper.OpenConnection();
+            string selectQuery = "get_order_by_id";
+            MySqlCommand command = new MySqlCommand(selectQuery, DBHelper.GetConnection());
+            command.CommandText = selectQuery;
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@oid", oid);
+            command.Parameters["@oid"].Direction = ParameterDirection.Input;
+            MySqlDataReader orderReader = command.ExecuteReader();
+            if (orderReader.Read())
+            {
+                order = Get(orderReader);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.ToString());
+            Console.ReadKey();
+        }
+        finally
+        {
+            DBHelper.CloseConnection();
+        }
+
+        order.OrderAccount = accountDAL.GetById(order.OrderAccount.AccountId);
+
+        for (int j = 0; j < order.OrderGames.Count; j++)
+        {
+            Game game = order.OrderGames[j];
+            Game updatedGame = gameDAL.GetById(game.GameId);
+
+            if (updatedGame != null)
+            {
+                order.OrderGames[j] = updatedGame;
+            }
+        }
+
+        return order;
     }
 }
