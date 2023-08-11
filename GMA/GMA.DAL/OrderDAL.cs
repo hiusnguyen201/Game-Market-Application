@@ -18,7 +18,7 @@ public class OrderDAL
         order.TotalPrice = reader.GetDouble("order_TotalPrice");
         order.OrderDate = reader.GetDateTime("order_CreateDate");
         order.Status = reader.GetInt16("order_Status");
-        string gameIds = reader.GetString("game_ID");   
+        string gameIds = reader.GetString("game_ID");
         string[] splitGameIds = gameIds.Split(',');
         for (int i = 0; i < splitGameIds.Length; i++)
         {
@@ -124,19 +124,22 @@ public class OrderDAL
             DBHelper.CloseConnection();
         }
 
-        order.OrderAccount = accountDAL.GetById(order.OrderAccount.AccountId);
-
-        for (int i = 0; i < orders.Count; i++)
+        if (order != null)
         {
-            Order newOrder = orders[i];
-            for (int j = 0; j < newOrder.OrderGames.Count; j++)
-            {
-                Game game = newOrder.OrderGames[j];
-                Game updatedGame = gameDAL.GetById(game.GameId);
+            order.OrderAccount = accountDAL.GetById(order.OrderAccount.AccountId);
 
-                if (updatedGame != null)
+            for (int i = 0; i < orders.Count; i++)
+            {
+                Order newOrder = orders[i];
+                for (int j = 0; j < newOrder.OrderGames.Count; j++)
                 {
-                    newOrder.OrderGames[j] = updatedGame;
+                    Game game = newOrder.OrderGames[j];
+                    Game updatedGame = gameDAL.GetById(game.GameId);
+
+                    if (updatedGame != null)
+                    {
+                        newOrder.OrderGames[j] = updatedGame;
+                    }
                 }
             }
         }

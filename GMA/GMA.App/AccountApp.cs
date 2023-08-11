@@ -428,10 +428,7 @@ public class AccountApp
         while (true)
         {
             Console.Clear();
-            if (accountLoggedIn.AccountOrders.Count != 0)
-            {
-                accountLoggedIn.AccountOrders = orderBLL.GetAll(accountLoggedIn.AccountId);
-            }
+            accountLoggedIn.AccountOrders = orderBLL.GetAll(accountLoggedIn.AccountId);
             var table = new Table();
             table.AddColumn("Order ID");
             table.AddColumn("Date");
