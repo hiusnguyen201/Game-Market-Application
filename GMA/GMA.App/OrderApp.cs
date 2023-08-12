@@ -109,7 +109,7 @@ public class OrderApp
         string priceString;
         foreach (Game game in cartGames)
         {
-            priceString = (game.Price == 0) ? "Free" : FormatString.FormatCurrencyVND(game.Price);
+            priceString = (game.Price == 0) ? "Free" : HandlingString.FormatCurrencyVND(game.Price);
             if (AccountApp.accountLoggedIn != null && AccountApp.accountLoggedIn.AccountOrders != null)
             {
                 bool gameOwned = AccountApp.accountLoggedIn.AccountOrders.Any(order => order.OrderGames.Any(gameOwned => gameOwned.GameId == game.GameId));
@@ -121,7 +121,7 @@ public class OrderApp
             table.AddRow($"\n{game.GameId}\n", $"\n{game.Name}\n", $"\n{priceString}\n");
         }
 
-        table.AddRow(" ", "[#ffffff]\n--- Total ---\n[/]", $"[#ffffff]\n{FormatString.FormatCurrencyVND(total)}\n[/]");
+        table.AddRow(" ", "[#ffffff]\n--- Total ---\n[/]", $"[#ffffff]\n{HandlingString.FormatCurrencyVND(total)}\n[/]");
         table.Width = 70;
         table.Caption("B: back | P: purchase | S: continue shopping | R: remove games");
         AnsiConsole.Write(table);
@@ -135,10 +135,10 @@ public class OrderApp
             var table = new Table();
             table.AddColumn(new TableColumn(new Text("[Game Market Application]\nGroup 2 - PF1122 Version : 0.1\nCheckout Buy Game").Centered()));
             table.AddRow($"Username: {AccountApp.accountLoggedIn.Username}");
-            table.AddRow($"Money: {FormatString.FormatCurrencyVND(AccountApp.accountLoggedIn.Money)}");
+            table.AddRow($"Money: {HandlingString.FormatCurrencyVND(AccountApp.accountLoggedIn.Money)}");
             AnsiConsole.Write(table);
 
-            Console.Write($"[Do you want to make payment with {FormatString.FormatCurrencyVND(total)}] (Y/N): ");
+            Console.Write($"[Do you want to make payment with {HandlingString.FormatCurrencyVND(total)}] (Y/N): ");
             if (char.TryParse(Console.ReadLine(), out char choiceCheckout))
             {
                 switch (char.ToUpper(choiceCheckout))
@@ -233,14 +233,14 @@ public class OrderApp
         for (int i = 0; i < order.OrderGames.Count; i++)
         {
             Game game = order.OrderGames[i];
-            tableOrderDetails.AddRow($"{game.Name}", $"{FormatString.FormatCurrencyVND(game.Price)}");
+            tableOrderDetails.AddRow($"{game.Name}", $"{HandlingString.FormatCurrencyVND(game.Price)}");
         }
         AnsiConsole.Write(tableOrderDetails);
         var tableAccountInfo = new Table()
         .AddColumn(new TableColumn(new Text("").Centered()))
         .AddColumn(new TableColumn(new Text("").Centered()));
         tableAccountInfo.HideHeaders();
-        tableAccountInfo.AddRow($"Username: {AccountApp.accountLoggedIn.Username}\nOrder Id: {order.OrderId}\nDate: {order.OrderDate}", $"Total:   {FormatString.FormatCurrencyVND(order.TotalPrice)}");
+        tableAccountInfo.AddRow($"Username: {AccountApp.accountLoggedIn.Username}\nOrder Id: {order.OrderId}\nDate: {order.OrderDate}", $"Total:   {HandlingString.FormatCurrencyVND(order.TotalPrice)}");
         AnsiConsole.Write(tableAccountInfo);
         Console.Write("\nPress Any key to Continue !");
         Console.ReadKey();

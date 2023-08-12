@@ -68,7 +68,7 @@ public class GameApp
                         break;
                     case "S":
                         Console.Write("- Enter Keywords: ");
-                        keywords = FormatString.ModifyString(Console.ReadLine());
+                        keywords = HandlingString.ModifyString(Console.ReadLine());
                         GameStoreMenu(0, keywords, genID);
                         break;
                     case "G":
@@ -101,7 +101,7 @@ public class GameApp
         {
             Game game = games[i];
             Game gameInCart = OrderApp.cartGames.Find(gameInCart => gameInCart.GameId == game.GameId);
-            priceString = (game.Price == 0) ? "Free to Purchase" : FormatString.FormatCurrencyVND(game.Price);
+            priceString = (game.Price == 0) ? "Free to Purchase" : HandlingString.FormatCurrencyVND(game.Price);
             if (AccountApp.accountLoggedIn != null && AccountApp.accountLoggedIn.AccountOrders != null)
             {
                 bool gameOwned = AccountApp.accountLoggedIn.AccountOrders
@@ -173,7 +173,7 @@ public class GameApp
     {
         Game game = gameBLL.SearchById(id);
         string stringGenres = string.Join(", ", game.GameGenres.Select(genre => genre.GenreName));
-        string price = (game.Price == 0) ? price = "Free to Purchase" : price = FormatString.FormatCurrencyVND(game.Price);
+        string price = (game.Price == 0) ? price = "Free to Purchase" : price = HandlingString.FormatCurrencyVND(game.Price);
 
         Game gameInCart = OrderApp.cartGames.Find(game => game.GameId == id);
 

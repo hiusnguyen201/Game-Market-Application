@@ -103,15 +103,15 @@ public class AccountApp
         table.Caption("[#ffffff](B: back)[/]");
         AnsiConsole.Write(table);
 
-        string username = GetAccountRegister("Username");
+        string username = GetAccountRegister("Username").ToLower();
 
         string password = EncryptionAES.Encrypt(GetAccountRegister("Password"));
 
-        string realname = FormatString.ModifyString(GetAccountRegister("Real Name"));
+        string realname = HandlingString.FormatSpecialName(HandlingString.ModifyString(GetAccountRegister("Real Name")));
 
-        string email = GetAccountRegister("Email");
+        string email = GetAccountRegister("Email").ToLower();
 
-        string address = FormatString.ModifyString(GetAccountRegister("Address"));
+        string address = HandlingString.FormatSpecialName(HandlingString.ModifyString(GetAccountRegister("Address")));
 
 
         int result = accountBLL.Save(new Account(username, password, realname, email, address));
@@ -131,7 +131,7 @@ public class AccountApp
             Console.Clear();
             var table = new Table();
             table.Width = 45;
-            table.AddColumn(new TableColumn(new Text($"Game Market Application\nGroup 2 - PF1122 Version 0.1\nUsername: {accountLoggedIn.Username} | Money: {FormatString.FormatCurrencyVND(accountLoggedIn.Money)}").Centered()));
+            table.AddColumn(new TableColumn(new Text($"Game Market Application\nGroup 2 - PF1122 Version 0.1\nUsername: {accountLoggedIn.Username} | Money: {HandlingString.FormatCurrencyVND(accountLoggedIn.Money)}").Centered()));
             table.AddRow("1. View Profile");
             table.AddRow("2. Recharge Money");
             table.AddRow("3. View Order History");
@@ -183,11 +183,11 @@ public class AccountApp
         var table = new Table();
         table.Width = 45;
         table.AddColumn(new TableColumn(new Text("[Game Market Application]\nGroup 2 - PF1122 Version : 0.1\nUser Profile").Centered()));
-        table.AddRow($"\nName: [#ffffff]{accountLoggedIn.Username}[/]\n").AddRow(new Rule());
+        table.AddRow($"\nUsername: [#ffffff]{accountLoggedIn.Username}[/]\n").AddRow(new Rule());
         table.AddRow($"\nReal Name: [#ffffff]{accountLoggedIn.Realname}[/]\n").AddRow(new Rule());
         table.AddRow($"\nEmail: [#ffffff]{accountLoggedIn.Email}[/]\n").AddRow(new Rule());
         table.AddRow($"\nAddress: [#ffffff]{accountLoggedIn.Address}[/]\n").AddRow(new Rule());
-        table.AddRow($"\nMoney: [#ffffff]{FormatString.FormatCurrencyVND(accountLoggedIn.Money)}[/]\n").AddRow(new Rule());
+        table.AddRow($"\nMoney: [#ffffff]{HandlingString.FormatCurrencyVND(accountLoggedIn.Money)}[/]\n").AddRow(new Rule());
         table.AddRow($"\nCreate Date: [#ffffff]{accountLoggedIn.CreateDate.ToString("dd/MM/yyyy")}[/]\n");
         AnsiConsole.Write(table);
         Console.Write("Press any key to continue! ");
@@ -443,7 +443,7 @@ public class AccountApp
                 Order order = accountLoggedIn.AccountOrders[i];
                 string status = (order.Status == 1) ? "Paid" : "UnPaid";
                 string listgames = string.Join("\n", order.OrderGames.Select(game => game.Name));
-                table.AddRow($"\n{order.OrderId}\n", $"\n{order.OrderDate.ToString("dd/MM/yyyy")}\n", $"\n{listgames}\n", $"\n{status}\n", $"\n{FormatString.FormatCurrencyVND(order.TotalPrice)}\n");
+                table.AddRow($"\n{order.OrderId}\n", $"\n{order.OrderDate.ToString("dd/MM/yyyy")}\n", $"\n{listgames}\n", $"\n{status}\n", $"\n{HandlingString.FormatCurrencyVND(order.TotalPrice)}\n");
             }
             AnsiConsole.Write(table);
 
