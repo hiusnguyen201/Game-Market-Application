@@ -14,7 +14,9 @@ public class OrderApp
     {
         if (cartGames.Count == 0 || cartGames == null)
         {
+            Console.ForegroundColor = ConsoleColor.White;            
             Console.Write("Your Cart is empty! ");
+            Console.ResetColor();
             Console.ReadKey();
             MainMenuApp.MainMenu();
             return;
@@ -53,7 +55,7 @@ public class OrderApp
                         }
                         else
                         {
-                            Console.Write("Your account already owns some of the above games,  so you can’t purchase them again ! ");
+                            Console.Write("Your account already owns some of the above games, so you can’t purchase them again ! ");
                             Console.ReadKey();
                         }
                     }
@@ -217,6 +219,13 @@ public class OrderApp
     public static void InvoiceMenu(Order order, string text)
     {
         Console.Clear();
+        if(text == "CartMenu")
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("--- THANK YOU FOR YOUR PURCHASE! ---\n");
+            Console.WriteLine("The Order below have been added to your Order history.\n");
+            Console.ResetColor();
+        }
         var tableOrderDetails = new Table()
         .AddColumn(new TableColumn(new Text("Game Name").Centered()))
         .AddColumn(new TableColumn(new Text("Price").Centered()));
