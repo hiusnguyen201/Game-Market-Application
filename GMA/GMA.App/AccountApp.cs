@@ -157,12 +157,17 @@ public class AccountApp
                         break;
 
                     case 4:
-                        MainMenuApp.CheckChooseBack("Logout");
+                        if(MainMenuApp.CheckYesNo())
+                        {
+                            accountLoggedIn = null;
+                            MembershipMenu();
+                        }
                         break;
 
                     case 0:
                         MainMenuApp.MainMenu();
                         break;
+
                     default:
                         Console.Write("Your choice is not exist! ");
                         Console.ReadKey();
@@ -208,6 +213,7 @@ public class AccountApp
             table.AddRow("4. Add 750.000 VND");
             table.AddRow("5. Add 1.500.000 VND");
             table.AddRow("0. Back");
+            table.Caption("B: back");
             AnsiConsole.Write(table);
             Console.Write("Your Choice: ");
 
@@ -245,7 +251,14 @@ public class AccountApp
         string password = GetPassword();
         if (password == "B" || password == "b")
         {
-            RechargeMoneyMenu();
+            if(MainMenuApp.CheckYesNo())
+            {
+                RechargeMoneyMenu();
+            }
+            else
+            {
+                CheckPassToAddFunds(choice);
+            }
         }
 
         if (EncryptionAES.Encrypt(password) == accountLoggedIn.Password)
@@ -296,10 +309,12 @@ public class AccountApp
             // Check Q : quit
             if (value == "B" || value == "b")
             {
-                if (!MainMenuApp.CheckChooseBack("MembershipMenu"))
+                if (MainMenuApp.CheckYesNo())
                 {
-                    MainMenuApp.ClearCurrentConsoleLine();
-                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                    MembershipMenu();
+                }
+                else
+                {
                     GetAccountLogin(text);
                 }
             }
@@ -310,6 +325,7 @@ public class AccountApp
                 Console.ReadKey();
                 MainMenuApp.ClearCurrentConsoleLine();
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
+                MainMenuApp.ClearCurrentConsoleLine();
             }
             else
             {
@@ -328,10 +344,12 @@ public class AccountApp
             // Check Q : quit
             if (value == "B" || value == "b")
             {
-                if (!MainMenuApp.CheckChooseBack("MembershipMenu"))
+                if (MainMenuApp.CheckYesNo())
                 {
-                    MainMenuApp.ClearCurrentConsoleLine();
-                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                    MembershipMenu();
+                }
+                else
+                {
                     GetAccountRegister(text);
                 }
             }
@@ -395,6 +413,7 @@ public class AccountApp
             {
                 MainMenuApp.ClearCurrentConsoleLine();
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
+                MainMenuApp.ClearCurrentConsoleLine();
             }
         }
     }
@@ -427,8 +446,14 @@ public class AccountApp
     {
         while (true)
         {
-            Console.Clear();
             accountLoggedIn.AccountOrders = orderBLL.GetAll(accountLoggedIn.AccountId);
+            if(accountLoggedIn.AccountOrders.Count == 0)
+            {
+                Console.Write("You don't have any orders in your Order History! ");
+                Console.ReadKey();
+                AccountMenu();
+            }
+            Console.Clear();
             var table = new Table();
             table.AddColumn("Order ID");
             table.AddColumn("Date");

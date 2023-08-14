@@ -2,6 +2,7 @@
 using GMA.Models;
 using System.Data;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 
 public class AccountDAL
 {
@@ -191,6 +192,8 @@ public class AccountDAL
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@aid", accId);
             command.Parameters.AddWithValue("@money", money);
+            command.Parameters["@aid"].Direction = ParameterDirection.Input;
+            command.Parameters["@money"].Direction = ParameterDirection.Input;
             command.ExecuteNonQuery();
         }
         catch (Exception ex)

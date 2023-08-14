@@ -64,7 +64,14 @@ public class GameApp
                         currentPage = Math.Min(maxPage, currentPage + 1);
                         break;
                     case "B":
-                        MainMenuApp.MainMenu();
+                        if(MainMenuApp.CheckYesNo())
+                        {
+                            MainMenuApp.MainMenu();
+                        }
+                        else
+                        {
+                            GameStoreMenu(currentPage, keywords, genID);
+                        }
                         break;
                     case "S":
                         Console.Write("- Enter Keywords: ");
@@ -138,11 +145,11 @@ public class GameApp
 
         while (true)
         {
-            Console.Write($"\nYour choice: ");
+            Console.Write($"Your choice: ");
             string choice2 = Console.ReadLine();
-            if (int.TryParse(choice2.ToString(), out int intChoice))
+            if (int.TryParse(choice2, out int intChoice))
             {
-                if (genres.Any(genre => genre.GenreId == intChoice))
+                if (intChoice == 0 || genres.Any(genre => genre.GenreId == intChoice))
                 {
                     return intChoice;
                 }
@@ -152,20 +159,23 @@ public class GameApp
                     Console.ReadKey();
                 }
             }
-            else
+            else if (choice2.ToUpper() == "B")
             {
-                switch (choice2.ToUpper())
+                if(MainMenuApp.CheckYesNo())
                 {
-                    case "B":
-                        GameStoreMenu();
-                        break;
-                    default:
-                        Console.Write("Invalid choice! Try again ");
-                        Console.ReadKey();
-                        break;
+                    GameStoreMenu();
+                }
+                else
+                {
+                    ChoiceGenreId();
                 }
             }
-            ChoiceGenreId();
+            
+            Console.Write("Invalid choice! Try again ");
+            Console.ReadKey();
+            MainMenuApp.ClearCurrentConsoleLine();
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            MainMenuApp.ClearCurrentConsoleLine();
         }
     }
 

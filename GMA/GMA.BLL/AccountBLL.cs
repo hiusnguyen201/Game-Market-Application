@@ -22,5 +22,5 @@ public class AccountBLL
         return result;
     }
 
-    public void UpdateMoney(int id, double deposit) => accountDAL.UpdateAccountMoney(id, deposit);
+    public void UpdateMoney(int accId, double money) => accountDAL.UpdateAccountMoney(accId, money);
 }

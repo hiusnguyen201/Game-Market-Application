@@ -14,7 +14,7 @@ public class OrderApp
     {
         if (cartGames.Count == 0 || cartGames == null)
         {
-            Console.ForegroundColor = ConsoleColor.White;            
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Your Cart is empty! ");
             Console.ResetColor();
             Console.ReadKey();
@@ -219,7 +219,7 @@ public class OrderApp
     public static void InvoiceMenu(Order order, string text)
     {
         Console.Clear();
-        if(text == "CartMenu")
+        if (text == "CartMenu")
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("--- THANK YOU FOR YOUR PURCHASE! ---\n");
@@ -244,11 +244,11 @@ public class OrderApp
         AnsiConsole.Write(tableAccountInfo);
         Console.Write("\nPress Any key to Continue !");
         Console.ReadKey();
-        if(text == "CartMenu")
+        if (text == "CartMenu")
         {
             MainMenuApp.MainMenu();
         }
-        else if(text == "AccountMenu")
+        else if (text == "AccountMenu")
         {
             AccountApp.OrderHistory();
         }
@@ -262,7 +262,14 @@ public class OrderApp
             string choice = Console.ReadLine();
             if (choice.ToUpper() == "B")
             {
-                CartMenu();
+                if(MainMenuApp.CheckYesNo())
+                {
+                    CartMenu();
+                }
+                else
+                {
+                    ChoiceGameToRemoveInCart();
+                }
             }
 
             if (int.TryParse(choice.ToString(), out int choiceID))
@@ -270,7 +277,15 @@ public class OrderApp
                 Game game = cartGames.Find(game => game.GameId == choiceID);
                 if (game != null)
                 {
-                    HandlingRemoveGameInCart(game);
+                    if(MainMenuApp.CheckYesNo())
+                    {
+                        cartGames.Remove(game);
+                        CartMenu();
+                    }
+                    else
+                    {
+                        CartMenu();
+                    }
                 }
                 else
                 {
@@ -285,39 +300,7 @@ public class OrderApp
             }
             MainMenuApp.ClearCurrentConsoleLine();
             Console.SetCursorPosition(0, Console.CursorTop - 1);
-        }
-    }
-
-    public static void HandlingRemoveGameInCart(Game game)
-    {
-        while (true)
-        {
-            Console.Write("Are you sure? (Y/N): ");
-            if (char.TryParse(Console.ReadLine(), out char choiceCon))
-            {
-                switch (char.ToUpper(choiceCon))
-                {
-                    case 'Y':
-                        cartGames.Remove(game);
-                        CartMenu();
-                        break;
-
-                    case 'N':
-                        CartMenu();
-                        break;
-                    default:
-                        Console.Write("Invalid choice! ");
-                        Console.ReadKey();
-                        break;
-                }
-            }
-            else
-            {
-                Console.Write("Invalid choice! ");
-                Console.ReadKey();
-            }
             MainMenuApp.ClearCurrentConsoleLine();
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
         }
     }
 }

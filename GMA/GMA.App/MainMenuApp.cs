@@ -57,7 +57,7 @@ public class MainMenuApp
         }
     }
 
-    public static bool CheckChooseBack(string text)
+    public static bool CheckYesNo()
     {
         while (true)
         {
@@ -67,35 +67,31 @@ public class MainMenuApp
                 switch (char.ToUpper(choice))
                 {
                     case 'Y':
-                        if (text == "MembershipMenu")
-                        {
-                            AccountApp.MembershipMenu();
-                        }
-                        else if (text == "Logout")
-                        {
-                            AccountApp.accountLoggedIn = null;
-                            MainMenu();
-                        }
-                        break;
+                        return true;
                     case 'N':
                         ClearCurrentConsoleLine();
                         Console.SetCursorPosition(0, Console.CursorTop - 1);
+                        ClearCurrentConsoleLine();
+                        Console.SetCursorPosition(0, Console.CursorTop - 1);
+                        ClearCurrentConsoleLine();
                         return false;
                     default:
                         Console.Write("Your choice is not exist! ");
                         Console.ReadKey();
+                        ClearCurrentConsoleLine();
+                        Console.SetCursorPosition(0, Console.CursorTop - 1);
+                        ClearCurrentConsoleLine();
                         break;
                 }
             }
             else
             {
-                ClearCurrentConsoleLine();
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
                 Console.Write("Invalid choice! Try again ");
                 Console.ReadKey();
+                ClearCurrentConsoleLine();
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                ClearCurrentConsoleLine();
             }
-            ClearCurrentConsoleLine();
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
         }
     }
 
