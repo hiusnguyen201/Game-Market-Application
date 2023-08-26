@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMA.Model", "GMA.Model\GMA.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMA.Utility", "GMA.Utility\GMA.Utility.csproj", "{DCA54A3D-A2F3-4A19-96BD-81B327C11326}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMA.Tests", "GMA.Tests\GMA.Tests.csproj", "{F31E9391-745E-47CC-B4AD-331DB4BCC158}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMA.UnitTests", "GMA.UnitTests\GMA.UnitTests.csproj", "{7E6102D4-84D5-46AB-B8E7-75A4C98F5D91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,5 +52,13 @@ Global
 		{F31E9391-745E-47CC-B4AD-331DB4BCC158}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F31E9391-745E-47CC-B4AD-331DB4BCC158}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F31E9391-745E-47CC-B4AD-331DB4BCC158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92D0F547-04C4-4FCF-A3BA-CCE48281D33E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92D0F547-04C4-4FCF-A3BA-CCE48281D33E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92D0F547-04C4-4FCF-A3BA-CCE48281D33E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92D0F547-04C4-4FCF-A3BA-CCE48281D33E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E6102D4-84D5-46AB-B8E7-75A4C98F5D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E6102D4-84D5-46AB-B8E7-75A4C98F5D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E6102D4-84D5-46AB-B8E7-75A4C98F5D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E6102D4-84D5-46AB-B8E7-75A4C98F5D91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

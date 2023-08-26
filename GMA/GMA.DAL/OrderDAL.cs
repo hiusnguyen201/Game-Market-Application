@@ -175,16 +175,19 @@ public class OrderDAL
             DBHelper.CloseConnection();
         }
 
-        order.OrderAccount = accountDAL.GetById(order.OrderAccount.AccountId);
-
-        for (int j = 0; j < order.OrderGames.Count; j++)
+        if(order != null)
         {
-            Game game = order.OrderGames[j];
-            Game updatedGame = gameDAL.GetById(game.GameId);
+            order.OrderAccount = accountDAL.GetById(order.OrderAccount.AccountId);
 
-            if (updatedGame != null)
+            for (int j = 0; j < order.OrderGames.Count; j++)
             {
-                order.OrderGames[j] = updatedGame;
+                Game game = order.OrderGames[j];
+                Game updatedGame = gameDAL.GetById(game.GameId);
+
+                if (updatedGame != null)
+                {
+                    order.OrderGames[j] = updatedGame;
+                }
             }
         }
 

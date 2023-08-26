@@ -14,10 +14,6 @@ CREATE TABLE Accounts
     updated_at TIMESTAMP DEFAULT NOW()
 );
 
-SELECT * FROM Accounts;
-SELECT * FROM Orders;
-SELECT * FROM OrdersGames;
-
 CREATE TABLE Orders
 (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -71,7 +67,7 @@ CREATE TABLE OrdersGames
 );
 
 DELIMITER $$
-	CREATE PROCEDURE create_account (IN aun VARCHAR(225),IN apw VARCHAR(225), IN arn VARCHAR(225), IN ae VARCHAR(225), IN aa VARCHAR(225), OUT aid INT)
+	CREATE PROCEDURE create_account (IN aun VARCHAR(225),IN apw TEXT, IN arn VARCHAR(225), IN ae VARCHAR(225), IN aa VARCHAR(225), OUT aid INT)
     BEGIN
 		INSERT INTO Accounts(username, password, realname, email, address)
         VALUES (aun, apw, arn, ae, aa);
@@ -192,10 +188,12 @@ DELIMITER ;
 DELIMITER $$
 	CREATE PROCEDURE create_order_details (IN oid INT, IN gid INT, OUT id INT)
     BEGIN
-        DECLARE count INT DEFAULT 0;
-        SELECT COUNT(*) INTO count FROM orders AS o WHERE o.id = oid;
+        DECLARE numoid INT DEFAULT 0;
+        DECLARE numgid INT DEFAULT 0;
+        SELECT COUNT(*) INTO numoid FROM orders AS o WHERE o.id = oid;
+        SELECT COUNT(*) INTO numgid FROM get_all_games AS gag WHERE gag.game_id = gid;
         
-        IF(count = 0) THEN
+        IF(numoid = 0 OR numgid = 0) THEN
 			SET id = 0;
 		ELSE
 			INSERT INTO OrdersGames (order_ID, game_ID)
@@ -210,9 +208,9 @@ DELIMITER $$
     BEGIN
 		SELECT o.id, o.account_id, o.totalprice, o.created_at, o.status, GROUP_CONCAT(og.game_id) AS game_id
 		FROM orders AS o
-        INNER JOIN ordersgames AS og ON o.id = og.order_ID
-        WHERE o.id = oid
-        GROUP BY o.id;
+		INNER JOIN ordersgames AS og ON o.id = og.order_ID
+		WHERE o.id = oid
+		GROUP BY o.id;
 	END $$
 DELIMITER ;
 

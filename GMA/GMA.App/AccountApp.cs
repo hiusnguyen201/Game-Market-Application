@@ -90,18 +90,18 @@ public class AccountApp
             Console.ReadKey();
             accountLoggedIn = account;
             accountLoggedIn.AccountOrders = orderBLL.GetAll(accountLoggedIn.AccountId);
-            if(text == "AccountMenu")
+            if (text == "AccountMenu")
             {
                 AccountMenu();
             }
-            else if(text == "CartMenu")
+            else if (text == "CartMenu")
             {
                 OrderApp.CartMenu();
             }
         }
     }
 
-    public static void RegisterForm()
+    public async static void RegisterForm()
     {
         Console.Clear();
         var table = new Table();
@@ -296,7 +296,7 @@ public class AccountApp
 
             int result = accountBLL.UpdateMoney(accountLoggedIn.AccountId, accountLoggedIn.Money);
             accountLoggedIn = accountBLL.SearchByUsername(accountLoggedIn.Username);
-            
+
             if (result == 0)
             {
                 Console.Write("Add Funds Unsuccessfully! Try Again ! ");
@@ -442,24 +442,24 @@ public class AccountApp
     public static string GetPassword()
     {
         string password = "";
-        ConsoleKey key;
+        ConsoleKeyInfo key;
         do
         {
-            var keyInfo = Console.ReadKey(intercept: true);
-            key = keyInfo.Key;
-            if (key == ConsoleKey.Backspace && password.Length > 0)
+            key = Console.ReadKey(true);
+
+            if (!char.IsControl(key.KeyChar))
             {
-                Console.Write("\b \b");
-                password = password[0..^1];
-            }
-            else if (!char.IsControl(keyInfo.KeyChar))
-            {
+                password += key.KeyChar;
                 Console.Write("*");
-                password += keyInfo.KeyChar;
+            }
+            else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+            {
+                password = password.Substring(0, password.Length - 1);
+                Console.Write("\b \b");
             }
         }
-        while (key != ConsoleKey.Enter);
-        Console.Write("\n");
+        while (key.Key != ConsoleKey.Enter);
+        Console.WriteLine();
         return password;
     }
 }
