@@ -251,6 +251,16 @@ public class AccountApp
     {
         Console.Write("- Input Password (B: Back): ");
         string password = GetPassword();
+        if(string.IsNullOrEmpty(password))
+        {
+            Console.Write("Please enter password! ");
+            Console.ReadKey();
+            MainMenuApp.ClearCurrentConsoleLine();
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            MainMenuApp.ClearCurrentConsoleLine();
+            CheckPassToAddFunds(choice);
+        }
+
         if (password == "B" || password == "b")
         {
             if (MainMenuApp.CheckYesNo())
@@ -337,7 +347,7 @@ public class AccountApp
                 {
                     if (MainMenuApp.CheckYesNo())
                     {
-                        AccountMenu();
+                        AuthenticationMenu();
                     }
                     else
                     {
@@ -372,7 +382,7 @@ public class AccountApp
                 {
                     if (MainMenuApp.CheckYesNo())
                     {
-                        AccountMenu();
+                        AuthenticationMenu();
                     }
                     else
                     {

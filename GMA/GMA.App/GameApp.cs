@@ -164,7 +164,7 @@ public class GameApp
 
         while (true)
         {
-            Console.Write($"Your Choice: ");
+            Console.Write($"Enter Genre Id: ");
             string choice2 = Console.ReadLine();
             if (int.TryParse(choice2, out int intChoice))
             {
